@@ -1,3 +1,3 @@
 # Cupid JS SDK
 
-welcome to cupid sdk :D
+welcome to cupid sdk. :(
