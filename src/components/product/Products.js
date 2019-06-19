@@ -1,0 +1,17 @@
+import React from "react";
+
+const Products = ({ products }) => {
+    return (
+        <li>
+            <div herf={products.url}>
+                <span className="pro-img" >
+                    <img className="pro-img" src={products.productImageUrl} title={products.productName} alt={products.productName} />
+                </span>
+                <div className="product-name">{products.productName}</div>
+                <span className="nt">$</span>
+                <span className="sale-price">{products.productPrice}</span>
+            </div>
+        </li>
+    )
+}
+export default Products;
