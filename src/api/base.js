@@ -47,10 +47,4 @@ const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_
   });
 }
 
-const reloadTodoDatas = async()=> {
-  let response  = await axios.get('https://jsonplaceholder.typicode.com/todos');
-  console.log(response)
-  return response;
-}
-
 export default getApiData
