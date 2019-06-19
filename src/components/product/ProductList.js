@@ -1,5 +1,5 @@
 import React from "react";
-import "./Product.css";
+import "./Product.scss";
 import HeadMenu from "./HeadMenu";
 import Products from "./Products";
 import Pagination from "./Pagination"
