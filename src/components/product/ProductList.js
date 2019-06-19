@@ -1,26 +1,33 @@
 import React from "react";
 import "./Product.css";
-import Products from "./Products";
 import HeadMenu from "./HeadMenu";
+import Products from "./Products";
+import Pagination from "./Pagination"
 
-const ProductList = ({ productlist }) => {
+
+const ProductList = ({ productlist, pageInfo }) => {
 	return (
 		<div>
-			<HeadMenu />
-			<h1 className="pageInfo h1 ">{productlist.pageInfo.h1}</h1>
+			<HeadMenu pageInfo={pageInfo} />
+			<h1 className="pageInfo h1">{productlist.pageInfo.h1}</h1>
 			<div className="body-product ">
 				<div className="master-container">
 					<section className="wrap-page">
 						<ul className="product-container">
 							{
-								productlist.products.map((list) => {
+								productlist.products && productlist.products.length > 0 && productlist.products.map((list) => {
 									return <Products key={list.productId} products={list} />
 								})
 							}
 						</ul>
 					</section>
+					{
+						(productlist.products && productlist.products.length > 0 ? <Pagination productlist={productlist} pageInfo={pageInfo} /> : "")
+					}
+					
 				</div>
 			</div>
+
 		</div>
 	);
 }
