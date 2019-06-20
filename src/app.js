@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import getDataApi from './api/base';
-import { async } from "q";
-import { exists } from "fs";
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
-import ProductList from './components/ProductList';
+import ProductList from './components/product/ProductList';
+import rlt from './result';
 
 const getContent = async (id, token) => {
   let urlParms = getUrlParms();
@@ -52,19 +51,26 @@ const CupidSDK = {
   init: ({ id, token }) => {
     ID = id;
     TOKEN = token;
+    if (ID == '' || TOKEN == '') {
+      throw new Error("nununi id 或者 access token 未填寫");
+    } 
   },
   renderSuggestionTag: async () => {
     let data = await getContent(ID, TOKEN);
     const { suggestionTags } = data;
-    const Suggestion = document.getElementById("cupid-suggestion-tag");
-    ReactDOM.render(<App {...data}><Suggestion suggestionTags={suggestionTags} /></App>, Suggestion);
+    const { errcode } = data;
+    const { errmsg } = data;
+    const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={rlt.result.suggestionTags} /></App>, CupidSuggestionTag);
   },
   renderProductList: async () => {
     let data = await getContent(ID, TOKEN);
     const { products } = data;
     const pageInfo = getUrlParms();
-    const ProductList = document.getElementById("cupid-product-list");
-    ReactDOM.render(<App data={...data}><ProductList products={products} {...pageInfo} /></App>, ProductList);
+    const { errcode } = data;
+    const { errmsg } = data;
+    const CupidProductList = document.getElementById("cupid-product-list");
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><ProductList productlist={products} {...pageInfo} /></App>, CupidProductList);
   }
 }
 
