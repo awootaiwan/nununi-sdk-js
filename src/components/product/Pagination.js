@@ -49,10 +49,10 @@ const setPageList = ({ productlist }) => {
 const Pagination = ({ productlist, pageInfo }) => {
 
   currentPage = pageInfo['page'];
-  const pageInfoData = Object.assign({}, pageInfo);
+  const pageInfoData = {... pageInfo};
 	if (pageInfoData['page']) {
 		delete pageInfoData['page'];
-	}
+  }
 	const urlParams = querystring.stringify(pageInfoData);
   
   const baseUrl = `${location.protocol}//${location.host}?${urlParams}`;

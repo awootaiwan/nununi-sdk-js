@@ -6,7 +6,7 @@ import Pagination from "./Pagination"
 
 
 const ProductList = ({ productlist, pageInfo }) => {
-  const {products} = productlist
+  const { products } = productlist
   return (
     <div>
       <HeadMenu pageInfo={pageInfo} />
