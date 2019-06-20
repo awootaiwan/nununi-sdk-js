@@ -17,8 +17,6 @@ ul {
 	list-style: none;
 }
 
-
-
 .orders {
 	width: 100%;
 	margin-top: 10px;
@@ -29,7 +27,13 @@ ul {
 	flex-flow: row nowrap;
 	justify-content: flex-start;
 	align-items: stretch;
-	padding: .5px;
+  padding: .5px;
+  
+  .menu-click {
+		background: #f63577;
+		box-shadow: 0 0 0 1px #f63577;
+		color: #fff;
+	}
 }
 
 .head-menu-item {
@@ -45,14 +49,6 @@ ul {
 		font-size: 13px;
 		padding: 10px 20px;
 		display: block;
-	}
-}
-
-.head-menu {
-	.menu-click {
-		background: #f63577;
-		box-shadow: 0 0 0 1px #f63577;
-		color: #fff;
 	}
 }
 
@@ -140,13 +136,13 @@ ul {
 }
 
 .product-name {
-	display: -webkit-box;
+	display: box;
 	height: 40px;
 	margin: 0 0 10px;
 	line-height: 145%;
 	overflow: hidden;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
+	line-clamp: 2;
+	box-orient: vertical;
 	text-align: left;
 	line-height: 20px;
 	padding: 9px;
@@ -198,17 +194,23 @@ ul {
 			border-width: 1px;
 			border-style: solid;
 			cursor: pointer;
-			
-			.disabled{
-				cursor: default;
-				background: #f63577;
-				border-color: #f63577;
-				color: #fff;
-			}
-		}
+    }
+    
 
 		a:hover {
 			color: #f63577;
-		}
+    }
+    
+    .disabled{
+      cursor: default;
+      background: #f63577;
+      border-color: #f63577;
+      color: #fff;
+    }
+
+    .disabled:hover{
+      color: #fff;
+    }
+    
 	}
 }
