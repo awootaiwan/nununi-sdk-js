@@ -1,0 +1,165 @@
+$smallThreeColor:hsl(344, 81%, 65%);
+$footerNav:rgb(230, 227, 227);
+
+header {
+    width: 100%;
+    border-bottom: 1px solid rgb(223, 223, 223);
+}
+
+.head {
+    .awoo-headlogo {
+      width:200px;
+    }
+}
+
+.search {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 5%;
+    .search-input {
+      padding-left:5px;
+      border:1.5px solid $smallThreeColor; 
+      cursor:pointer;
+      width: 400px;
+      border-radius: 5px 0 0 5px;
+      height: 30px;
+    }
+    .sure-bottom {
+      padding:5px 15px;
+      border:1.5px solid $smallThreeColor;
+      background-color: $smallThreeColor;
+      color: #fff;
+      cursor:pointer;
+      width: 60px;
+      font-size: 10px;
+      font-family:sans-serif;
+      margin-left: -5px;
+      border-radius: 0 5px 5px 0;
+    }
+}
+
+.head  {
+    .logo-font {
+        font-family:cursive;
+        font-size: 35px;
+        display: inline-block;
+        padding-bottom: 10px;
+        color: $smallThreeColor;
+    }
+    .icon {
+      a:nth-child(1) {
+        display: block;
+        width: 50px;
+        margin-right: 50px;
+      }
+      a {
+        float: right;
+        margin-top: 20px;
+        margin-right: 20px;
+        color: #999;
+        font-size:35px;
+        margin-left: 10px;    
+          i:hover {
+            color: #272626;
+          }
+      }
+    }
+}
+
+.ul-menu {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  .li-menu {
+    display: inline;
+    a {
+      font-size:20px;
+      text-decoration: none;
+      color: rgb(51, 49, 49);
+      &:hover {
+        font-weight:bold;
+      }
+    }
+  }
+}
+.footer {
+  background-color:rgb(53, 52, 52); 
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  .footer-nav {
+      padding: 2px;
+      font-size: 18px;
+      font-family:"sans-serif";
+      line-height: 24px;
+        a {
+          text-decoration: none;
+          color:$footerNav;
+        }
+    }
+  .footer-info {
+    padding: 2px;
+    font-size: 15px;
+    font-family:"sans-serif";
+    line-height: 24px;
+    color:$footerNav;
+  }
+  .footer-service {
+      padding: 2px;
+      font-size: 18px;
+      font-family:"sans-serif";
+      line-height: 24px;
+      color:$footerNav;
+      a {
+        text-decoration: none;
+        color:$footerNav;
+      }
+  }
+  .footer-company {
+    padding: 2px;
+    span {
+      font-size: 15px;
+      font-family:"sans-serif";
+      line-height: 24px;
+      color:$footerNav;
+    }
+  }
+  .footer-address {
+    padding: 2px;
+    span {
+      font-size: 15px;
+      font-family:"sans-serif";
+      line-height: 24px;
+      color:$footerNav;
+    }
+  }
+  .awoo-footlogo {
+    width:100px;
+    position: absolute;
+    left: 70%;
+    top: 20%;
+    float: left;
+  }
+  .awoo-foottext1 {
+    font-size: 15px;
+    font-family:"sans-serif";
+    line-height: 24px;
+    color: #999;
+    position: absolute;
+    left: 80%;
+    bottom: 60%;
+    float: left;
+  }
+  .awoo-foottext2 {
+    color: #999;
+    font-weight: bold;
+    font-size: 26px;
+    font-family:"sans-serif";
+    line-height: 24px;
+    position: absolute;
+    left: 80%;
+    bottom: 45%;
+    float: left;
+  }
+}
