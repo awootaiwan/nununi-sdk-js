@@ -4,7 +4,6 @@ import getDataApi from './api/base';
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
-import rlt from './result';
 
 const getContent = async (id, token) => {
   let urlParms = getUrlParms();
@@ -61,7 +60,7 @@ const CupidSDK = {
     const { errcode } = data;
     const { errmsg } = data;
     const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
-    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={rlt.result.suggestionTags} /></App>, CupidSuggestionTag);
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={suggestionTags} /></App>, CupidSuggestionTag);
   },
   renderProductList: async () => {
     let data = await getContent(ID, TOKEN);
