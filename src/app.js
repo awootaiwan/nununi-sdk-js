@@ -1,51 +1,71 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Header from './components/Header';
+import getDataApi from './api/base';
+import { async } from "q";
+import { exists } from "fs";
+import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
-import api from './api/base';
-import rlt from './result';
+import ProductList from './components/ProductList';
 
+const getContent = async (id, token) => {
+  let urlParms = getUrlParms();
+  let data = await getDataApi(id, token, urlParms);
 
-// class HelloMessage extends React.Component {
+  return data;
+}
 
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       todos: []
-//     };
-//   }
+const getUrlParms = () => {
+  let url = new URL(window.location.href);
+  let tags = url.searchParams.get("tags");
+  let page = url.searchParams.get("page");
+  let sort = url.searchParams.get("sort");
+  let limit = 10;
 
-//   async componentDidMount() {
-//     const todos = await api.reloadTodoDatas();
-//     this.setState({
-//       todos
-//     });
-//   }
+  if (page === null) {
+    page = 1;
+  }
+  if (sort === null) {
+    sort = 1;
+  }
+  let data = {
+    tags,
+    page,
+    limit,
+    sort
+  }
+  return data;
+}
 
-//   render() {
-//     const { todos } = this.state;
-//     return (
-//       <div>
-//         <Header/>
-//         <div className="container">
-//             <h1>Hi {this.props.name}</h1>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
+const App = (props) => (
+  <React.Fragment>
+    {(props.errcode === 0) ? (
+      props.children
+    ) : (
+      <ErrorAlert errmsg={props.errmsg} />
+    )}
+  </React.Fragment>
+)
 
-// const App = document.getElementById("app");
-// ReactDOM.render(<HelloMessage name="Caesar" />, App);
-
-
+let ID = '';
+let TOKEN = '';
 const CupidSDK = {
-  init: ({ key }) => {
-    console.log('your user key is:', key);
+  init: ({ id, token }) => {
+    ID = id;
+    TOKEN = token;
   },
-  renderProductList: () => {
-    const App = document.getElementById("app");
-    ReactDOM.render(<Suggestion suggestionTags={rlt.result.suggestionTags} />, App);
+  renderSuggestionTag: async () => {
+    let data = await getContent(ID, TOKEN);
+    const { suggestionTags } = data;
+    const Suggestion = document.getElementById("cupid-suggestion-tag");
+    ReactDOM.render(<App {...data}><Suggestion suggestionTags={suggestionTags} /></App>, Suggestion);
+  },
+  renderProductList: async () => {
+    let data = await getContent(ID, TOKEN);
+    const { products } = data;
+    const pageInfo = getUrlParms();
+    const ProductList = document.getElementById("cupid-product-list");
+    ReactDOM.render(<App data={...data}><ProductList products={products} {...pageInfo} /></App>, ProductList);
   }
 }
+
 module.exports = window.CupidSDK = CupidSDK;
