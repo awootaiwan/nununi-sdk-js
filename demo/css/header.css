@@ -1,0 +1,189 @@
+header {
+  width: 100%;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.header-top {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+}
+
+.header-top ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background: #272626;
+  padding: 20px;
+}
+
+.header-top ul li a {
+  color: #dbe2e2;
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.head {
+  margin-top: 45px;
+}
+
+.head .awoo-headlogo {
+  width: 200px;
+  padding: 20px;
+}
+
+.head .logo-font {
+  position: absolute;
+  font-family: cursive;
+  font-size: 35px;
+  margin-top: 100px;
+  color: #ee5d84;
+}
+
+.head .icon a:nth-child(1) {
+  display: block;
+  width: 50px;
+  margin-right: 50px;
+}
+
+.head .icon a {
+  float: right;
+  margin-top: 30px;
+  margin-right: 20px;
+  color: #999;
+  font-size: 35px;
+  margin-left: 10px;
+}
+
+.head .icon a i:hover {
+  color: #272626;
+}
+
+.search {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  top: 5%;
+  margin-top: 50px;
+}
+
+.search .search-input {
+  padding-left: 5px;
+  border: 1.5px solid #ee5d84;
+  cursor: pointer;
+  width: 400px;
+  border-radius: 5px 0 0 5px;
+  height: 30px;
+}
+
+.search .sure-bottom {
+  padding: 5px 15px;
+  border: 1.5px solid #ee5d84;
+  background-color: #ee5d84;
+  color: #fff;
+  cursor: pointer;
+  width: 60px;
+  font-size: 10px;
+  font-family: sans-serif;
+  margin-left: -5px;
+  border-radius: 0 5px 5px 0;
+}
+
+.footer {
+  background-color: #353434;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.footer .footer-nav {
+  padding: 2px;
+  font-size: 18px;
+  font-family: "sans-serif";
+  line-height: 24px;
+}
+
+.footer .footer-nav a {
+  text-decoration: none;
+  color: #e6e3e3;
+}
+
+.footer .footer-info {
+  padding: 2px;
+  font-size: 15px;
+  font-family: "sans-serif";
+  line-height: 24px;
+  color: #e6e3e3;
+}
+
+.footer .footer-service {
+  padding: 2px;
+  font-size: 18px;
+  font-family: "sans-serif";
+  line-height: 24px;
+  color: #e6e3e3;
+}
+
+.footer .footer-service a {
+  text-decoration: none;
+  color: #e6e3e3;
+}
+
+.footer .footer-company {
+  padding: 2px;
+}
+
+.footer .footer-company span {
+  font-size: 15px;
+  font-family: "sans-serif";
+  line-height: 24px;
+  color: #e6e3e3;
+}
+
+.footer .footer-address {
+  padding: 2px;
+}
+
+.footer .footer-address span {
+  font-size: 15px;
+  font-family: "sans-serif";
+  line-height: 24px;
+  color: #e6e3e3;
+}
+
+.footer .awoo-footlogo {
+  width: 100px;
+  position: absolute;
+  left: 70%;
+  top: 20%;
+  float: left;
+}
+
+.footer .awoo-foottext1 {
+  font-size: 15px;
+  font-family: "sans-serif";
+  line-height: 24px;
+  color: #999;
+  position: absolute;
+  left: 80%;
+  bottom: 60%;
+  float: left;
+}
+
+.footer .awoo-foottext2 {
+  color: #999;
+  font-weight: bold;
+  font-size: 26px;
+  font-family: "sans-serif";
+  line-height: 24px;
+  position: absolute;
+  left: 80%;
+  bottom: 45%;
+  float: left;
+}
+/*# sourceMappingURL=header.css.map */
