@@ -28,18 +28,16 @@ const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_
     'Authorization' : `Bearer ${token}`
   }
 
-  const rlt = await axios.post(url, data, {headers} );
-  let response = {};
-  if (rlt.status == 200 ) {
-    response = rlt.data;
-  } else {
-    let errmsg = rlt.data.error_description
+  let {status,data:response} = await axios.post(url, data, {headers});
+  
+  if (status != 200 ) {
     response = {
-      'error' : rlt.data.error,
-      errmsg
+      'errmsg' : response.error_description,
+      'errcode' : status,
+      ...response
     } 
+    delete response.error_description
   }
-
   return response;
 }
 
