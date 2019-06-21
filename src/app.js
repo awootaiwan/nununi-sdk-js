@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import getDataApi from './api/base';
+import { getDataApi } from './api/base';
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
