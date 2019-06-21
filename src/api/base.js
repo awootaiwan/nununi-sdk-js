@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, pageInfo)=> {
-  let url = `${process.env.NUNUNI_DOMAIN}/${process.env.NUNUNI_APIVER}/${id}/${process.env.NUNUNI_APINAME}/`;
+  const url = `${process.env.NUNUNI_DOMAIN}/${process.env.NUNUNI_APIVER}/${id}/${process.env.NUNUNI_APINAME}/`;
 
   if(pageInfo === undefined ) {
     pageInfo = {
@@ -12,10 +12,10 @@ const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_
     }
   }
   
-  let tags = pageInfo.tags.split(',');
-  let page = pageInfo.page;
-  let limit = pageInfo.limit;
-  let sort = pageInfo.sort;
+  const tags = pageInfo.tags.split(',');
+  const page = pageInfo.page;
+  const limit = pageInfo.limit;
+  const sort = pageInfo.sort;
 
   let data = {
     tags,
@@ -24,27 +24,25 @@ const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_
     sort
   };
 
-  await axios.post(
-    url,
-    data,
-    {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    }
-  ).then(result => {
-    console.log(result)
-    if(result.status == 200){
-      response = result.data;
-    } else {
-      let errmsg = result.data.error_description;
-      response = {
-        "error" : result.data.error,
-        errmsg,
-      }
-    }
-    return response;
-  });
+  let headers = {
+    'Authorization' : `Bearer ${token}`
+  }
+
+  const rlt = await axios.post(url, data, {headers} );
+  let response = {};
+  if (rlt.status == 200 ) {
+    response = rlt.data;
+  } else {
+    let errmsg = rlt.data.error_description
+    response = {
+      'error' : rlt.data.error,
+      errmsg
+    } 
+  }
+
+  return response;
 }
 
-export default getApiData
+export default {
+  getApiData
+}
