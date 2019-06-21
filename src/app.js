@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { getDataApi } from './api/base';
+import { getApiData } from './api/base';
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
 
 const getContent = async (id, token) => {
   let urlParms = getUrlParms();
-  let data = await getDataApi(id, token, urlParms);
+  let data = await getApiData(id, token, urlParms);
 
   return data;
 }
@@ -47,7 +47,7 @@ const App = (props) => (
 let ID = '';
 let TOKEN = '';
 const CupidSDK = {
-  init: ({ id, token }) => {
+  init: ({ id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN }) => {
     ID = id;
     TOKEN = token;
     if (ID == '' || TOKEN == '') {
@@ -56,19 +56,16 @@ const CupidSDK = {
   },
   renderSuggestionTag: async () => {
     let data = await getContent(ID, TOKEN);
-    const { suggestionTags } = data;
-    const { errcode } = data;
-    const { errmsg } = data;
+    const { result, errcode, errmsg } = data;
     const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
-    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={suggestionTags} /></App>, CupidSuggestionTag);    
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={result.suggestionTags} /></App>, CupidSuggestionTag);    
   },
   renderProductList: async () => {
     let data = await getContent(ID, TOKEN);
     const pageInfo = getUrlParms();
-    const { errcode } = data;
-    const { errmsg } = data;
+    const { errcode, errmsg } = data;
     const CupidProductList = document.getElementById("cupid-product-list");
-    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><ProductList productlist={data} pageInfo={pageInfo} /></App>, CupidProductList);    
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><ProductList productlist={data.result} pageInfo={pageInfo} /></App>, CupidProductList);    
   }
 }
 
