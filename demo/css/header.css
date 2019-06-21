@@ -17,14 +17,19 @@ header {
   -ms-flex-pack: distribute;
       justify-content: space-around;
   background: #272626;
-  padding: 20px;
+  padding: 15px;
 }
 
 .header-top ul li a {
   color: #dbe2e2;
   padding: 10px;
-  font-size: 20px;
+  font-size: 18px;
   text-decoration: none;
+}
+
+.header-top ul li a:hover {
+  color: #999;
+  text-decoration: underline;
 }
 
 .head {
@@ -32,16 +37,23 @@ header {
 }
 
 .head .awoo-headlogo {
-  width: 200px;
+  width: 150px;
   padding: 20px;
 }
 
 .head .logo-font {
+  top: 2.6%;
+  left: 10%;
   position: absolute;
   font-family: cursive;
   font-size: 35px;
+  font-style: oblique;
   margin-top: 100px;
   color: #ee5d84;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .head .icon a:nth-child(1) {
@@ -76,22 +88,29 @@ header {
   padding-left: 5px;
   border: 1.5px solid #ee5d84;
   cursor: pointer;
-  width: 400px;
+  width: 300px;
   border-radius: 5px 0 0 5px;
   height: 30px;
+  outline: none;
+  cursor: text;
 }
 
-.search .sure-bottom {
+.search .sure-botton {
   padding: 5px 15px;
-  border: 1.5px solid #ee5d84;
+  border: 1.1px solid #ee5d84;
   background-color: #ee5d84;
   color: #fff;
-  cursor: pointer;
-  width: 60px;
-  font-size: 10px;
-  font-family: sans-serif;
+  width: 70px;
+  font-size: 13px;
   margin-left: -5px;
   border-radius: 0 5px 5px 0;
+  outline: none;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.search .sure-botton:hover {
+  opacity: 1;
 }
 
 .footer {
@@ -102,29 +121,35 @@ header {
 }
 
 .footer .footer-nav {
-  padding: 2px;
-  font-size: 18px;
-  font-family: "sans-serif";
+  padding: 10px;
   line-height: 24px;
 }
 
 .footer .footer-nav a {
   text-decoration: none;
   color: #e6e3e3;
+  font-size: 18px;
+}
+
+.footer .footer-nav a:hover {
+  color: #999;
+  text-decoration: underline;
+}
+
+.footer .footer-nav span {
+  color: #e6e3e3;
 }
 
 .footer .footer-info {
-  padding: 2px;
-  font-size: 15px;
-  font-family: "sans-serif";
+  margin-left: 10px;
+  font-size: 16px;
   line-height: 24px;
   color: #e6e3e3;
 }
 
 .footer .footer-service {
-  padding: 2px;
+  padding: 10px;
   font-size: 18px;
-  font-family: "sans-serif";
   line-height: 24px;
   color: #e6e3e3;
 }
@@ -134,24 +159,27 @@ header {
   color: #e6e3e3;
 }
 
+.footer .footer-service a:hover {
+  color: #999;
+  text-decoration: underline;
+}
+
 .footer .footer-company {
-  padding: 2px;
+  margin-left: 10px;
 }
 
 .footer .footer-company span {
-  font-size: 15px;
-  font-family: "sans-serif";
+  font-size: 16px;
   line-height: 24px;
   color: #e6e3e3;
 }
 
 .footer .footer-address {
-  padding: 2px;
+  margin-left: 10px;
 }
 
 .footer .footer-address span {
-  font-size: 15px;
-  font-family: "sans-serif";
+  font-size: 16px;
   line-height: 24px;
   color: #e6e3e3;
 }
@@ -166,7 +194,6 @@ header {
 
 .footer .awoo-foottext1 {
   font-size: 15px;
-  font-family: "sans-serif";
   line-height: 24px;
   color: #999;
   position: absolute;
@@ -179,7 +206,6 @@ header {
   color: #999;
   font-weight: bold;
   font-size: 26px;
-  font-family: "sans-serif";
   line-height: 24px;
   position: absolute;
   left: 80%;
