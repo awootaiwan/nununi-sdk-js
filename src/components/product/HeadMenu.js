@@ -27,7 +27,7 @@ const HeadMenu = ({ pageInfo }) => {
         {
           Object.keys(sort).map(function (key, index) {
             const menuClase = `head-menu-item ${pageSort == sort[key] ? "menu-click" : ""}`
-            return <li key={index} className={menuClase}><a href={`${baseUrl}sort=${sort[key]}`}><span>{key}</span></a></li>
+            return <li key={index} className={menuClase}><a href={`${baseUrl}&sort=${sort[key]}`}><span>{key}</span></a></li>
           })
         }
       </ul>

@@ -22,8 +22,8 @@ const getUrlParms = () => {
   if (page === null) {
     page = 1;
   }
-  if (sort === null) {
-    sort = 1;
+  if (sort === null || sort === "") {
+    sort = 8;
   }
   let data = {
     tags,
@@ -60,16 +60,15 @@ const CupidSDK = {
     const { errcode } = data;
     const { errmsg } = data;
     const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
-    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={suggestionTags} /></App>, CupidSuggestionTag);
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={suggestionTags} /></App>, CupidSuggestionTag);    
   },
   renderProductList: async () => {
     let data = await getContent(ID, TOKEN);
-    const { products } = data;
     const pageInfo = getUrlParms();
     const { errcode } = data;
     const { errmsg } = data;
     const CupidProductList = document.getElementById("cupid-product-list");
-    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><ProductList productlist={products} {...pageInfo} /></App>, CupidProductList);
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><ProductList productlist={data} pageInfo={pageInfo} /></App>, CupidProductList);    
   }
 }
 

@@ -59,17 +59,17 @@ const Pagination = ({ productlist, pageInfo }) => {
   return (
     <div className="body-pagination">
       <ul>
-        {(currentPage != 1) ? <li><a href={`${baseUrl}page=${(parseInt(currentPage) - 1)}`}>{'<'}</a></li> : ""}
+        {(currentPage != 1) ? <li><a href={`${baseUrl}&page=${(parseInt(currentPage) - 1)}`}>{'<'}</a></li> : ""}
         {
           setPageList({ productlist }).map((list) => {
             
             return <li key={list}>
               {!isNaN(list) ? <a className={currentPage == list ? 'disabled' : ""}
-                href={currentPage != list ? `${baseUrl}page=${list}` : "#"}>{list}</a> : list}
+                href={currentPage != list ? `${baseUrl}&page=${list}` : "#"}>{list}</a> : list}
             </li>
           })
         }
-        {(currentPage != pageAmount) ? <li><a href={`${baseUrl}page=${(parseInt(currentPage) + 1)}`}>{'>'}</a></li> : ""}
+        {(currentPage != pageAmount) ? <li><a href={`${baseUrl}&page=${(parseInt(currentPage) + 1)}`}>{'>'}</a></li> : ""}
       </ul>
     </div>
   )
