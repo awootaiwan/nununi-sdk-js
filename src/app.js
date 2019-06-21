@@ -47,7 +47,7 @@ const App = (props) => (
 let ID = '';
 let TOKEN = '';
 const CupidSDK = {
-  init: ({ id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN }) => {
+  init: ({ id, token }) => {
     ID = id;
     TOKEN = token;
     if (ID == '' || TOKEN == '') {
