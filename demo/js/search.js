@@ -1,4 +1,4 @@
-const baseUrl = `${location.protocol}//${location.host}?tag=`
+const baseUrl = `${location.protocol}//${location.host}?tags=`
 $('.sure-bottom').on('click', function(){
     val = $(".search-input").val();
     url = `${baseUrl}${val}`
