@@ -3,8 +3,64 @@ header {
   border-bottom: 1px solid #dfdfdf;
 }
 
+.header-top {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+}
+
+.header-top ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  background: #272626;
+  padding: 20px;
+}
+
+.header-top ul li a {
+  color: #dbe2e2;
+  padding: 10px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.head {
+  margin-top: 45px;
+}
+
 .head .awoo-headlogo {
   width: 200px;
+  padding: 20px;
+}
+
+.head .logo-font {
+  position: absolute;
+  font-family: cursive;
+  font-size: 35px;
+  margin-top: 100px;
+  color: #ee5d84;
+}
+
+.head .icon a:nth-child(1) {
+  display: block;
+  width: 50px;
+  margin-right: 50px;
+}
+
+.head .icon a {
+  float: right;
+  margin-top: 30px;
+  margin-right: 20px;
+  color: #999;
+  font-size: 35px;
+  margin-left: 10px;
+}
+
+.head .icon a i:hover {
+  color: #272626;
 }
 
 .search {
@@ -13,6 +69,7 @@ header {
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   top: 5%;
+  margin-top: 50px;
 }
 
 .search .search-input {
@@ -35,56 +92,6 @@ header {
   font-family: sans-serif;
   margin-left: -5px;
   border-radius: 0 5px 5px 0;
-}
-
-.head .logo-font {
-  font-family: cursive;
-  font-size: 35px;
-  display: inline-block;
-  padding-bottom: 10px;
-  color: #ee5d84;
-}
-
-.head .icon a:nth-child(1) {
-  display: block;
-  width: 50px;
-  margin-right: 50px;
-}
-
-.head .icon a {
-  float: right;
-  margin-top: 20px;
-  margin-right: 20px;
-  color: #999;
-  font-size: 35px;
-  margin-left: 10px;
-}
-
-.head .icon a i:hover {
-  color: #272626;
-}
-
-.ul-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding: 10px;
-}
-
-.ul-menu .li-menu {
-  display: inline;
-}
-
-.ul-menu .li-menu a {
-  font-size: 20px;
-  text-decoration: none;
-  color: #333131;
-}
-
-.ul-menu .li-menu a:hover {
-  font-weight: bold;
 }
 
 .footer {

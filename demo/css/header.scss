@@ -1,15 +1,62 @@
 $smallThreeColor:hsl(344, 81%, 65%);
 $footerNav:rgb(230, 227, 227);
-
 header {
     width: 100%;
     border-bottom: 1px solid rgb(223, 223, 223);
 }
 
-.head {
-    .awoo-headlogo {
-      width:200px;
+.header-top {
+  position:fixed;
+  width: 100%;
+  z-index: 1  ;
+  top: 0;
+  ul {
+    display: flex;
+    justify-content: space-around;
+    background: #272626;
+    padding: 20px;
+    li {
+      a {
+        color: rgb(219, 226, 226);
+        padding: 10px;
+        font-size: 20px;
+        text-decoration: none;
+      }
     }
+  }
+}
+
+.head {
+  margin-top: 45px;
+  .awoo-headlogo {
+    width:200px;padding: 20px;
+  }
+  .logo-font {
+    position: absolute;
+    font-family:cursive;
+    font-size: 35px;
+    //display: inline-block;
+    margin-top: 100px;
+    color: $smallThreeColor;
+  }
+  .icon {
+    a:nth-child(1) {
+      display: block;
+      width: 50px;
+      margin-right: 50px;
+    }
+    a {
+      float: right;
+      margin-top: 30px;
+      margin-right: 20px;
+      color: #999;
+      font-size:35px;
+      margin-left: 10px;    
+        i:hover {
+          color: #272626;
+        }
+    }
+  }
 }
 
 .search {
@@ -17,6 +64,7 @@ header {
     left: 50%;
     transform: translateX(-50%);
     top: 5%;
+    margin-top: 50px;
     .search-input {
       padding-left:5px;
       border:1.5px solid $smallThreeColor; 
@@ -39,50 +87,6 @@ header {
     }
 }
 
-.head  {
-    .logo-font {
-        font-family:cursive;
-        font-size: 35px;
-        display: inline-block;
-        padding-bottom: 10px;
-        color: $smallThreeColor;
-    }
-    .icon {
-      a:nth-child(1) {
-        display: block;
-        width: 50px;
-        margin-right: 50px;
-      }
-      a {
-        float: right;
-        margin-top: 20px;
-        margin-right: 20px;
-        color: #999;
-        font-size:35px;
-        margin-left: 10px;    
-          i:hover {
-            color: #272626;
-          }
-      }
-    }
-}
-
-.ul-menu {
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-  .li-menu {
-    display: inline;
-    a {
-      font-size:20px;
-      text-decoration: none;
-      color: rgb(51, 49, 49);
-      &:hover {
-        font-weight:bold;
-      }
-    }
-  }
-}
 .footer {
   background-color:rgb(53, 52, 52); 
   position: absolute;
