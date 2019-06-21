@@ -41,6 +41,6 @@ const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_
   return response;
 }
 
-export default {
+export {
   getApiData
 }
