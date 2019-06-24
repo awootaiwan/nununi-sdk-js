@@ -4,36 +4,35 @@ header {
 }
 
 .header-top {
-  position: fixed;
   width: 100%;
-  z-index: 1;
   top: 0;
 }
 
-.header-top ul {
+.header-top .top-menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin: 0;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   background: #272626;
   padding: 10px;
 }
 
-.header-top ul li a {
+.header-top .top-menu li a {
   color: #dbe2e2;
   padding: 10px;
   font-size: 18px;
   text-decoration: none;
 }
 
-.header-top ul li a:hover {
+.header-top .top-menu li a:hover {
   color: #999;
   text-decoration: underline;
 }
 
 .head {
-  margin-top: 45px;
+  margin-top: 10px;
 }
 
 .head .awoo-headlogo {
@@ -43,8 +42,8 @@ header {
 
 .head .logo-font {
   position: absolute;
-  top: -8px;
-  left: 108px;
+  top: 0px;
+  left: 100px;
   font-family: cursive;
   font-size: 35px;
   font-style: oblique;
@@ -113,9 +112,13 @@ header {
   opacity: 1;
 }
 
+main {
+  width: 100%;
+  height: auto;
+}
+
 .footer {
   background-color: #353434;
-  position: absolute;
   width: 100%;
   bottom: 0;
 }
@@ -184,22 +187,14 @@ header {
   color: #e6e3e3;
 }
 
-.footer .awoo-footlogo {
-  width: 100px;
-  position: absolute;
-  left: 70%;
-  top: 20%;
-  float: left;
-}
-
 .footer .awoo-foottext1 {
   font-size: 15px;
   line-height: 24px;
   color: #999;
-  position: absolute;
-  left: 80%;
-  bottom: 60%;
-  float: left;
+  position: relative;
+  bottom: 50px;
+  float: right;
+  margin-right: 50px;
 }
 
 .footer .awoo-foottext2 {
@@ -207,9 +202,9 @@ header {
   font-weight: bold;
   font-size: 26px;
   line-height: 24px;
-  position: absolute;
-  left: 80%;
-  bottom: 45%;
-  float: left;
+  position: relative;
+  bottom: 50px;
+  float: right;
+  margin-right: 50px;
 }
 /*# sourceMappingURL=header.css.map */
