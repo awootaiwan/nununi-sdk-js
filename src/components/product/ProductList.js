@@ -6,14 +6,10 @@ import Pagination from "./Pagination"
 
 
 const ProductList = ({ productlist, pageInfo }) => {
-  const { products } = productlist;
-  if (pageInfo.tags === null) {
-    pageInfo.tags = ""
-  }
-  
+  const { products } = productlist; 
   return (
     <div>
-      {pageInfo && pageInfo.tags.length > 0 && 
+      {pageInfo.tags && pageInfo.tags.length > 0 && 
       <React.Fragment>
         <HeadMenu pageInfo={pageInfo} />
         <h1 className="pageInfo h1">{productlist.pageInfo.h1}</h1>
