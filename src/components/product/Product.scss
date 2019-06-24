@@ -57,18 +57,16 @@ ul {
   }
 }
 
-.pageInfo {
-  .h1 {
-    width: 100%;
-    margin-top: 10px;
-    margin-bottom: 0;
-    height: 22px;
-    color: #ca3575;
-    line-height: 22px;
-    font-size: 21px;
-    padding-left: 6px;
-    border-left: solid 6px #ca3577;
-  }
+.pageInfo-h1 {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 0;
+  height: 22px;
+  color: #ca3575;
+  line-height: 22px;
+  font-size: 21px;
+  padding-left: 6px;
+  border-left: solid 6px #ca3577;
 }
 
 .body-product {
@@ -159,6 +157,7 @@ ul {
   height: 28px;
   color: #ee4d79;
   display: inline-block;
+  margin-bottom: 10px;
 }
 
 .nt {
