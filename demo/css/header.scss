@@ -18,7 +18,7 @@ header {
     display: flex;
     justify-content: space-around;
     background: #272626;
-    padding: 15px;
+    padding: 10px;
     li {
       a {
         color: rgb(219, 226, 226);
@@ -38,12 +38,12 @@ header {
   margin-top: 45px;
   .awoo-headlogo {
     width:150px;
-    padding: 20px;
+    padding-left: 10px;
   }
   .logo-font {
-    top:  2.6%;
-    left: 10%;
     position: absolute;
+    top: -8px;
+    left: 108px;
     font-family:cursive;
     font-size: 35px;
     font-style: oblique;
