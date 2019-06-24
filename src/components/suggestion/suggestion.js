@@ -3,15 +3,19 @@ import "./suggestion.scss";
 import SuggestionTag from "./suggestionTag.js";
 
 const Suggestion = ({ suggestionTags, pageInfo }) => {
+  if (pageInfo.tags === null) {
+    pageInfo.tags = "";
+  }
   const tags = pageInfo.tags.split(",");
+  
   return (
     <div className="suggestion">
       <ul>
         {
           pageInfo.tags &&
           pageInfo.tags.length > 0 &&
-          tags.map(tag =>(
-            <li><a>{tag}</a></li>
+          tags.map(tag =>(          
+            <li key={tag}><a>{tag}</a></li>
           ))
         }
       </ul>
