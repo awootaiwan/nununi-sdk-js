@@ -7,10 +7,12 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="app"></div>
+  <div id="cupid-suggestion-tag"></div>
+  <div id="cupid-product-list"></div>
   <script src="./app.js"></script>
   <script>
-    window.CupidSDK.init({key:'key123456'});
+    window.CupidSDK.init({id : process.env.NUNUNI_ID, token : process.env.NUNUNI_TOKEN});
+    window.CupidSDK.renderSuggestionTag();
     window.CupidSDK.renderProductList();
   </script>
 </body>
