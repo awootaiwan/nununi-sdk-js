@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel src/index.html --port 3000",
+    "demo": "parcel demo/index.html --port 3001",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build index.html --out-dir dist",
     "build:no-cache": "parcel build src/index.html --no-cache --out-dir dist",

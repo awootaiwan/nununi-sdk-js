@@ -5,48 +5,46 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="/css/reset.css">
-  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/header.scss">
   <title>awoo</title>
 </head>
 
-<body>
-  <div class="header-top">
-    <ul>
-      <li class="about-us">
-        <a href="">關於</a>
-      </li>
-      <li class="culture-value">
-        <a href="">客戶</a>
-      </li>
-      <li class="media-news">
-        <a href="">服務</a>
-      </li>
-      <li class="founder">
-        <a href="">肯定</a>
-      </li>
-      <li class="founder">
-        <a href="">招募</a>
-      </li>
-      <li class="founder">
-        <a href="">粉絲</a>
-      </li>
-      <li class="founder">
-        <a href="">智庫</a>
-      </li>
-      <li class="founder">
-        <a href="">活動</a>
-      </li>
-      <li class="founder">
-        <a href="">諮詢</a>
-      </li>
-    </ul>
-  </div>
+<body onDRAGSTART="window.event.returnValue=false">
   <header>
-
+    <div class="header-top">
+      <ul class="top-menu">
+        <li class="about-us">
+          <a href="">關於</a>
+        </li>
+        <li class="culture-value">
+          <a href="">客戶</a>
+        </li>
+        <li class="media-news">
+          <a href="">服務</a>
+        </li>
+        <li>
+          <a href="">肯定</a>
+        </li>
+        <li>
+          <a href="">招募</a>
+        </li>
+        <li>
+          <a href="">粉絲</a>
+        </li>
+        <li>
+          <a href="">智庫</a>
+        </li>
+        <li>
+          <a href="">活動</a>
+        </li>
+        <li>
+          <a href="">諮詢</a>
+        </li>
+      </ul>
+    </div>
     <div class="head">
-      <img src="../src/assets/images/awoo.png" class="awoo-headlogo" alt="">
+      <img src="../demo/images/awoo.png" class="awoo-headlogo" alt="">
       <sapn class="logo-font">awoo cupid</sapn>
       <span class="icon">
         <a href=""><i class="fas fa-shopping-cart"></i></a>
@@ -55,12 +53,10 @@
     </div>
     <div class="search">
       <input class="search-input" type="search"></input>
-      <button class="sure-bottom">搜尋</button>
+      <button class="sure-button">搜尋</button>
     </div>
   </header>
-  <menu>
 
-  </menu>
   <main>
   </main>
 
@@ -103,14 +99,15 @@
         <a href="">搜尋引擎最佳化</a>
         <span>|</span>
         <a href="">Google Analytics</a>
+        <span class="awoo-foottext1">SEO 搜尋引擎最佳化服務專線</span>
+        <span class="awoo-foottext2">(02)8712-1128</span>
       </div>
-      <img class="awoo-footlogo" src="../src/assets/images/awoo.png" alt="">
-      <span class="awoo-foottext1">SEO 搜尋引擎最佳化服務專線</span>
-      <span class="awoo-foottext2">(02)8712-1128</span>
+
     </div>
   </footer>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
+<script src="../src/app.js"></script>
 
 </html>
