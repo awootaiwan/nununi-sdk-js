@@ -7,7 +7,13 @@ import ProductList from './components/product/ProductList';
 
 const getContent = async (id, token) => {
   let urlParms = getUrlParms();
-  let data = await getApiData(id, token, urlParms);
+  let data = {
+    errcode: 0,
+    errmsg: "",
+    result: {}
+  }
+
+  data = (urlParms.tags) ? await getApiData(id, token, urlParms) : data ;
 
   return data;
 }
@@ -56,9 +62,10 @@ const CupidSDK = {
   },
   renderSuggestionTag: async () => {
     let data = await getContent(ID, TOKEN);
+    const pageInfo = getUrlParms();
     const { result, errcode, errmsg } = data;
     const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
-    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={result.suggestionTags} /></App>, CupidSuggestionTag);    
+    ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={result.suggestionTags} pageInfo={pageInfo} /></App>, CupidSuggestionTag);    
   },
   renderProductList: async () => {
     let data = await getContent(ID, TOKEN);
