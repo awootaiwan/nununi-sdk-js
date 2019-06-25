@@ -70,6 +70,10 @@ header {
   margin-left: 10px;
 }
 
+.head .icon a i {
+  color: #ee5d84;
+}
+
 .head .icon a i:hover {
   color: #272626;
 }
@@ -94,7 +98,7 @@ header {
   cursor: text;
 }
 
-.search .sure-botton {
+.search .sure-button {
   padding: 5px 15px;
   border: 1.1px solid #ee5d84;
   background-color: #ee5d84;
@@ -108,7 +112,7 @@ header {
   cursor: pointer;
 }
 
-.search .sure-botton:hover {
+.search .sure-button:hover {
   opacity: 1;
 }
 

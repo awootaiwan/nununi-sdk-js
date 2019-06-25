@@ -63,10 +63,13 @@ header {
       margin-right: 20px;
       color: #999;
       font-size:35px;
-      margin-left: 10px;    
-        i:hover {
+      margin-left: 10px;
+      i {
+        color:#ee5d84;
+        &:hover {
           color: $iconhover-color;
         }
+      }   
     }
   }
 }
@@ -87,7 +90,7 @@ header {
       outline: none;
       cursor: text;
     }
-    .sure-botton {
+    .sure-button {
       padding:5px 15px;
       border:1.1px solid $smallThreeColor;
       background-color: $smallThreeColor;
