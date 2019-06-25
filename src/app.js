@@ -13,9 +13,7 @@ const getContent = async (id, token) => {
     result: {}
   }
 
-  if (urlParms.tags != null) {
-    data = await getApiData(id, token, urlParms);
-  }
+  data = (urlParms.tags) ? await getApiData(id, token, urlParms) : data ;
 
   return data;
 }
