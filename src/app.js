@@ -34,14 +34,12 @@ const getUrlParms = () => {
   if (limit === null) {
     limit = 10 ;
   }
-
   let data = {
     tags,
     page,
     limit,
     sort
   }
-  console.log(data);
   return data;
 }
 
