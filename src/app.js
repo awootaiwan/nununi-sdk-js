@@ -23,7 +23,7 @@ const getUrlParms = () => {
   let tags = url.searchParams.get("tags");
   let page = url.searchParams.get("page");
   let sort = url.searchParams.get("sort");
-  let limit = 10;
+  let limit = url.searchParams.get("limit");
 
   if (page === null) {
     page = 1;
@@ -31,12 +31,17 @@ const getUrlParms = () => {
   if (sort === null || sort === "") {
     sort = 8;
   }
+  if (limit === null) {
+    limit = 10 ;
+  }
+
   let data = {
     tags,
     page,
     limit,
     sort
   }
+  console.log(data);
   return data;
 }
 
