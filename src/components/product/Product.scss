@@ -58,7 +58,6 @@ ul {
 }
 
 .pageInfo-h1 {
-  width: 100%;
   margin-top: 10px;
   margin-bottom: 0;
   height: 22px;
@@ -70,7 +69,6 @@ ul {
 }
 
 .body-product {
-  width: 100vw;
   margin-top: calc(10px - 7.5px);
   display: flex;
   flex-flow: row wrap;
@@ -79,21 +77,16 @@ ul {
 }
 
 .master-container {
-  min-width: 100vw;
+  min-width: 100%;
   background: #eee;
 }
 
 .wrap-page {
-  max-width: 88vw;
+  max-width: 90%;
   margin: 0 auto;
 }
-
 .product-container {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  flex-wrap: wrap;
 
   a:link {
     color: #383838;
@@ -119,6 +112,7 @@ ul {
     background: #fff;
     vertical-align: top;
     position: relative;
+    display: inline-block;
 
     .pro-img {
       display: block;
