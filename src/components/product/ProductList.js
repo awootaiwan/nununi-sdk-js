@@ -10,7 +10,7 @@ const ProductList = ({ productlist, pageInfo }) => {
   return (
     <div>
       <HeadMenu pageInfo={pageInfo} />
-      <h1 className="pageInfo h1">{productlist.pageInfo.h1}</h1>
+      <h1 className="pageInfo-h1">{productlist.pageInfo.h1}</h1>
       <div className="body-product ">
         <div className="master-container">
           <section className="wrap-page">
