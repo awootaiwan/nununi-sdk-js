@@ -61,23 +61,33 @@ const CupidSDK = {
     } 
   },
   renderSuggestionTag: async () => {
+    if (!ID || !TOKEN) {
+      throw new Error('請先呼叫函數 window.CupidSDK.init');
+    }
+    const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
+    if (!CupidSuggestionTag || CupidSuggestionTag.length < 1) {
+      throw new Error('請先加入 <div id="cupid-suggestion-tag"></div> HTML標籤');
+    } 
+    
     let data = await getContent(ID, TOKEN);
     const pageInfo = getUrlParms();
     const { result, errcode, errmsg } = data;
-    const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
-    if (CupidSuggestionTag == null) {
-      throw new Error('請先加入 <div id="cupid-suggestion-tag"></div> HTML標籤');
-    } 
+
     ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><Suggestion suggestionTags={result.suggestionTags} pageInfo={pageInfo} /></App>, CupidSuggestionTag);    
   },
   renderProductList: async () => {
+    if (!ID || !TOKEN) {
+      throw new Error('請先呼叫函數 window.CupidSDK.init');
+    }
+    const CupidProductList = document.getElementById("cupid-product-list");
+    if (!CupidProductList || CupidProductList.length < 1) {
+      throw new Error('請先加入 <div id="cupid-product-list"></div> HTML標籤');
+    } 
+    
     let data = await getContent(ID, TOKEN);
     const pageInfo = getUrlParms();
     const { errcode, errmsg } = data;
-    const CupidProductList = document.getElementById("cupid-product-list");
-    if (CupidProductList == null) {
-      throw new Error('請先加入 <div id="cupid-product-list"></div> HTML標籤');
-    } 
+    
     ReactDOM.render(<App errcode={errcode} errmsg={errmsg}><ProductList productlist={data.result} pageInfo={pageInfo} /></App>, CupidProductList);    
   }
 }
