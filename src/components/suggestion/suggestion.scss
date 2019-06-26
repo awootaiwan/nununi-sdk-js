@@ -15,7 +15,6 @@
 
     li {
       display: inline-block;
-      cursor: pointer;
       flex-grow: 0;
       flex-shrink: 0;
       font-size: 13px;
@@ -28,6 +27,7 @@
         background: #f63577;
         line-height: 31px;
         padding: 7px 10px;
+        cursor: default;
       }
     }
   }
