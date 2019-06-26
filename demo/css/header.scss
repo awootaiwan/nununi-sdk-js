@@ -24,6 +24,7 @@ header {
     background: #272626;
     padding: 10px;
     li {
+      list-style-type: none;
       a {
         color: rgb(219, 226, 226);
         padding: 10px;
@@ -56,7 +57,7 @@ header {
     user-select:none;
   }
   .icon {
-    a:nth-child(1) {
+    a:nth-of-type(1) {
       display: block;
       width: 50px;
       margin-right: 50px;
@@ -85,7 +86,7 @@ header {
     top: 5%;
     margin-top: 50px;
     .search-input {
-      padding-left:5 px;
+      padding-left: 5px;
       border:1.3px solid $smallThreeColor; 
       cursor:pointer;
       width: 300px;

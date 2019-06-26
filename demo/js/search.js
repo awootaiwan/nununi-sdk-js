@@ -7,11 +7,9 @@ $('.sure-button').on('click', function(){
     }
 })
 
-
-
 $('.search-input').on("keyup", function(event) {
     if (event.keyCode === 13) {
      event.preventDefault();
      $(".sure-button").click();
     }
-  });
+});
