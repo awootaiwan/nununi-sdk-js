@@ -4,10 +4,14 @@ $hover-color:#999;
 $iconhover-color:#272626;
 $footer-content-length:10px;
 
-header {
-    width: 100%;
-    border-bottom: 1px solid rgb(223, 223, 223);
+body {
+  margin: 0;
+  padding: 0;
+}
 
+header {
+  width: 100%;
+  border-bottom: 1px solid rgb(223, 223, 223);
 }
 
 .header-top {
@@ -20,6 +24,7 @@ header {
     background: #272626;
     padding: 10px;
     li {
+      list-style-type: none;
       a {
         color: rgb(219, 226, 226);
         padding: 10px;
@@ -52,7 +57,7 @@ header {
     user-select:none;
   }
   .icon {
-    a:nth-child(1) {
+    a:nth-of-type(1) {
       display: block;
       width: 50px;
       margin-right: 50px;
@@ -81,8 +86,8 @@ header {
     top: 5%;
     margin-top: 50px;
     .search-input {
-      padding-left:5px;
-      border:1.5px solid $smallThreeColor; 
+      padding-left: 5px;
+      border:1.3px solid $smallThreeColor; 
       cursor:pointer;
       width: 300px;
       border-radius: 5px 0 0 5px;
@@ -91,13 +96,14 @@ header {
       cursor: text;
     }
     .sure-button {
-      padding:5px 15px;
-      border:1.1px solid $smallThreeColor;
+      padding-left: 5px;
+      height: 30px;
+      border:1px solid $smallThreeColor;
       background-color: $smallThreeColor;
       color: #fff;
       width: 70px;
       font-size: 13px;
-      margin-left: -5px;
+      margin-left: -6px;
       border-radius: 0 5px 5px 0;
       outline: none;
       opacity: 0.8;
@@ -116,7 +122,8 @@ main {
 .footer {
   background-color:rgb(53, 52, 52); 
   width: 100%;
-  bottom: 0;
+  position: relative ;
+  bottom:0;
   .footer-nav {
       padding: $footer-content-length;
       line-height: 24px;
@@ -169,23 +176,25 @@ main {
       color:$footerNav;
     }
   }
-  .awoo-foottext1 {
-    font-size: 15px;
-    line-height: 24px;
-    color: $hover-color;
-    position: relative;
-    bottom: 50px;
-    float:right; 
-    margin-right: 50px;
+    .awoo-foottext1 {
+      font-size: 15px;
+      line-height: 24px;
+      color: $hover-color;
+      position: relative;
+      float:right; 
+      margin-right: 15vw;
+      bottom: -100px;
+       
+    } 
+    .awoo-foottext2 {
+      color: $hover-color;
+      font-weight: bold;
+      font-size: 26px;  
+      line-height: 24px;
+      position: relative;
+      float:right;
+      margin-right: 15vw;
+    }
   }
-  .awoo-foottext2 {
-    color: $hover-color;
-    font-weight: bold;
-    font-size: 26px;
-    line-height: 24px;
-    position: relative;
-    bottom: 50px;
-    float:right;
-    margin-right: 50px;
-  }
-}
+
+  
