@@ -59,7 +59,7 @@ const CupidSDK = {
   init: ({ id, token }) => {
     ID = id;
     TOKEN = token;
-    if (ID == '' || TOKEN == '') {
+    if (!ID || !TOKEN) {
       throw new Error("nununi id 或者 access token 未填寫");
     } 
   },
