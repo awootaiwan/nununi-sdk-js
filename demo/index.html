@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/header.scss">
+  <link rel="stylesheet" href="./js/app.css">
   <title>awoo</title>
 </head>
 
@@ -57,6 +58,8 @@
   </header>
 
   <main>
+      <div id="cupid-suggestion-tag"></div>
+      <div id="cupid-product-list"></div>
   </main>
 
   <footer>
@@ -107,5 +110,12 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
-
+<script type="text/javascript" async  onload="init()" src="./js/app.js"></script>
+<script>
+  function init() {
+    window.CupidSDK.init({id : process.env.NUNUNI_ID, token : process.env.NUNUNI_TOKEN});
+    window.CupidSDK.renderSuggestionTag();
+    window.CupidSDK.renderProductList();
+  }
+</script>
 </html>
