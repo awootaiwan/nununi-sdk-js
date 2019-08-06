@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, pageInfo)=> {
-  const url = `${process.env.NUNUNI_DOMAIN}/${process.env.NUNUNI_APIVER}/${id}/${process.env.NUNUNI_APINAME}/`;
+const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, version, pageInfo)=> {
+  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/`;
   const tags = pageInfo.tags.split(',');
   const page = pageInfo.page;
   const limit = pageInfo.limit;

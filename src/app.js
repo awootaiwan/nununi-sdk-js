@@ -5,7 +5,7 @@ import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
 
-const getContent = async (id, token) => {
+const getContent = async (id, token, version) => {
   let urlParms = getUrlParms();
   let data = {
     errcode: 0,
@@ -13,7 +13,7 @@ const getContent = async (id, token) => {
     result: {}
   }
 
-  data = (urlParms.tags) ? await getApiData(id, token, urlParms) : data ;
+  data = (urlParms.tags) ? await getApiData(id, token, version, urlParms) : data ;
 
   return data;
 }
@@ -55,13 +55,17 @@ const App = (props) => (
 
 let ID = '';
 let TOKEN = '';
+let APIVER = 'latest';
 const CupidSDK = {
-  init: ({ id, token }) => {
+  init: ({ id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN }) => {
     ID = id;
     TOKEN = token;
     if (!ID || !TOKEN) {
       throw new Error("nununi id 或者 access token 未填寫");
     } 
+  },
+  setAPIVersion: async (version) => {
+    APIVER = version;
   },
   renderSuggestionTag: async () => {
     if (!ID || !TOKEN) {
@@ -70,9 +74,8 @@ const CupidSDK = {
     const CupidSuggestionTag = document.getElementById("cupid-suggestion-tag");
     if (!CupidSuggestionTag || CupidSuggestionTag.length < 1) {
       throw new Error('請先加入 <div id="cupid-suggestion-tag"></div> HTML標籤');
-    } 
-    
-    let data = await getContent(ID, TOKEN);
+    }
+    let data = await getContent(ID, TOKEN, APIVER);
     const pageInfo = getUrlParms();
     const { result, errcode, errmsg } = data;
 
@@ -87,7 +90,7 @@ const CupidSDK = {
       throw new Error('請先加入 <div id="cupid-product-list"></div> HTML標籤');
     } 
     
-    let data = await getContent(ID, TOKEN);
+    let data = await getContent(ID, TOKEN, APIVER);
     const pageInfo = getUrlParms();
     const { errcode, errmsg } = data;
     
