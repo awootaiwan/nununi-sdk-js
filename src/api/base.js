@@ -1,18 +1,16 @@
 import axios from 'axios';
 
 const getApiData = async (
-  id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, version, pageInfo,
+  id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, version, data, method = '',
 ) => {
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/`;
-  const tags = pageInfo.tags.split(',');
-  const { page, limit, sort } = pageInfo;
-
-  const data = {
-    tags,
-    page,
-    limit,
-    sort,
-  };
+  if (!data.tags) {
+    return {
+      errcode: 0,
+      errmsg: '',
+      result: {},
+    };
+  }
+  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/${method}`;
 
   const headers = {
     Authorization: `Bearer ${token}`,
