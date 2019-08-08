@@ -31,19 +31,6 @@ const getUrlParms = () => {
   };
 };
 
-const getContent = async (id, token, version, method) => {
-  const urlParms = getUrlParms();
-  let data = {
-    errcode: 0,
-    errmsg: '',
-    result: {},
-  };
-
-  data = (urlParms.tags) ? await getApiData(id, token, version, urlParms, method) : data;
-
-  return data;
-};
-
 const App = (props) => (
   <React.Fragment>
     {(props.errcode === 0) ? (
@@ -54,62 +41,51 @@ const App = (props) => (
   </React.Fragment>
 );
 
-let ID = '';
-let TOKEN = '';
-let APIVER = 'latest';
-const CupidSDK = {
-  init: ({ id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN }) => {
-    ID = id;
-    TOKEN = token;
-    if (!ID || !TOKEN) {
+class CupidSDK {
+  constructor(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN) {
+    if (!id || !token) {
       throw new Error('nununi id 或者 access token 未填寫');
     }
-  },
-  setAPIVersion: (version) => {
-    APIVER = version;
-  },
-  getContentAll: (tags, page = 1, sort = 8, limit = 10) => {
-    if (!ID || !TOKEN) {
-      throw new Error('請先呼叫函數 window.CupidSDK.init');
-    }
-    return getApiData(ID, TOKEN, APIVER, {
+    this.id = id;
+    this.token = token;
+    this.apiVer = 'latest';
+  }
+
+  setAPIVersion(version) {
+    this.apiVer = version;
+  }
+
+  getContentAll(tags, page = 1, sort = 8, limit = 10) {
+    return getApiData(this.id, this.token, this.apiVer, {
       tags: splitTags(tags), page, sort, limit,
     });
-  },
-  getContentPageInfo: (tags) => {
-    if (!ID || !TOKEN) {
-      throw new Error('請先呼叫函數 window.CupidSDK.init');
-    }
-    return getApiData(ID, TOKEN, APIVER, {
+  }
+
+  getContentPageInfo(tags) {
+    return getApiData(this.id, this.token, this.apiVer, {
       tags: splitTags(tags),
     }, 'pageInfo');
-  },
-  getContentSuggestionTags: (tags) => {
-    if (!ID || !TOKEN) {
-      throw new Error('請先呼叫函數 window.CupidSDK.init');
-    }
-    return getApiData(ID, TOKEN, APIVER, {
+  }
+
+  getContentSuggestionTags(tags) {
+    return getApiData(this.id, this.token, this.apiVer, {
       tags: splitTags(tags),
     }, 'suggestionTags');
-  },
-  getContentProducts: (tags, page = 1, sort = 8, limit = 10) => {
-    if (!ID || !TOKEN) {
-      throw new Error('請先呼叫函數 window.CupidSDK.init');
-    }
-    return getApiData(ID, TOKEN, APIVER, {
+  }
+
+  getContentProducts(tags, page = 1, sort = 8, limit = 10) {
+    return getApiData(this.id, this.token, this.apiVer, {
       tags: splitTags(tags), page, sort, limit,
     }, 'products');
-  },
-  renderSuggestionTag: async () => {
-    if (!ID || !TOKEN) {
-      throw new Error('請先呼叫函數 window.CupidSDK.init');
-    }
+  }
+
+  async renderSuggestionTag() {
     const CupidSuggestionTag = document.getElementById('cupid-suggestion-tag');
     if (!CupidSuggestionTag || CupidSuggestionTag.length < 1) {
       throw new Error('請先加入 <div id="cupid-suggestion-tag"></div> HTML標籤');
     }
     const pageInfo = getUrlParms();
-    const data = await CupidSDK.getContentAll(
+    const data = await this.getContentAll(
       splitTags(pageInfo.tags), pageInfo.page, pageInfo.sort, pageInfo.limit,
     );
     const { result, errcode, errmsg } = data;
@@ -122,18 +98,16 @@ const CupidSDK = {
         />
       </App>, CupidSuggestionTag,
     );
-  },
-  renderProductList: async () => {
-    if (!ID || !TOKEN) {
-      throw new Error('請先呼叫函數 window.CupidSDK.init');
-    }
+  }
+
+  async renderProductList() {
     const CupidProductList = document.getElementById('cupid-product-list');
     if (!CupidProductList || CupidProductList.length < 1) {
       throw new Error('請先加入 <div id="cupid-product-list"></div> HTML標籤');
     }
 
     const pageInfo = getUrlParms();
-    const data = await CupidSDK.getContentAll(
+    const data = await this.getContentAll(
       splitTags(pageInfo.tags), pageInfo.page, pageInfo.sort, pageInfo.limit,
     );
     const { errcode, errmsg } = data;
@@ -144,7 +118,7 @@ const CupidSDK = {
       </App>,
       CupidProductList,
     );
-  },
-};
+  }
+}
 
 module.exports = window.CupidSDK = CupidSDK;
