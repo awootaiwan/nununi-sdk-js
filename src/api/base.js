@@ -31,4 +31,6 @@ const getApiData = async (
   return response;
 };
 
-export default getApiData;
+export {
+  getApiData,
+};
