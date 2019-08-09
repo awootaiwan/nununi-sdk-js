@@ -1,36 +1,45 @@
 import axios from 'axios';
 
-const getApiData = async(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, pageInfo)=> {
-  const url = `${process.env.NUNUNI_DOMAIN}/${process.env.NUNUNI_APIVER}/${id}/${process.env.NUNUNI_APINAME}/`;
-  const tags = pageInfo.tags.split(',');
-  const page = pageInfo.page;
-  const limit = pageInfo.limit;
-  const sort = pageInfo.sort;
+const ERROR_NONE = 0;
+const ERROR_REQUEST_FAILED = 10000;
+const ERROR_NO_TAGS_PROVIDED = 10001;
+const errMap = new Map([
+  [ERROR_NONE, 'Success'],
+  [ERROR_REQUEST_FAILED, 'Request to cupid API failed.'],
+  [ERROR_NO_TAGS_PROVIDED, 'No tags provided.'],
+]);
 
-  let data = {
-    tags,
-    page,
-    limit,
-    sort
+function getPayload(errCode = ERROR_NONE, errMsg = '', result = '') {
+  return {
+    errcode: errCode,
+    errmsg: errMsg || errMap.get(errCode) || 'Undefined error.',
+    result,
+  };
+}
+
+const getApiData = async (
+  id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, version, data, method = '',
+) => {
+  if (!data.tags) {
+    return getPayload(ERROR_NO_TAGS_PROVIDED);
+  }
+
+  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/${method}`;
+  const headers = {
+    Authorization: `Bearer ${token}`,
   };
 
-  let headers = {
-    'Authorization' : `Bearer ${token}`
+  try {
+    const { status, data: response } = await axios.post(url, data, { headers });
+    if (status !== 200) {
+      return getPayload(status, response.error_description, response);
+    }
+    return response;
+  } catch (e) {
+    return getPayload(ERROR_REQUEST_FAILED);
   }
-
-  let {status,data:response} = await axios.post(url, data, {headers});
-  
-  if (status != 200 ) {
-    response = {
-      'errmsg' : response.error_description,
-      'errcode' : status,
-      ...response
-    } 
-    delete response.error_description
-  }
-  return response;
-}
+};
 
 export {
-  getApiData
-}
+  getApiData,
+};
