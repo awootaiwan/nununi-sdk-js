@@ -85,11 +85,11 @@ class CupidSDK {
       throw new Error('請先加入 <div id="cupid-suggestion-tag"></div> HTML標籤');
     }
     const pageInfo = getUrlParms();
+    
     const data = await this.getContentAll(
       splitTags(pageInfo.tags), pageInfo.page, pageInfo.sort, pageInfo.limit,
     );
     const { result, errcode, errmsg } = data;
-
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
         <Suggestion
@@ -105,16 +105,16 @@ class CupidSDK {
     if (!CupidProductList || CupidProductList.length < 1) {
       throw new Error('請先加入 <div id="cupid-product-list"></div> HTML標籤');
     }
-
+    
     const pageInfo = getUrlParms();
     const data = await this.getContentAll(
       splitTags(pageInfo.tags), pageInfo.page, pageInfo.sort, pageInfo.limit,
     );
-    const { errcode, errmsg } = data;
-
+   
+    const { errcode, errmsg, result } = data;
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
-        <ProductList productlist={data.result} pageInfo={pageInfo} />
+        <ProductList productlist={result} pageInfo={pageInfo} />
       </App>,
       CupidProductList,
     );

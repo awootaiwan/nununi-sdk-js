@@ -1,9 +1,43 @@
 import React from "react";
-import "./Product.scss";
+import styled from 'styled-components'
 import HeadMenu from "./HeadMenu";
-import Products from "./Products";
+import Product from "./Product";
 import Pagination from "./Pagination"
 
+const PageInfoH1 = styled.h1`
+  margin-top: 10px;
+  margin-bottom: 0;
+  height: 22px;
+  color: #ca3575;
+  line-height: 22px;
+  font-size: 21px;
+  padding-left: 6px;
+  border-left: solid 6px #ca3577;
+`;
+
+const BodyProduct = styled.div`
+  margin-top: calc(10px - 7.5px);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: stretch;
+ 
+  .master-container {
+    min-width: 100%;
+    background: #eee;
+
+    .wrap-page {
+      max-width: 90%;
+      margin: 0 auto;
+    }
+
+    .product-container {
+      position: relative;
+    }
+
+  
+  }
+`;
 
 const ProductList = ({ productlist, pageInfo }) => {
   const { products } = productlist; 
@@ -12,16 +46,16 @@ const ProductList = ({ productlist, pageInfo }) => {
       {pageInfo.tags && pageInfo.tags.length > 0 && 
       <React.Fragment>
         <HeadMenu pageInfo={pageInfo} />
-        <h1 className="pageInfo-h1">{productlist.pageInfo.h1}</h1>
+        <PageInfoH1>{productlist.pageInfo.h1}</PageInfoH1>
       </React.Fragment>
       }
-      <div className="body-product ">
+      <BodyProduct>
         <div className="master-container">
           <section className="wrap-page">
             <ul className="product-container">
               {
-                products && products.length > 0 && products.map((list) => {
-                  return <Products key={list.productId} products={list} />
+                products && products.length > 0 && products.map((product) => {
+                  return <Product key={product.productId} product={product} />
                 })
               }
             </ul>
@@ -31,7 +65,7 @@ const ProductList = ({ productlist, pageInfo }) => {
           }
 
         </div>
-      </div>
+      </BodyProduct>
 
     </div>
   );
