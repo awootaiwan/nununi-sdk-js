@@ -43,7 +43,7 @@ const App = (props) => (
 
 class CupidSDK {
   constructor(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN) {
-    if (!id || !token) {
+    if (!id || !token || id.length < 1 || token.length < 1) {
       throw new Error('nununi id 或者 access token 未填寫');
     }
     this.id = id;

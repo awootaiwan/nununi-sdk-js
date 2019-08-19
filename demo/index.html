@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <link rel="stylesheet" href="./css/header.scss">
+  <link rel="stylesheet" href="./css/header.css">
   <title>awoo Cupid SDK 範例</title>
 </head>
 
@@ -113,7 +113,8 @@
  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
 
  cupid.init(() => {
-  const cupidSDK = new CupidSDK('id', 'token');
+  const cupidSDK = new CupidSDK();
+  cupidSDK.setAPIVersion('v1.3');
   /*頁面渲染範例*/
   cupidSDK.renderSuggestionTag();
   cupidSDK.renderProductList();

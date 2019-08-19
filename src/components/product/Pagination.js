@@ -126,7 +126,7 @@ const Pagination = ({ productlist, pageInfo }) => {
 
 	const urlParams = querystring.stringify(pageInfoData);
   
-  const baseUrl = `${location.protocol}//${location.host}?${urlParams}`;
+  const baseUrl = `${location.protocol}//${location.host}${location.pathname}?${urlParams}`;
 
   return (
     <BodyPagination>
