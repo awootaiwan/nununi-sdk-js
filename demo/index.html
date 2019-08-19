@@ -6,8 +6,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/header.scss">
-  <link rel="stylesheet" href="./js/app.css">
-  <title>awoo</title>
+  <title>awoo Cupid SDK 範例</title>
 </head>
 
 <body onDRAGSTART="window.event.returnValue=false">
@@ -110,12 +109,19 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
-<script type="text/javascript" async  onload="init()" src="./js/app.js"></script>
 <script>
-  function init() {
-    window.CupidSDK.init({id : process.env.NUNUNI_ID, token : process.env.NUNUNI_TOKEN});
-    window.CupidSDK.renderSuggestionTag();
-    window.CupidSDK.renderProductList();
-  }
+ window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+
+ cupid.init(() => {
+  const cupidSDK = new CupidSDK('id', 'token');
+  /*頁面渲染範例*/
+  cupidSDK.renderSuggestionTag();
+  cupidSDK.renderProductList();
+
+  /*資料存取範例*/
+  (async() => {
+    console.log(await cupidSDK.getContentAll('日本,面膜'));
+  })();
+ });
 </script>
 </html>
