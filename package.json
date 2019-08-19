@@ -1,6 +1,6 @@
 {
   "name": "@awootaiwan/cupid-sdk-js",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "javascript sdk for awoo nununi api",
   "main": "production/cupid-sdk-latest.min.js",
   "scripts": {
