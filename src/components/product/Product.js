@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 
-const Porduct = styled.li`
+const PorductContenier = styled.li`
   width: 283px;
   margin: 0 0 15px 11px;
   border: 1px solid transparent;
@@ -68,20 +68,20 @@ const Porduct = styled.li`
   }
 `;
 
-const Products = ({ products }) => {
+const Product = ({ product }) => {
   return (
-    <Porduct>
+    <PorductContenier>
       <div>
-        <a href={products.url}>
+        <a href={product.url}>
           <span className="pro-img" >
-            <img className="pro-img" src={products.productImageUrl} title={products.productName} alt={products.productName} />
+            <img className="pro-img" src={product.productImageUrl} title={product.productName} alt={product.productName} />
           </span>
-          <div className="product-name">{products.productName}</div>
+          <div className="product-name">{product.productName}</div>
           <span className="nt">$</span>
-          <span className="sale-price">{products.productPrice}</span>
+          <span className="sale-price">{product.productPrice}</span>
         </a>
       </div>
-    </Porduct>
+    </PorductContenier>
   )
 }
-export default Products;
+export default Product;

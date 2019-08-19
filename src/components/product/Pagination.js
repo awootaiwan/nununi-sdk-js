@@ -5,29 +5,35 @@ const querystring = require('querystring');
 let pageAmount;
 let currentPage;
 
-const setPageList = ({ productlist }) => {
-  const amount = productlist.products.length;
+const setPageList = (productlist, limit) => {
   const total = productlist.productsTotal;
-
-  pageAmount = Math.ceil(total / amount);
-
+  pageAmount = Math.ceil(total / limit);
   const pageList = [];
   const pageNumber = [];
   const pageCount = 3;
-  pageNumber.push(parseInt(currentPage));
   for (let i = 1; pageNumber.length < pageCount; i++) {
+    
     if (parseInt(currentPage) + i < pageAmount) {
       pageNumber.push(parseInt(currentPage) + i);
     }
 
     if (parseInt(currentPage) - i > 1) {
       pageNumber.push(parseInt(currentPage) - i);
-
     }
+
+    if (pageNumber.indexOf(currentPage) < 0) {
+      pageNumber.push(currentPage)
+    }
+
+    if (pageAmount <= pageCount + 1) {
+      break;
+    }
+ 
   }
   pageNumber.sort(function (a, b) {
     return a - b
   });
+
   pageList.push(1);
 
   pageNumber.map(function (value, index) {
@@ -42,7 +48,9 @@ const setPageList = ({ productlist }) => {
     }
 
   });
-  pageList.push(pageAmount);
+  if (pageAmount != 1) {
+    pageList.push(pageAmount);
+  }
   return (
     pageList
   )
@@ -107,22 +115,33 @@ const BodyPagination = styled.div`
 `;
 
 const Pagination = ({ productlist, pageInfo }) => {
+  currentPage = pageInfo.page;
+  const { limit } = pageInfo || 10;
 
-  currentPage = pageInfo['page'];
-  const pageInfoData = {... pageInfo};
-	if (pageInfoData['page']) {
-		delete pageInfoData['page'];
+  const pageInfoData = {...pageInfo};
+
+	if (pageInfoData.page) {
+		delete pageInfoData.page;
   }
+
 	const urlParams = querystring.stringify(pageInfoData);
   
   const baseUrl = `${location.protocol}//${location.host}?${urlParams}`;
+
   return (
     <BodyPagination>
       <ul>
-        {(currentPage != 1) ? <li><a href={`${baseUrl}&page=${(parseInt(currentPage) - 1)}`}>{'<'}</a></li> : ""}
         {
-          setPageList({ productlist }).map((list) => {
-            
+          (currentPage != 1) ? 
+        <li>
+          <a href={`${baseUrl}&page=${(parseInt(currentPage) - 1)}`}>
+            {'<'}
+          </a>
+        </li> :
+        ''
+        }
+        {
+          setPageList(productlist, limit).map((list) => {
             return <li key={list}>
               {!isNaN(list) ? <a className={currentPage == list ? 'disabled' : ""}
                 href={currentPage != list ? `${baseUrl}&page=${list}` : "#"}>{list}</a> : list}

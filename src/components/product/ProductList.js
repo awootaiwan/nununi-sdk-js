@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components'
 import HeadMenu from "./HeadMenu";
-import Products from "./Products";
+import Product from "./Product";
 import Pagination from "./Pagination"
 
 const PageInfoH1 = styled.h1`
@@ -54,8 +54,8 @@ const ProductList = ({ productlist, pageInfo }) => {
           <section className="wrap-page">
             <ul className="product-container">
               {
-                products && products.length > 0 && products.map((list) => {
-                  return <Products key={list.productId} products={list} />
+                products && products.length > 0 && products.map((product) => {
+                  return <Product key={product.productId} product={product} />
                 })
               }
             </ul>
