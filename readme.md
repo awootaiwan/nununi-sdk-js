@@ -4,7 +4,7 @@ cupid-sdk-js
 
 ## Installation
 #### In a browser::
-```
+```javascript
 <script>
   window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
 
@@ -30,7 +30,7 @@ yarn add @awootaiwan/cupid-sdk-js
 ```
 
 **Example**
-```
+```javascript
 import CupidSDK from '@awootaiwan/cupid-sdk-js';
 
 const cupidSDK = new CupidSDK('id', 'token');
