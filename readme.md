@@ -29,7 +29,8 @@ or
 yarn add @awootaiwan/cupid-sdk-js
 ```
 
-**Example**
+** Node Example **
+
 ```javascript
 import CupidSDK from '@awootaiwan/cupid-sdk-js';
 
@@ -42,13 +43,16 @@ const cupidSDK = new CupidSDK('id', 'token');
 ## Develop
 
 ### Installing
+
 ```
 $ git clone https://github.com/awootaiwan/cupid-sdk-js.git
 $ cd cupid-sdk-js
 $ npm install
 $ vim .env
 ```
+
 內容如下
+
 ```
 NUNUNI_ID=xxxxxx   #請輸入nununiId
 NUNUNI_TOKEN=xxxxxxxxxxxxxxxxxxxxx   #請輸入accessToken
@@ -75,4 +79,23 @@ $ npm run build
 ```
 $ npm run demo
 $ open http://localhost:3001
+```
+
+### Build by your self.
+
+Update `.env` to your dev / personal endpoint.
+
+Update `demo/index.html` content, js replace from
+
+```
+window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"localhost:9080/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+```
+
+Tips: `npm install -g static-server`
+
+```
+npm run build:app
+open demo/index.html
+cd production && static-server
+
 ```
