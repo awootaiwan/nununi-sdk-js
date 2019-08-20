@@ -22,14 +22,14 @@ cupid-sdk-js
 </script>
 ```
 
-#### Using npm:
+#### Node Usage
 ```
 npm i @awootaiwan/cupid-sdk-js
 or
 yarn add @awootaiwan/cupid-sdk-js
 ```
 
-** Node Example **
+#### Node Example
 
 ```javascript
 import CupidSDK from '@awootaiwan/cupid-sdk-js';
