@@ -7,29 +7,7 @@ import ProductList from './components/product/ProductList';
 
 const splitTags = tags => (typeof tags === 'string' ? tags.split(',') : tags);
 
-const getUrlParms = () => {
-  const url = new URL(window.location.href);
-  const tags = url.searchParams.get('tags');
-  let page = url.searchParams.get('page');
-  let sort = url.searchParams.get('sort');
-  let limit = url.searchParams.get('limit');
 
-  if (page === null) {
-    page = 1;
-  }
-  if (sort === null || sort === '') {
-    sort = 8;
-  }
-  if (limit === null) {
-    limit = 10;
-  }
-  return {
-    tags,
-    page,
-    limit,
-    sort,
-  };
-};
 
 const App = (props) => (
   <React.Fragment>
@@ -44,16 +22,52 @@ const App = (props) => (
 class CupidSDK {
   constructor(id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN) {
     if (!id || !token || id.length < 1 || token.length < 1) {
-      throw new Error('nununi id 或者 access token 未填寫');
+      throw new Error('nununi id or access token not setting');
     }
     this.id = id;
     this.token = token;
     this.apiVer = 'latest';
+    this.limit = 10;
   }
 
   setAPIVersion(version) {
     this.apiVer = version;
   }
+
+  setLimit(limit) {
+    if (typeof limit != "number") {
+      throw Error("setLimit is not number.");
+    }
+
+    if(limit < 1) {
+      throw Error("limit need to be greater than 0.");
+    }
+    this.limit = limit;
+  }
+
+  _getUrlParms() {
+    const url = new URL(window.location.href);
+    const tags = url.searchParams.get('tags');
+    let page = url.searchParams.get('page');
+    let sort = url.searchParams.get('sort');
+    let limit = url.searchParams.get('limit');
+  
+    if (page === null) {
+      page = 1;
+    }
+    if (sort === null || sort === '') {
+      sort = 8;
+    }
+    if (limit === null) {
+      limit = this.limit;
+    }
+    return {
+      tags,
+      page,
+      limit,
+      sort,
+    };
+  };
 
   getContentAll(tags, page = 1, sort = 8, limit = 10) {
     return getApiData(this.id, this.token, this.apiVer, {
@@ -84,7 +98,7 @@ class CupidSDK {
     if (!CupidSuggestionTag || CupidSuggestionTag.length < 1) {
       throw new Error('請先加入 <div id="cupid-suggestion-tag"></div> HTML標籤');
     }
-    const pageInfo = getUrlParms();
+    const pageInfo = this._getUrlParms();
     
     const data = await this.getContentAll(
       splitTags(pageInfo.tags), pageInfo.page, pageInfo.sort, pageInfo.limit,
@@ -106,7 +120,7 @@ class CupidSDK {
       throw new Error('請先加入 <div id="cupid-product-list"></div> HTML標籤');
     }
     
-    const pageInfo = getUrlParms();
+    const pageInfo = this._getUrlParms();
     const data = await this.getContentAll(
       splitTags(pageInfo.tags), pageInfo.page, pageInfo.sort, pageInfo.limit,
     );
@@ -120,5 +134,13 @@ class CupidSDK {
     );
   }
 }
+/** Detect free variable `global` from Node.js. */
+var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 
-module.exports = window.CupidSDK = CupidSDK;
+/** Detect free variable `self`. */
+var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
+
+/** Used as a reference to the global object. */
+var root = freeGlobal || freeSelf || Function('return this')();
+
+module.exports = root.CupidSDK = CupidSDK;

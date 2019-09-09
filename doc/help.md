@@ -9,6 +9,9 @@ cupid-sdk-js 使用者說明文件
 
   cupid.init(() => {
     const cupidSDK = new CupidSDK('id', 'token');
+    /*頁面商品顯示數量設定*/
+    cupidSDK.setLimit(12);
+    
     /*頁面渲染範例*/
     cupidSDK.renderSuggestionTag();
     cupidSDK.renderProductList();
