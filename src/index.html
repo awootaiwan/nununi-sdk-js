@@ -9,12 +9,14 @@
 <body>
   <div id="cupid-suggestion-tag"></div>
   <div id="cupid-product-list"></div>
+  <div class="cupid-product-tag"></div>
   <script src="./app.js"></script>
   <script>
     const cupidSDK = new CupidSDK();
     cupidSDK.setAPIVersion('v1.3');
     cupidSDK.renderSuggestionTag();
     cupidSDK.renderProductList();
+    cupidSDK.renderProductTags();
   </script>
 <!--  Uncomment the following line for seeing API outputs in console.-->
 <!--  <script src="tests/api.js"></script>-->
