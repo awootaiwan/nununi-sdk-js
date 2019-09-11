@@ -195,8 +195,6 @@ main {
   font-size: 15px;
   line-height: 24px;
   color: #999;
-  position: relative;
-  bottom: 50px;
   float: right;
   margin-right: 50px;
 }
