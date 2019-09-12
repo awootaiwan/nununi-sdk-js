@@ -7,16 +7,18 @@
   <title>Document</title>
 </head>
 <body>
+  <div id="product-id" data-id="d86779771"></div>
+
   <div id="cupid-suggestion-tag"></div>
   <div id="cupid-product-list"></div>
-  <div class="cupid-product-tag"></div>
+  <div id="cupid-product-tag"></div>
   <script src="./app.js"></script>
   <script>
     const cupidSDK = new CupidSDK();
-    cupidSDK.setAPIVersion('v1.3');
-    cupidSDK.renderSuggestionTag();
-    cupidSDK.renderProductList();
-    cupidSDK.renderProductTags();
+    cupidSDK.setAPIVersion('v2.3');
+    // cupidSDK.renderSuggestionTag();
+    // cupidSDK.renderProductList();
+    cupidSDK.renderProductTag();
   </script>
 <!--  Uncomment the following line for seeing API outputs in console.-->
 <!--  <script src="tests/api.js"></script>-->

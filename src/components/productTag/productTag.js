@@ -1,28 +1,40 @@
 import React from "react";
-import styled from 'styled-components';
+import ProductTagItem from "./productTagItem.js";
+import styled from 'styled-components'
 
-const ProductTag = style.a`
-display: block;
-text-decoration: none;
-background: #f47f9d;
-border: 1px solid #ee5d84;
-border-radius: 8px;
-color: #fff;
-margin-bottom: 10px;
-margin-right: 8px;
-padding: 5px 10px;
+const ProductTagDiv = styled.div`
+  display: flex;
+  flex-wrap: wrap;
 
-:hover {
-  cursor: pointer;
-}
+  a {
+    display: block;
+    text-decoration: none;
+    background: #f47f9d;
+    border: 1px solid #ee5d84;
+    border-radius: 8px;
+    color: #fff;
+    margin-bottom: 10px;
+    margin-right: 8px;
+    padding: 5px 10px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
 `;
 
-const ProductTag = ({ link, text }) => {
-  const baseUrl = `${location.protocol}//${location.host}?tags=${link}`;
+const ProductTag = ({ ProductTags }) => {
+  
   return (
-    <a href={baseUrl}>
-      <span>{text}</span>
-    </a>
+    <ProductTagDiv>
+      {ProductTags &&
+        ProductTags.length > 0 &&
+        ProductTags.map((list, index) => {
+          return (
+            <ProductTagItem link={list.link} text={list.text} key={index} />
+          );
+        })}
+    </ProductTagDiv>
   );
 };
 

@@ -59,11 +59,11 @@
   <main>
     <div id="cupid-suggestion-tag"></div>
     <div id="cupid-product-list"></div>
-    <div class="spec-info">
+    <div class="spec-info" id="product-id" data-id="d86779771">
       <ul>
         <li>
           <div class="title">商品名稱</div>
-          <div class="detail">Awoo~淡斑嫩白皂(85g)</div>
+          <div class="detail">Awoo~洗香香皂(85g)</div>
         </li>
         <li>
           <div class="title">品牌名稱</div>
@@ -82,16 +82,6 @@
           <div class="title">瀏覽其他類別</div>
           <div class="detail click">
             <div id="cupid-product-tag">                       
-              <a class="tag">皂</a>
-              <a class="tag">Awoo 淡斑嫩白皂</a>
-              <a class="tag">嫩白</a>
-              <a class="tag">Awoo 淡斑嫩白皂</a>
-              <a class="tag">Awoo 淡斑嫩白皂</a>
-              <a class="tag">淡斑嫩白皂</a>
-              <a class="tag">Awoo 淡斑嫩白皂</a>
-              <a class="tag">Awoo 淡斑嫩白皂</a>
-              <a class="tag">Awoo 嫩白皂</a>
-              <a class="tag">嫩白皂</a>
             </div>
             <a href="#" onclick="return false;" class="more" style="display: none;">看更多</a><!--此為看更多標籤連結，需放在最後一個-->
           </div>
@@ -102,15 +92,11 @@
         </li>
         <li>
           <div class="title">產品說明 </div>
-          <div class="detail">使用方式:<br>洗臉時請將嫩白皂加水搓揉起泡或配合潔膚巾搓出泡沫，將豐厚細緻泡泡塗抹於臉上，最後用清水沖洗乾淨即可。</div>
+          <div class="detail">使用方式:<br>洗臉時請將洗香香皂加水搓揉起泡或配合潔膚巾搓出泡沫，將豐厚細緻泡泡塗抹於臉上，最後用清水沖洗乾淨即可。</div>
         </li>
         <li>
           <div class="title">保存期限 </div>
           <div class="detail">2022.04.01</div>
-        </li>
-        <li>
-          <div class="title">進貨來源 </div>
-          <div class="detail">台灣</div>
         </li>
         <li>
           <div class="title">產地 </div>
@@ -148,7 +134,7 @@
         <span>統一編號: 43401309</span>
       </div>
       <div class="footer-address">
-        <span>10461 台北市中山區中山北路三段 49 號 7 樓之一 </span>
+        <span>104 台北市中山區中山北路二段96號14樓1412室</span>
       </div>
       <div class="footer-company">
         <span>Copyright ©阿物股份有限公司 All rights reserved</span>
@@ -174,18 +160,16 @@
 <script src="js/search.js"></script>
 <script>
  //window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
- window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"localhost:9080/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+ window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"127.0.0.1:5500/cupid-sdk-js/production/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
  
  cupid.init(() => {
-  const cupidSDK = new CupidSDK('id', 'token');
-  cupidSDK.setAPIVersion('v1.3');
+  const cupidSDK = new CupidSDK('9715703849', 'cc2d272beac6800503411c361d9aebb080268789');
+  cupidSDK.setAPIVersion('v2.3');
   /*頁面渲染範例*/
-  cupidSDK.renderSuggestionTag();
-  cupidSDK.renderProductList();
-  cupidSDK.renderProductTags();
+  cupidSDK.renderProductTag();
   /*資料存取範例*/
   (async() => {
-    console.log(await cupidSDK.getContentAll('日本,面膜'));
+    console.log(await cupidSDK.getProductTags());
   })();
  });
 </script>
