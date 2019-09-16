@@ -57,9 +57,8 @@
   </header>
 
   <main>
-    <div id="cupid-suggestion-tag"></div>
-    <div id="cupid-product-list"></div>
-    <div class="spec-info" id="product-id" data-id="d86779771">
+    <span id="data-cupid-product-id" data-cupid-product-id="9Y005894KT"></span>
+    <div class="spec-info">
       <ul>
         <li>
           <div class="title">商品名稱</div>
@@ -83,7 +82,6 @@
           <div class="detail click">
             <div id="cupid-product-tag">                       
             </div>
-            <a href="#" onclick="return false;" class="more" style="display: none;">看更多</a><!--此為看更多標籤連結，需放在最後一個-->
           </div>
         </li>
         <li>
@@ -152,18 +150,16 @@
         <a href="">Google Analytics</a>
         <span class="awoo-foottext2">(02)8712-1128</span>
       </div>
-      
     </div>
   </footer>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
 <script>
- //window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
- window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"127.0.0.1:5500/cupid-sdk-js/production/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
  
  cupid.init(() => {
-  const cupidSDK = new CupidSDK('9715703849', 'cc2d272beac6800503411c361d9aebb080268789');
+  const cupidSDK = new CupidSDK('id', 'token');
   cupidSDK.setAPIVersion('v2.3');
   /*頁面渲染範例*/
   cupidSDK.renderProductTag();

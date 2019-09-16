@@ -122,9 +122,9 @@ class CupidSDK {
   }
 
   getProductTags() {
-    const productId = document.getElementById('product-id').getAttribute('data-id');
+    const productId = document.getElementById('data-cupid-product-id').dataset.cupidProductId;
     if (!productId || productId.length < 1) {
-      throw new Error('請在html標籤上增加屬性：id="product-id" data-id="商品id"');
+      throw new Error('請在html標籤上增加data屬性：id="data-cupid-product-id" data-cupid-product-id="{商品id}"');
     }
     return getProductTagApiData(this.id, this.token, this.apiVer, productId);
   }
@@ -136,11 +136,12 @@ class CupidSDK {
     }
 
     const data = await this.getProductTags();
+
     const { result, errcode, errmsg } = data;
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
         <ProductTag
-          ProductTag={result.ProductTags}
+          ProductTag={result.tags}
         />
       </App>, CupidProductTag,
     );

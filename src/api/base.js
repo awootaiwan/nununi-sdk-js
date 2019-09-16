@@ -3,12 +3,10 @@ import axios from 'axios';
 const ERROR_NONE = 0;
 const ERROR_REQUEST_FAILED = 10000;
 const ERROR_NO_TAGS_PROVIDED = 10001;
-const ERROR_NO_PRODUCTID_PROVIDED = 10002;
 const errMap = new Map([
   [ERROR_NONE, 'Success'],
   [ERROR_REQUEST_FAILED, 'Request to cupid API failed.'],
   [ERROR_NO_TAGS_PROVIDED, 'No tags provided.'],
-  [ERROR_NO_PRODUCTID_PROVIDED, 'No product id provided.'],
 ]);
 
 function getPayload(errCode = ERROR_NONE, errMsg = '', result = '') {

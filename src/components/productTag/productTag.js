@@ -23,15 +23,15 @@ const ProductTagDiv = styled.div`
   }
 `;
 
-const ProductTag = ({ ProductTags }) => {
-  
+const ProductTag = ({ ProductTag }) => {
+  console.log({ProductTag});
   return (
     <ProductTagDiv>
-      {ProductTags &&
-        ProductTags.length > 0 &&
-        ProductTags.map((list, index) => {
+      {ProductTag &&
+        ProductTag.length > 0 &&
+        ProductTag.map((tag, index) => {
           return (
-            <ProductTagItem link={list.link} text={list.text} key={index} />
+            <ProductTagItem link={tag.link} text={tag.text} key={index} />
           );
         })}
     </ProductTagDiv>

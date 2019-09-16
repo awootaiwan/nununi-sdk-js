@@ -7,8 +7,7 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="product-id" data-id="d86779771"></div>
-
+  <div id="data-cupid-product-id" data-cupid-product-id=""></div>
   <div id="cupid-suggestion-tag"></div>
   <div id="cupid-product-list"></div>
   <div id="cupid-product-tag"></div>
@@ -16,8 +15,8 @@
   <script>
     const cupidSDK = new CupidSDK();
     cupidSDK.setAPIVersion('v2.3');
-    // cupidSDK.renderSuggestionTag();
-    // cupidSDK.renderProductList();
+    cupidSDK.renderSuggestionTag();
+    cupidSDK.renderProductList();
     cupidSDK.renderProductTag();
   </script>
 <!--  Uncomment the following line for seeing API outputs in console.-->

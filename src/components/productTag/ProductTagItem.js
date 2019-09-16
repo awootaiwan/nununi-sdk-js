@@ -1,9 +1,8 @@
 import React from "react";
 
 const ProductTagItem = ({ link, text }) => {
-  const baseUrl = `${location.protocol}//${location.host}?tags=${link}`;
   return (
-    <a class="tag" href={baseUrl}>
+    <a class="cupid-tag" href={link}>
       <span>{text}</span>
     </a>
   );
