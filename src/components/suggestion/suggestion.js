@@ -65,7 +65,7 @@ const Suggestion = ({ suggestionTags, pageInfo }) => {
     pageInfo.tags = "";
   }
   const tags = pageInfo.tags.split(",");
-  
+  const { limit } = pageInfo;
   return (
     <SuggestionDiv>
       <ul>
@@ -83,7 +83,7 @@ const Suggestion = ({ suggestionTags, pageInfo }) => {
           suggestionTags.length > 0 &&
           suggestionTags.map((list, index) => {
             return (
-              <SuggestionTag link={list.link} text={list.text} key={index} />
+              <SuggestionTag limit={limit} link={list.link} text={list.text} key={index} />
             );
           })}
       </SuggestionList>

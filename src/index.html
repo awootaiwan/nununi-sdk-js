@@ -13,8 +13,9 @@
   <div id="cupid-product-tag"></div>
   <script src="./app.js"></script>
   <script>
-    const cupidSDK = new CupidSDK();
+    const cupidSDK = new CupidSDK(process.env.NUNUNI_ID, process.env.NUNUNI_TOKEN);
     cupidSDK.setAPIVersion('v2.3');
+    cupidSDK.setLimit(10);
     cupidSDK.renderSuggestionTag();
     cupidSDK.renderProductList();
     cupidSDK.renderProductTag();
