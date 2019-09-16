@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getApiData } from './api/base';
+import { getApiData, getProductTagApiData } from './api/base';
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
+import ProductTag from './components/productTag/productTag';
 
 const splitTags = tags => (typeof tags === 'string' ? tags.split(',') : tags);
 
@@ -131,6 +132,32 @@ class CupidSDK {
         <ProductList productlist={result} pageInfo={pageInfo} />
       </App>,
       CupidProductList,
+    );
+  }
+
+  getProductTags() {
+    const productId = document.getElementById('data-cupid-product-id').dataset.cupidProductId;
+    if (!productId || productId.length < 1) {
+      throw new Error('請在html標籤上增加data屬性：id="data-cupid-product-id" data-cupid-product-id="{商品id}"');
+    }
+    return getProductTagApiData(this.id, this.token, this.apiVer, productId);
+  }
+
+  async renderProductTag() {
+    const CupidProductTag = document.getElementById('cupid-product-tag');
+    if (!CupidProductTag || CupidProductTag.length < 1) {
+      throw new Error('請先加入 <div id="cupid-product-tag"></div> HTML標籤');
+    }
+
+    const data = await this.getProductTags();
+
+    const { result, errcode, errmsg } = data;
+    ReactDOM.render(
+      <App errcode={errcode} errmsg={errmsg}>
+        <ProductTag
+          ProductTag={result.tags}
+        />
+      </App>, CupidProductTag,
     );
   }
 }
