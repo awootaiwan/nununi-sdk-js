@@ -54,7 +54,6 @@
       <input class="search-input" type="search"></input>
       <button class="sure-button">搜尋</button>
     </div>
-    <div class="pagNav"><a href="index.html">Product list and suggestion</a></div>
   </header>
 
   <main>
@@ -109,6 +108,8 @@
     </div>
   </main>
 
+  <div class="pagNav"><a href="index.html">Product List and Suggestion</a></div>
+
   <footer>
     <div class="footer">
       <span class="awoo-foottext1">SEO 搜尋引擎最佳化服務專線</span>
@@ -157,17 +158,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
 <script>
-window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
  
- cupid.init(() => {
-  const cupidSDK = new CupidSDK('id', 'token');
-  cupidSDK.setAPIVersion('v2.3');
-  /*頁面渲染範例*/
-  cupidSDK.renderProductTag();
-  /*資料存取範例*/
-  (async() => {
-    console.log(await cupidSDK.getProductTags());
-  })();
- });
+  cupid.init(() => {
+    const cupidSDK = new CupidSDK('id', 'token');
+    cupidSDK.setAPIVersion('v2.3');
+    /*頁面渲染範例*/
+    cupidSDK.renderProductTag();
+    /*資料存取範例*/
+    (async() => {
+      console.log(await cupidSDK.getProductTags());
+    })();
+  });
 </script>
 </html>
