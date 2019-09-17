@@ -34,7 +34,7 @@ const getApiData = async (
     if (status !== 200) {
       return getPayload(status, response.error_description, response);
     }
-    return response;
+     return response;
   } catch (e) {
     return getPayload(ERROR_REQUEST_FAILED);
   }

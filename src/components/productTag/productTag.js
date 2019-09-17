@@ -31,7 +31,7 @@ const ProductTag = ({ ProductTag }) => {
         ProductTag.length > 0 &&
         ProductTag.map((tag, index) => {
           return (
-            <ProductTagItem link={tag.link} text={tag.text} key={index} />
+            <ProductTagItem link={tag.full_link} text={tag.text} key={index} />
           );
         })}
     </ProductTagDiv>
