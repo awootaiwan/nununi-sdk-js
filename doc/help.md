@@ -270,6 +270,8 @@ const cupidSDK = new CupidSDK('id', 'token');
 `無 Input`
 
 `Output`
+full_link 是客戶的api base + link欄位，此處使用full_link做tag的連結。
+
 ```jsonld=
 {
   "errcode": 0,
@@ -278,7 +280,8 @@ const cupidSDK = new CupidSDK('id', 'token');
     "tags": [
      {
        "text": "TagA",
-       "link": "linkA"
+       "link": "linkA",
+       "full_link": "awoo.com.tw/product-list/?label=linkA"
      }
   }
 }
