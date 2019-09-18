@@ -24,7 +24,6 @@ const ProductTagDiv = styled.div`
 `;
 
 const ProductTag = ({ ProductTag }) => {
-  console.log({ProductTag});
   return (
     <ProductTagDiv>
       {ProductTag &&
