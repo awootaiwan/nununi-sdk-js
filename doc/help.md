@@ -43,11 +43,14 @@ const cupidSDK = new CupidSDK('id', 'token');
 })();
 ```
 
+***
+
 ### Prodruct List and Suggestion
-#### html需要 cupid-suggestion-tag 區塊 跟 cupid-product-list 區塊才會渲染畫面
+##### html需要 cupid-suggestion-tag 區塊 跟 cupid-product-list 區塊才會渲染畫面
 ```htmlmixed=
   <div id="cupid-suggestion-tag"></div>
 ```
+
 執行`cupidSDK.renderSuggestionTag()`會自動渲染以下畫面
 
 ![](https://i.imgur.com/UeMKscb.png)
@@ -55,6 +58,7 @@ const cupidSDK = new CupidSDK('id', 'token');
 ```htmlmixed=
   <div id="cupid-product-list"></div>
 ```
+
 執行`cupidSDK.renderProductList()`會自動渲染以下畫面
 
 ![](https://i.imgur.com/g7NN7Gr.png)
@@ -68,18 +72,22 @@ const cupidSDK = new CupidSDK('id', 'token');
 3. sort(預設為8) : int
 4. limit(預設為10) : int
 
+***
+
 ### Product Tags
-#### html需要 cupid-product-tag 區塊才會渲染畫面
+##### html需要 cupid-product-tag 區塊才會渲染畫面
 ```htmlmixed=
   <div id="cupid-product-tag"></div>
 ```
-#### html需要 data-cupid-product-id，才能取得商品 id
+
+##### html需要 data-cupid-product-id，才能取得商品 id
 請在商品頁上增加 id="data-cupid-product-id"，置入任何html標籤都可以。
 再將商品id帶入此標籤的data屬性內。
 ```htmlmixed=
   <span id="data-cupid-product-id" data-cupid-product-id="1234567">
   </span>
 ```
+
 執行`cupidSDK.renderProductTag()`會將cupid標籤渲染至標籤 `id="data-cupid-product-id"` 內，以下畫面為範例：
 
 ![](https://imgur.com/y6J2z83.png)
@@ -96,10 +104,6 @@ const cupidSDK = new CupidSDK('id', 'token');
 
 2. 未在 html 內放置 cupid-product-list、cupid-suggestion-tag、cupid-product-tag區塊，console會出現以下Message
 ![](https://i.imgur.com/CBXTZ0f.png)
-
-3. 未在 html 內放置 data-cupid-product-id區塊，console會出現以下Message
-![](https://imgur.com/fED1vd2.png)
-
 
 ### API Error
 當API出現Error時，畫面呈現：
@@ -133,8 +137,10 @@ const cupidSDK = new CupidSDK('id', 'token');
 ```javascript
   (async() => {
     console.log(await cupidSDK.getContentAll('日本,面膜'));
+    console.log(await cupidSDK.getProductTags('9Y005894KT'));
   })
 ```
+
 ### getContentAll()
 `Input`
 1. tags(**不可為空**) : string 
@@ -267,9 +273,10 @@ const cupidSDK = new CupidSDK('id', 'token');
 ```
 
 ### getProductTags()
-`無 Input`
+`Input`
+1. productId: string
 
-`Output`
+`Output`   
 full_link 是客戶的api base + link欄位，此處使用full_link做tag的連結。
 
 ```jsonld=
