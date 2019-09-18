@@ -81,7 +81,7 @@ const cupidSDK = new CupidSDK('id', 'token');
 ```
 ##### 取得商品id的兩種方法：
 * 直接代入商品id參數。 
-cupidSDK.getProductTags 取得資料，upidSDK.renderProductTag 渲染畫面。
+cupidSDK.getProductTags 取得資料，cupidSDK.renderProductTag 渲染畫面。
 
 ```javascript
 cupidSDK.renderProductTag('PRODUCT-ID');
