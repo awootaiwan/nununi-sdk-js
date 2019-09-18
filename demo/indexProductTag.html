@@ -57,7 +57,7 @@
   </header>
 
   <main>
-    <div class="spec-info">
+    <div class="spec-info" data-cupid-product-id="PRODUCT-ID">
       <ul>
         <li>
           <div class="title">商品名稱</div>
@@ -107,7 +107,7 @@
     </div>
   </main>
 
-  <div class="pagNav"><a href="index.html">Product List and Suggestion</a></div>
+  <div class="page-nav"><a href="index.html">Product List and Suggestion</a></div>
 
   <footer>
     <div class="footer">
@@ -162,10 +162,10 @@
     const cupidSDK = new CupidSDK('id', 'token');
     cupidSDK.setAPIVersion('v2.3');
     /*頁面渲染範例*/
-    cupidSDK.renderProductTag('9Y005894KT');
+    cupidSDK.renderProductTag('PRODUCT-ID');
     /*資料存取範例*/
     (async() => {
-      console.log(await cupidSDK.getProductTags('9Y005894KT'));
+      console.log(await cupidSDK.getProductTags('PRODUCT-ID'));
     })();
   });
 </script>

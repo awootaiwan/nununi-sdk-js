@@ -144,7 +144,13 @@ class CupidSDK {
     if (!CupidProductTag || CupidProductTag.length < 1) {
       throw new Error('請先加入 <div id="cupid-product-tag"></div> HTML標籤');
     }
-    CupidProductTag.dataset.cupidProductId = productId;
+    if(productId === undefined){
+      const idDom = document.querySelectorAll('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]')[0];
+      if (!idDom || idDom.length < 1) {
+        throw new Error('請在div或a或span標籤內增加data-cupid-product-id屬性，並指定商品id')
+      }
+      productId = idDom.dataset.cupidProductId;
+    }
 
     const data = await this.getProductTags(productId);
 
