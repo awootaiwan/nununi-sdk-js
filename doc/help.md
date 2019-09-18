@@ -20,7 +20,7 @@ cupid-sdk-js 使用者說明文件
     /*資料存取範例*/
     (async() => {
       console.log(await cupidSDK.getContentAll('日本,面膜'));
-      console.log(await cupidSDK.getProductTags());
+      console.log(await cupidSDK.getProductTags('PRODUCT-ID'));
     })();
   });
 </script>
@@ -79,12 +79,19 @@ const cupidSDK = new CupidSDK('id', 'token');
 ```htmlmixed=
   <div id="cupid-product-tag"></div>
 ```
+##### 取得商品id的兩種方法：
+* 直接代入商品id參數。 
+cupidSDK.getProductTags 取得資料，upidSDK.renderProductTag 渲染畫面。
 
-##### html需要 data-cupid-product-id，才能取得商品 id
-請在商品頁上增加 id="data-cupid-product-id"，置入任何html標籤都可以。
-再將商品id帶入此標籤的data屬性內。
+```javascript
+cupidSDK.renderProductTag('PRODUCT-ID');
+cupidSDK.getProductTags('PRODUCT-ID')
+```
+
+* 請在商品頁上的任一 div、a、span標籤內增加data屬性 `data-cupid-product-id`，且代入商品id。程式會搜尋第一個有`data-cupid-product-id`的標籤。
+  
 ```htmlmixed=
-  <span id="data-cupid-product-id" data-cupid-product-id="1234567">
+  <span data-cupid-product-id="1234567">
   </span>
 ```
 
@@ -104,6 +111,12 @@ const cupidSDK = new CupidSDK('id', 'token');
 
 2. 未在 html 內放置 cupid-product-list、cupid-suggestion-tag、cupid-product-tag區塊，console會出現以下Message
 ![](https://i.imgur.com/CBXTZ0f.png)
+
+3. 若頁面上的第一個 data-cupid-product-id 的數值為空，就會出現此訊息。
+![](https://imgur.com/bVbNjVY.png)
+
+4. 如果沒有將商品id代入程式，頁面元素也沒有 data-cupid-product-id，就會出現此訊息。
+![](https://imgur.com/3PyWjuF.png)
 
 ### API Error
 當API出現Error時，畫面呈現：
@@ -137,7 +150,7 @@ const cupidSDK = new CupidSDK('id', 'token');
 ```javascript
   (async() => {
     console.log(await cupidSDK.getContentAll('日本,面膜'));
-    console.log(await cupidSDK.getProductTags('9Y005894KT'));
+    console.log(await cupidSDK.getProductTags('PRODUCT-ID'));
   })
 ```
 
