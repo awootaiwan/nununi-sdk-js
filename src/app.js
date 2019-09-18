@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getApiData, getProductTagApiData } from './api/base';
+import { getApiData, getProductTagApiData, getClassifyApiData } from './api/base';
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
@@ -161,6 +161,41 @@ class CupidSDK {
           ProductTag={result.tags}
         />
       </App>, CupidProductTag,
+    );
+  }
+
+  getClassify() {
+    const nodeList = document.querySelectorAll('.data-cupid-product-id');
+
+    if (!nodeList || nodeList.length < 1) {
+      throw new Error('class="data-cupid-product-id" data-cupid-product-id="{商品id}"');
+    }
+
+    let productIdArray = [];
+    nodeList.forEach(i => 
+      {
+        let productId = i.dataset.cupidProductId;
+        productIdArray.push(productId);
+      });
+    
+    return getClassifyApiData(this.id, this.token, this.apiVer, productIdArray);
+  }
+
+  async renderClassify() {
+    const CupidClassify = document.getElementById('cupid-classify');
+    if (!CupidClassify || CupidClassify.length < 1) {
+      throw new Error('請先加入 <div id="cupid-classify"></div> HTML標籤');
+    }
+
+    const data = await this.getClassify();
+
+    const { result, errcode, errmsg } = data;
+    ReactDOM.render(
+      <App errcode={errcode} errmsg={errmsg}>
+        <ProductTag
+          ProductTag={result.tags}
+        />
+      </App>, CupidClassify,
     );
   }
 }

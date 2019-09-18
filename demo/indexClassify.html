@@ -57,59 +57,21 @@
   </header>
 
   <main>
-    <div class="spec-info" data-cupid-product-id="PRODUCT-ID">
-      <ul>
-        <li>
-          <div class="title">商品名稱</div>
-          <div class="detail">Awoo~洗香香皂(85g)</div>
-        </li>
-        <li>
-          <div class="title">品牌名稱</div>
-          <div class="detail">Awoo</div>
-        </li>
-        <li>
-          <div class="title">商品分類</div>
-          <div class="detail">
-            <a class="r-arrow">臉部保養</a>
-            <a class="r-arrow">臉部清潔</a>
-            <a class="r-arrow">洗面乳｜洗顏皂｜潔顏慕斯</a>
-          </div>
-        </li>
-          
-        <li class="tag-browser">
-          <div class="title">瀏覽其他類別</div>
-          <div class="detail click">
-            <div id="cupid-product-tag">                       
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="title">商品規格</div>
-          <div class="detail">85g</div>
-        </li>
-        <li>
-          <div class="title">產品說明 </div>
-          <div class="detail">使用方式:<br>洗臉時請將洗香香皂加水搓揉起泡或配合潔膚巾搓出泡沫，將豐厚細緻泡泡塗抹於臉上，最後用清水沖洗乾淨即可。</div>
-        </li>
-        <li>
-          <div class="title">保存期限 </div>
-          <div class="detail">2022.04.01</div>
-        </li>
-        <li>
-          <div class="title">產地 </div>
-          <div class="detail">台灣</div>
-        </li>
-        <li>
-          <div class="title"> 商品備註 </div>
-          <div class="detail">全新商品</div>
-        </li>
-      </ul>
-    </div>
+    <div id="cupid-suggestion-tag"></div>
+    <div id="cupid-classify"></div>
+    <div class="data-cupid-product-id" data-cupid-product-id="12345"></div>
+    <div class="data-cupid-product-id" data-cupid-product-id="333445"></div>
+    <div class="data-cupid-product-id" data-cupid-product-id="0009689"></div>
+    <div class="data-cupid-product-id" data-cupid-product-id="1AA2345oi"></div>
+    <div class="data-cupid-product-id" data-cupid-product-id="zq998Q1"></div>
+
+    <div id="cupid-product-list"></div>
   </main>
 
-  <div class="page-nav">
-    <a href="index.html">Product List and Suggestion</a>
-    <a href="indexClassify.html">Product Category</a>
+  <div class="pagNav">
+    <a href="index.html">Product List and suggestion</a>
+    <a href="indexProductTag.html">Product Tag</a>
+
   </div>
 
   <footer>
@@ -160,15 +122,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
 <script>
-  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+  // window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"127.0.0.1:5500/cupid-sdk-js/production/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
   cupid.init(() => {
     const cupidSDK = new CupidSDK('9715703849', 'cc2d272beac6800503411c361d9aebb080268789');
+    // const cupidSDK = new CupidSDK('id', 'token');
+    /*API版本設定*/
     cupidSDK.setAPIVersion('v2.3');
+    /*頁面商品顯示數量設定*/
+    cupidSDK.setLimit(12);
     /*頁面渲染範例*/
-    cupidSDK.renderProductTag('PRODUCT-ID');
+    cupidSDK.renderSuggestionTag();
+    cupidSDK.renderProductList();
+    cupidSDK.renderClassify();
     /*資料存取範例*/
     (async() => {
-      console.log(await cupidSDK.getProductTags('PRODUCT-ID'));
+      console.log(await cupidSDK.getContentAll('日本,面膜'));
+      console.log(await cupidSDK.renderClassify());
     })();
   });
 </script>

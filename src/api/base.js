@@ -24,7 +24,7 @@ const getApiData = async (
     return getPayload(ERROR_NO_TAGS_PROVIDED);
   }
 
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/content/${method}`;
+  const url = `https://api.awoo.org/nununi/v1.3/${id}/content/${method}`;
   const headers = {
     Authorization: `Bearer ${token}`,
   };
@@ -60,6 +60,25 @@ const getProductTagApiData = async (
   }
 };
 
+const getClassifyApiData = async (
+  id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, version, productIds,
+) => {
+  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/classify`;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+  };
+
+  try {
+    const { status, data: response } = await axios.post(url, productIds, { headers } );
+    if (status !== 200) {
+      return getPayload(status, response.error_description, response);
+    }
+    return response;
+  } catch (e) {
+    return getPayload(ERROR_REQUEST_FAILED);
+  }
+};
+
 export {
-  getApiData, getProductTagApiData
+  getApiData, getProductTagApiData, getClassifyApiData
 };
