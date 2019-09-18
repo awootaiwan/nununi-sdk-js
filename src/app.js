@@ -135,21 +135,18 @@ class CupidSDK {
     );
   }
 
-  getProductTags() {
-    const productId = document.getElementById('data-cupid-product-id').dataset.cupidProductId;
-    if (!productId || productId.length < 1) {
-      throw new Error('請在html標籤上增加data屬性：id="data-cupid-product-id" data-cupid-product-id="{商品id}"');
-    }
+  getProductTags(productId) {
     return getProductTagApiData(this.id, this.token, this.apiVer, productId);
   }
 
-  async renderProductTag() {
+  async renderProductTag(productId) {
     const CupidProductTag = document.getElementById('cupid-product-tag');
     if (!CupidProductTag || CupidProductTag.length < 1) {
       throw new Error('請先加入 <div id="cupid-product-tag"></div> HTML標籤');
     }
+    CupidProductTag.dataset.cupidProductId = productId;
 
-    const data = await this.getProductTags();
+    const data = await this.getProductTags(productId);
 
     const { result, errcode, errmsg } = data;
     ReactDOM.render(
