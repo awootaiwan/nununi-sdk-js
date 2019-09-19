@@ -164,30 +164,29 @@ class CupidSDK {
     );
   }
 
-  getClassify() {
-    const nodeList = document.querySelectorAll('.data-cupid-product-id');
-
-    if (!nodeList || nodeList.length < 1) {
-      throw new Error('class="data-cupid-product-id" data-cupid-product-id="{商品id}"');
-    }
-
-    let productIdArray = [];
-    nodeList.forEach(i => 
-      {
-        let productId = i.dataset.cupidProductId;
-        productIdArray.push(productId);
-      });
-    
-    return getClassifyApiData(this.id, this.token, this.apiVer, productIdArray);
+  getClassify(productIdArray) {
+    return getClassifyApiData(this.id, this.token, this.apiVer, {productIds:productIdArray});
   }
 
-  async renderClassify() {
+  async renderClassify(productId) {
     const CupidClassify = document.getElementById('cupid-classify');
     if (!CupidClassify || CupidClassify.length < 1) {
       throw new Error('請先加入 <div id="cupid-classify"></div> HTML標籤');
     }
 
-    const data = await this.getClassify();
+    if(productId === undefined){
+      const idDom = document.querySelectorAll('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]');
+      if (!idDom || idDom.length < 1) {
+        throw new Error('請在div或a或span標籤內增加data-cupid-product-id屬性，並指定商品id')
+      }
+      let productIdArray = [];
+      idDom.forEach(item => {
+        productIdArray.push(item.dataset.cupidProductId);
+      })
+      productId = productIdArray;
+    }
+
+    const data = await this.getClassify(productId);
 
     const { result, errcode, errmsg } = data;
     ReactDOM.render(

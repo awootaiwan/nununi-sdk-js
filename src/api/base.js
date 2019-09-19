@@ -66,6 +66,7 @@ const getClassifyApiData = async (
   const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/classify`;
   const headers = {
     Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
   };
 
   try {
