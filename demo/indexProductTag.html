@@ -160,14 +160,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
 <script>
-<<<<<<< Updated upstream
   window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
-=======
-  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"127.0.0.1:5500/cupid-sdk-js/production/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
- 
->>>>>>> Stashed changes
+  
   cupid.init(() => {
-    const cupidSDK = new CupidSDK('9715703849', 'cc2d272beac6800503411c361d9aebb080268789');
+    const cupidSDK = new CupidSDK('id', 'token');
     cupidSDK.setAPIVersion('v2.3');
     /*頁面渲染範例*/
     cupidSDK.renderProductTag('PRODUCT-ID');

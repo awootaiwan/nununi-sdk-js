@@ -165,6 +165,9 @@ class CupidSDK {
   }
 
   getClassify(productIdArray) {
+    if(productIdArray.length < 1){
+      throw new Error('傳入商品id陣列為空陣列');
+    }
     return getClassifyApiData(this.id, this.token, this.apiVer, {productIds:productIdArray});
   }
 
@@ -176,7 +179,7 @@ class CupidSDK {
 
     if(productId === undefined){
       const idDom = document.querySelectorAll('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]');
-      if (!idDom || idDom.length < 1) {
+      if (!idDom) {
         throw new Error('請在div或a或span標籤內增加data-cupid-product-id屬性，並指定商品id')
       }
       let productIdArray = [];
