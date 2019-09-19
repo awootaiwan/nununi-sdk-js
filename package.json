@@ -6,11 +6,13 @@
   "scripts": {
     "start": "parcel src/index.html --port 3000",
     "demo": "parcel demo/index.html --port 3001",
+    "demo:productTag": "parcel demo/indexProductTag.html --port 3002",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "parcel build index.html --out-dir dist",
     "build:app": "parcel build src/app.js --out-dir production --out-file cupid-sdk-latest.min.js --no-source-maps",
     "build:no-cache": "parcel build src/index.html --no-cache --out-dir dist",
-    "build:no-minify": "parcel build src/index.html --no-minify --out-dir dist"
+    "build:no-minify": "parcel build src/index.html --no-minify --out-dir dist",
+    "style": "parcel build demo/css/header.scss --no-source-maps --out-dir demo/css"
   },
   "homepage": "https://awoo.org",
   "repository": {
@@ -23,7 +25,6 @@
   "author": "awoo",
   "license": "MIT",
   "dependencies": {
-    "autoprefixer": "^9.6.0",
     "axios": "^0.18.0",
     "querystring": "^0.2.0",
     "react": "^16.8.6",
@@ -37,8 +38,9 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "autoprefixer": "^9.6.1",
     "babel-loader": "^8.0.6",
     "parcel-bundler": "^1.12.3",
-    "sass": "^1.21.0"
+    "sass": "^1.22.10"
   }
 }

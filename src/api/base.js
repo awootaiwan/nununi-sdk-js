@@ -24,13 +24,33 @@ const getApiData = async (
     return getPayload(ERROR_NO_TAGS_PROVIDED);
   }
 
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/${method}`;
+  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/content/${method}`;
   const headers = {
     Authorization: `Bearer ${token}`,
   };
 
   try {
     const { status, data: response } = await axios.post(url, data, { headers });
+    if (status !== 200) {
+      return getPayload(status, response.error_description, response);
+    }
+     return response;
+  } catch (e) {
+    return getPayload(ERROR_REQUEST_FAILED);
+  }
+};
+
+const getProductTagApiData = async (
+  id = process.env.NUNUNI_ID, token = process.env.NUNUNI_TOKEN, version, productId,
+) => {
+  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/${productId}/tags`;
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    'Content-Type': 'application/json',
+  };
+
+  try {
+    const { status, data: response } = await axios.get(url, { headers });
     if (status !== 200) {
       return getPayload(status, response.error_description, response);
     }
@@ -41,5 +61,5 @@ const getApiData = async (
 };
 
 export {
-  getApiData,
+  getApiData, getProductTagApiData
 };

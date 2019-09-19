@@ -39,6 +39,15 @@ header {
   }
 }
 
+.page-nav {
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+  a {
+    color: #ee5d84;
+  }
+}
+
 .head {
   margin-top: 10px;
   .awoo-headlogo {
@@ -195,4 +204,59 @@ main {
     }
   }
 
+.spec-info {
+  padding: 0 50px;
+
+  ul {
+    margin: 50px auto;
+    width: 70%;
+  }
+
+  li {
+    border: 1px solid #ccc;
+    display: flex;
+
+    &:not(:last-child) {
+      border-bottom: 0;
+
+    }
+
+    > div {
+      padding: 20px;
+    }
+
+    .title {
+      border-right: 1px solid #ccc;
+      width: 120px;
+    }
+
+    .detail {
+      width: 100%;
+    }
+  }
+}
+
+#cupid-product-tag {
+  display: flex;
+  flex-wrap: wrap;
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  .cupid-tag {
+    background: #f47f9d;
+    border: 1px solid #ee5d84;
+    border-radius: 8px;
+    color: #fff;
+    margin-bottom: 10px;
+    margin-right: 8px;
+    padding: 5px 10px;
+
+    :hover {
+      cursor: pointer;
+    }
+  }
+}
   
