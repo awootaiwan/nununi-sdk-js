@@ -119,7 +119,7 @@
 <script src="js/search.js"></script>
 <script>
   window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};  
-  
+
   cupid.init(() => {
     const cupidSDK = new CupidSDK('id', 'token');
     /*API版本設定*/
@@ -131,8 +131,7 @@
       const allContent = await cupidSDK.getContentAll(item);
       const { result } = allContent;
       const productIds = result.products;
-      let productIdArray = [];
-      productIds.map(i => productIdArray.push(i.productId));
+      const productIdArray = productIds.map(i => i.productId);
       return productIdArray;
     };
 
@@ -141,11 +140,10 @@
     }
 
     async function findProductId() {
-      const productItem = document.querySelectorAll('.product-container a');
-      let idArray = [];
-      productItem.forEach(item => {
-        let search = item.search.split('=');
-        idArray.push(search[1]);
+      const productItem = [...document.querySelectorAll('.product-container a')];
+      const idArray = productItem.map(item => {
+        const search = item.search.split('=');
+        return search[1];
       });
       return idArray;
     }
@@ -160,7 +158,7 @@
     /* 頁面渲染範例 1 */
     /* cupidSDK.renderSuggestionTag();
     cupidSDK.renderProductList();
-    showClassify('日本,牙膏'); */
+    showClassify('牙膏'); */
 
     /* Classify使用方式二：若沒有置入參數，程式會搜尋頁面上的 data-cupid-product-id 的值，
     再代入 cupidSDK.renderClassify 中，此處以 cupid.getContentAll 產生的 productId 做範例 */

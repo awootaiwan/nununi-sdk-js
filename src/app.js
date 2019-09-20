@@ -148,6 +148,8 @@ class CupidSDK {
       const idDom = document.querySelector('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]');
       if (!idDom) {
         throw new Error('請在div或a或span標籤內增加data-cupid-product-id屬性，並指定商品id')
+      } else if (idDom.dataset.cupidProductId === '') {
+        throw new Error('data-cupid-product-id屬性為空值')
       }
       productId = idDom.dataset.cupidProductId;
     }
@@ -178,14 +180,11 @@ class CupidSDK {
     }
 
     if(productId === undefined){
-      const idDom = document.querySelectorAll('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]');
+      const idDom = [...document.querySelectorAll('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]')];
       if (!idDom) {
         throw new Error('請在div或a或span標籤內增加data-cupid-product-id屬性，並指定商品id')
       }
-      let productIdArray = [];
-      idDom.forEach(item => {
-        productIdArray.push(item.dataset.cupidProductId);
-      })
+      let productIdArray = idDom.map(item => { return item.dataset.cupidProductId });
       productId = productIdArray;
     }
 
