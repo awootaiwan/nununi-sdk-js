@@ -324,7 +324,7 @@ cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
 1. productId(**不可為空**) : string
 
 `Output`   
-full_link 是客戶的api base + link欄位，此處使用full_link做tag的連結。
+fullLink 是客戶的api base + link欄位，此處使用fullLink做tag的連結。
 
 ```jsonld=
 {
@@ -335,7 +335,7 @@ full_link 是客戶的api base + link欄位，此處使用full_link做tag的連�
      {
        "text": "TagA",
        "link": "linkA",
-       "full_link": "awoo.com.tw/product-list/?label=linkA"
+       "fullLink": "awoo.com.tw/product-list/?label=linkA"
      }
   }
 }
@@ -346,7 +346,7 @@ full_link 是客戶的api base + link欄位，此處使用full_link做tag的連�
 1. productIds(**不可為空**) : array
 
 `Output`   
-full_link 是客戶的api base + link欄位，此處使用full_link做tag的連結。
+fullLink 是客戶的api base + link欄位，此處使用fullLink做tag的連結。
 
 ```jsonld=
 {
@@ -357,7 +357,7 @@ full_link 是客戶的api base + link欄位，此處使用full_link做tag的連�
      {
        "text": "TagA",
        "link": "linkA",
-       "full_link": "awoo.com.tw/product-list/?label=linkA"
+       "fullLink": "awoo.com.tw/product-list/?label=linkA"
      }
   }
 }
