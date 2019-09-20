@@ -158,17 +158,17 @@
     /* 頁面渲染範例 1 */
     /* cupidSDK.renderSuggestionTag();
     cupidSDK.renderProductList();
-    showClassify('牙膏'); */
+    showClassify('日本,牙膏'); */
 
     /* Classify使用方式二：若沒有置入參數，程式會搜尋頁面上的 data-cupid-product-id 的值，
-    再代入 cupidSDK.renderClassify 中，此處以 cupid.getContentAll 產生的 productId 做範例 */
+    再代入 cupidSDK.renderClassify 中，此處以 cupid.renderProductList 產生的畫面來擷取 product id做範例 */
     /* 頁面渲染範例 2 */
-    /* (async() => {
+    (async() => {
       cupidSDK.renderSuggestionTag();
       await cupidSDK.renderProductList();
       await setDataCupidId(await findProductId());
       await cupidSDK.renderClassify();
-    })(); */
+    })();
 
     /*資料存取範例*/
     (async() => {
