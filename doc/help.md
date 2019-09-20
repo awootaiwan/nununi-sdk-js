@@ -16,11 +16,13 @@ cupid-sdk-js 使用者說明文件
     cupidSDK.renderSuggestionTag();
     cupidSDK.renderProductList();
     cupidSDK.renderProductTag();
+    cupidSDK.renderClassify();
 
     /*資料存取範例*/
     (async() => {
       console.log(await cupidSDK.getContentAll('日本,面膜'));
-      console.log(await cupidSDK.getProductTags('PRODUCT-ID'));
+      console.log(await cupidSDK.getProductTags('11111'));
+      console.log(await cupidSDK.getClassify(['11111','22222']));
     })();
   });
 </script>
@@ -79,25 +81,54 @@ const cupidSDK = new CupidSDK('id', 'token');
 ```htmlmixed=
   <div id="cupid-product-tag"></div>
 ```
-##### 取得商品id的兩種方法：
+##### 參數設定的兩種方法：
 * 直接代入商品id參數。 
-cupidSDK.getProductTags 取得資料，cupidSDK.renderProductTag 渲染畫面。
+cupidSDK.getProductTags 取得資料，cupidSDK.renderProductTag 取得資料並渲染畫面。
 
 ```javascript
 cupidSDK.renderProductTag('PRODUCT-ID');
 cupidSDK.getProductTags('PRODUCT-ID')
 ```
 
-* 請在商品頁上的任一 div、a、span標籤內增加data屬性 `data-cupid-product-id`，且代入商品id。程式會搜尋第一個有`data-cupid-product-id`的標籤。
+* 請在商品頁上的任一 div、a、span標籤內增加data屬性 `data-cupid-product-id`，且代入商品id。   
+執行 `cupidSDK.renderProductTag()` 會搜尋第一個有`data-cupid-product-id`的標籤。
   
 ```htmlmixed=
   <span data-cupid-product-id="1234567">
   </span>
 ```
 
-執行`cupidSDK.renderProductTag()`會將cupid標籤渲染至標籤 `id="data-cupid-product-id"` 內，以下畫面為範例：
+執行`cupidSDK.renderProductTag()`會將cupid標籤渲染至標籤 `id="cupid-product-tag"` 內，以下畫面為範例：
 
 ![](https://imgur.com/y6J2z83.png)
+
+### Product Classify
+##### html需要 cupid-classify 區塊才會渲染畫面
+```htmlmixed=
+  <div id="cupid-classify"></div>
+```
+##### 參數設定的兩種方法：
+* 直接代入商品id陣列。 
+cupidSDK.getClassify 取得資料，cupidSDK.renderClassify 取得資料並渲染畫面。
+
+```javascript
+cupidSDK.renderClassify(['PRODUCT-ID','PRODUCT-ID']);
+cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
+```
+
+* 請在商品頁上的任一 div、a、span標籤內增加data屬性 `data-cupid-product-id`，且代入商品id。   
+`cupidSDK.renderClassify()` 會搜尋頁面上所有`data-cupid-product-id`的標籤。
+  
+```htmlmixed=
+  <span data-cupid-product-id="1234567"></span>
+  <span data-cupid-product-id="2230982"></span>
+  <span data-cupid-product-id="5409124"></span>
+  <span data-cupid-product-id="9120988"></span>
+```
+
+執行`cupidSDK.renderClassify()`會將cupid標籤渲染至標籤 `id="cupid-classify"` 內，以下畫面為範例：
+
+![](https://imgur.com/lDxXMo5.png)
 
 ***
 
@@ -106,17 +137,19 @@ cupidSDK.getProductTags('PRODUCT-ID')
 ### Using Error
 沒有畫面，空白一片，請查看console的錯誤顯示，有以下的情況：
 
-1. ID 或 Token 未填入時，console會出現以下Message
+1. ID 或 Token 未填入時，console會出現以下Message：
 ![](https://i.imgur.com/3vuVeYg.png)
 
-2. 未在 html 內放置 cupid-product-list、cupid-suggestion-tag、cupid-product-tag區塊，console會出現以下Message
+2. 未在 html 內放置 cupid-product-list、cupid-suggestion-tag、cupid-product-tag、cupid-classify區塊，console會出現以下Message：
 ![](https://i.imgur.com/CBXTZ0f.png)
+ 
+3. 執行Prodruct tags時，若頁面上的第一個 data-cupid-product-id 的數值為空，console會出現會出現 `404 not found訊息`。
 
-3. 若頁面上的第一個 data-cupid-product-id 的數值為空，就會出現此訊息。
-![](https://imgur.com/bVbNjVY.png)
-
-4. 如果沒有將商品id代入程式，頁面元素也沒有 data-cupid-product-id，就會出現此訊息。
+4. 執行Prodruct tags、Product classify 時如果沒有將商品id代入程式，頁面元素也沒有 data-cupid-product-id，console會出現以下Message：
 ![](https://imgur.com/3PyWjuF.png)
+
+5. Product classify 時，若代入的值是空值，，console會出現以下Message：   
+`執行Error: 傳入商品id陣列為空陣列`
 
 ### API Error
 當API出現Error時，畫面呈現：
@@ -150,7 +183,8 @@ cupidSDK.getProductTags('PRODUCT-ID')
 ```javascript
   (async() => {
     console.log(await cupidSDK.getContentAll('日本,面膜'));
-    console.log(await cupidSDK.getProductTags('PRODUCT-ID'));
+    console.log(await cupidSDK.getProductTags('11111'));
+    console.log(await cupidSDK.getClassify(['11111','22222']));
   })
 ```
 
@@ -287,7 +321,7 @@ cupidSDK.getProductTags('PRODUCT-ID')
 
 ### getProductTags()
 `Input`
-1. productId: string
+1. productId(**不可為空**) : string
 
 `Output`   
 fullLink 是客戶的api base + link欄位，此處使用fullLink做tag的連結。
@@ -306,3 +340,26 @@ fullLink 是客戶的api base + link欄位，此處使用fullLink做tag的連結
   }
 }
 ```
+
+### getClassify()
+`Input`
+1. productIds(**不可為空**) : array
+
+`Output`   
+fullLink 是客戶的api base + link欄位，此處使用fullLink做tag的連結。
+
+```jsonld=
+{
+  "errcode": 0,
+  "errmsg": "ACK",
+  "result": {
+    "tags": [
+     {
+       "text": "TagA",
+       "link": "linkA",
+       "fullLink": "awoo.com.tw/product-list/?label=linkA"
+     }
+  }
+}
+```
+
