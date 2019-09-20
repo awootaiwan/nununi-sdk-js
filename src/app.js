@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { getApiData, getProductTagApiData } from './api/base';
+import { getApiData, getProductTagApiData, getClassifyApiData } from './api/base';
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
@@ -145,9 +145,11 @@ class CupidSDK {
       throw new Error('請先加入 <div id="cupid-product-tag"></div> HTML標籤');
     }
     if(productId === undefined){
-      const idDom = document.querySelectorAll('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]')[0];
-      if (!idDom || idDom.length < 1) {
+      const idDom = document.querySelector('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]');
+      if (!idDom) {
         throw new Error('請在div或a或span標籤內增加data-cupid-product-id屬性，並指定商品id')
+      } else if (idDom.dataset.cupidProductId === '') {
+        throw new Error('data-cupid-product-id屬性為空值')
       }
       productId = idDom.dataset.cupidProductId;
     }
@@ -161,6 +163,40 @@ class CupidSDK {
           ProductTag={result.tags}
         />
       </App>, CupidProductTag,
+    );
+  }
+
+  getClassify(productIdArray) {
+    if(productIdArray.length < 1){
+      throw new Error('傳入商品id陣列為空陣列');
+    }
+    return getClassifyApiData(this.id, this.token, this.apiVer, {productIds:productIdArray});
+  }
+
+  async renderClassify(productId) {
+    const CupidClassify = document.getElementById('cupid-classify');
+    if (!CupidClassify || CupidClassify.length < 1) {
+      throw new Error('請先加入 <div id="cupid-classify"></div> HTML標籤');
+    }
+
+    if(productId === undefined){
+      const idDom = [...document.querySelectorAll('div[data-cupid-product-id], a[data-cupid-product-id], span[data-cupid-product-id]')];
+      if (!idDom) {
+        throw new Error('請在div或a或span標籤內增加data-cupid-product-id屬性，並指定商品id')
+      }
+      let productIdArray = idDom.map(item => { return item.dataset.cupidProductId });
+      productId = productIdArray;
+    }
+
+    const data = await this.getClassify(productId);
+
+    const { result, errcode, errmsg } = data;
+    ReactDOM.render(
+      <App errcode={errcode} errmsg={errmsg}>
+        <ProductTag
+          ProductTag={result.tags}
+        />
+      </App>, CupidClassify,
     );
   }
 }

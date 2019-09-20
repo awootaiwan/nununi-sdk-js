@@ -59,11 +59,15 @@
   <main>
     <div id="cupid-suggestion-tag"></div>
     <div id="cupid-product-list"></div>
+    <div class="section-padding">
+      <p>您可能想看其他分類：</p>
+      <div id="cupid-classify"></div>
+    </div>
   </main>
 
   <div class="page-nav">
+    <a href="index.html">Product List and suggestion</a>
     <a href="indexProductTag.html">Product Tag</a>
-    <a href="indexClassify.html">Product Category</a>
   </div>
 
   <footer>
@@ -114,20 +118,61 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
 <script>
-  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
- 
+  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};  
+
   cupid.init(() => {
     const cupidSDK = new CupidSDK('id', 'token');
     /*API版本設定*/
-    cupidSDK.setAPIVersion('v1.3');
+    cupidSDK.setAPIVersion('v2.3');
     /*頁面商品顯示數量設定*/
     cupidSDK.setLimit(12);
-    /*頁面渲染範例*/
-    cupidSDK.renderSuggestionTag();
+
+    async function getContentProductId(item) {
+      const allContent = await cupidSDK.getContentAll(item);
+      const { result } = allContent;
+      const productIds = result.products;
+      const productIdArray = productIds.map(i => i.productId);
+      return productIdArray;
+    };
+
+    async function showClassify(item){
+      cupidSDK.renderClassify(await getContentProductId(item));
+    }
+
+    async function findProductId() {
+      const productItem = [...document.querySelectorAll('.product-container a')];
+      const idArray = productItem.map(item => {
+        const search = item.search.split('=');
+        return search[1];
+      });
+      return idArray;
+    }
+
+    async function setDataCupidId(productId){
+      let dataDom = document.querySelectorAll('span.pro-img');
+      dataDom.forEach((item, index) => item.dataset.cupidProductId = productId[index]);
+    };
+
+    /* Classify使用方式一：將商品id代入 cupidSDK.renderClassify。
+    此處以 cupid.getContentAll 產生的 productId 做範例 */
+    /* 頁面渲染範例 1 */
+    /* cupidSDK.renderSuggestionTag();
     cupidSDK.renderProductList();
+    showClassify('日本,牙膏'); */
+
+    /* Classify使用方式二：若沒有置入參數，程式會搜尋頁面上的 data-cupid-product-id 的值，
+    再代入 cupidSDK.renderClassify 中，此處以 cupid.renderProductList 產生的畫面來擷取 product id做範例 */
+    /* 頁面渲染範例 2 */
+    (async() => {
+      cupidSDK.renderSuggestionTag();
+      await cupidSDK.renderProductList();
+      await setDataCupidId(await findProductId());
+      await cupidSDK.renderClassify();
+    })();
+
     /*資料存取範例*/
     (async() => {
-      console.log(await cupidSDK.getContentAll('日本,面膜'));
+      console.log(await cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID']));
     })();
   });
 </script>
