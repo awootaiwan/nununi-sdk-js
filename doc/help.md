@@ -173,6 +173,7 @@ cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
 }
 ```
 ***
+
 ## CSS 樣式修改
 只要加上 id 選擇器的權重，就可輕鬆覆蓋原生樣式。
 
@@ -181,6 +182,9 @@ cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
 ```
 #cupid-product-tag .cupid-tag {
 // 修改樣式
+  display: inline-block
+  font-size: 18px;
+  background: #d4aaa;
 }
 ```
     
@@ -188,20 +192,29 @@ cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
 
 ```
 #cupid-classify {
-// 修改樣式
+// 請加入欲修改的樣式
+  background-color:#e2e2e2;
+  padding:20px;
 }
 #cupid-classify .cupid-tag{
-// 修改樣式
+// 請加入欲修改的樣式
+  display: inline-block
+  font-size: 14px;
+  background: #d4aaaa;
+  border: 1px solid #ccc;
 }
 ```
 #### product list 修改範例
 
 ```
 #cupid-product-list .master-container {
-// 修改樣式
+// 請加入欲修改的樣式
+  padding-top: 30px;
 }
 #cupid-product-list .product-name {
-// 修改樣式
+// 請加入欲修改的樣式
+  min-height: 40px;
+  height: auto;
 }
 ```
 
@@ -209,11 +222,15 @@ cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
 
 ``` 
 #cupid-suggestion-tag > div {
-// 修改樣式
+// 請加入欲修改的樣式
+ background: transparent;
+ border: none;
 }
 
 #cupid-suggestion-tag span {
-// 修改樣式
+// 請加入欲修改的樣式
+  border: 1px solid #d4a6db;
+  border-radius: 20px;
 }
 ```
 
