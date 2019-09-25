@@ -173,6 +173,51 @@ cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
 }
 ```
 ***
+## CSS 樣式修改
+只要加上 id 選擇器的權重，就可輕鬆覆蓋原生樣式。
+
+#### product tag 修改範例
+
+```
+#cupid-product-tag .cupid-tag {
+// 修改樣式
+}
+```
+    
+#### classify 修改範例
+
+```
+#cupid-classify {
+// 修改樣式
+}
+#cupid-classify .cupid-tag{
+// 修改樣式
+}
+```
+#### product list 修改範例
+
+```
+#cupid-product-list .master-container {
+// 修改樣式
+}
+#cupid-product-list .product-name {
+// 修改樣式
+}
+```
+
+#### suggestion tag 修改範例
+
+``` 
+#cupid-suggestion-tag > div {
+// 修改樣式
+}
+
+#cupid-suggestion-tag span {
+// 修改樣式
+}
+```
+
+***
 
 ## API 說明文件
 * [Nununi Content API Document](https://awootaiwan.github.io/awoo_wiki/nununi/nununi_Content_API_v1_2.html)
