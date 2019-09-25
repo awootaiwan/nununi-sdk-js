@@ -174,6 +174,68 @@ cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID'])
 ```
 ***
 
+## CSS 樣式修改
+只要加上 id 選擇器的權重，就可輕鬆覆蓋原生樣式。
+
+#### product tag 修改範例
+
+```
+#cupid-product-tag .cupid-tag {
+// 修改樣式
+  display: inline-block
+  font-size: 18px;
+  background: #d4aaa;
+}
+```
+    
+#### classify 修改範例
+
+```
+#cupid-classify {
+// 請加入欲修改的樣式
+  background-color:#e2e2e2;
+  padding:20px;
+}
+#cupid-classify .cupid-tag{
+// 請加入欲修改的樣式
+  display: inline-block
+  font-size: 14px;
+  background: #d4aaaa;
+  border: 1px solid #ccc;
+}
+```
+#### product list 修改範例
+
+```
+#cupid-product-list .master-container {
+// 請加入欲修改的樣式
+  padding-top: 30px;
+}
+#cupid-product-list .product-name {
+// 請加入欲修改的樣式
+  min-height: 40px;
+  height: auto;
+}
+```
+
+#### suggestion tag 修改範例
+
+``` 
+#cupid-suggestion-tag > div {
+// 請加入欲修改的樣式
+ background: transparent;
+ border: none;
+}
+
+#cupid-suggestion-tag span {
+// 請加入欲修改的樣式
+  border: 1px solid #d4a6db;
+  border-radius: 20px;
+}
+```
+
+***
+
 ## API 說明文件
 * [Nununi Content API Document](https://awootaiwan.github.io/awoo_wiki/nununi/nununi_Content_API_v1_2.html)
 * [Nununi Product Tags API Document](https://wiki.awoo.org/nununi/products/v2.2#GET-Products-get-Tags)
