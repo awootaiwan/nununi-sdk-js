@@ -31,7 +31,7 @@
 
 #### Node Usage
 
-```shell=
+```shell＝
 $ npm i @awootaiwan/cupid-sdk-js
 or
 $ yarn add @awootaiwan/cupid-sdk-js
