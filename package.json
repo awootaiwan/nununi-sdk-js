@@ -4,7 +4,7 @@
   "description": "javascript sdk for awoo nununi api",
   "main": "production/cupid-sdk-latest.min.js",
   "scripts": {
-    "start": "parcel src/index.html --port 3000",
+    "start": "parcel src/index.html --port 80",
     "demo": "parcel demo/index.html --port 3001",
     "demo:productTag": "parcel demo/indexProductTag.html --port 3002",
     "test": "echo \"Error: no test specified\" && exit 1",

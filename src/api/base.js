@@ -30,7 +30,7 @@ const getApiData = async (
   const url = `https://awoo.org/nununi/v1.3/${id}/content/${method}`;
 
   try {
-    const { status, data: response } = await axios.post(url, data, { headers });
+    const { status, data: response } = await axios.post(url, data);
     if (status !== 200) {
       return getPayload(status, response.error_description, response);
     }
@@ -45,7 +45,7 @@ const getProductTagApiData = async (
   version,
   productId
 ) => {
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/${productId}/tags`;
+  const url = `https://awoo.org/nununi/${version}/${id}/products/${productId}/tags`;
   const headers = {
     "Content-Type": "application/json"
   };
@@ -66,7 +66,7 @@ const getClassifyApiData = async (
   version,
   productIds
 ) => {
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/${process.env.NUNUNI_APINAME}/classify`;
+  const url = `https://awoo.org/nununi/${version}/${id}/products/classify`;
   const headers = {
     "Content-Type": "application/json"
   };

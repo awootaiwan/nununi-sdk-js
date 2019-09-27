@@ -32,8 +32,8 @@ class CupidSDK {
     this.limit = 10;
   }
 
-  setAPIVersion(version) {
-    this.apiVer = version;
+  setAPIVersion(apiVer) {
+    this.apiVer = apiVer;
   }
 
   setLimit(limit) {

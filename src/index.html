@@ -11,15 +11,16 @@
     <div id="cupid-product-list"></div>
     <div id="cupid-product-tag"></div>
     <div id="cupid-classify"></div>
+    <div data-cupid-product-id="PRODUCT_ID"></div>
     <script src="./app.js"></script>
     <script>
-      const cupidSDK = new CupidSDK("id");
+      const cupidSDK = new CupidSDK("9715703849");
       cupidSDK.setAPIVersion("v2.3");
       cupidSDK.setLimit(10);
-      cupidSDK.renderSuggestionTag();
-      cupidSDK.renderProductList();
-      cupidSDK.renderProductTag();
-      cupidSDK.renderClassify();
+      // cupidSDK.renderSuggestionTag();
+      // cupidSDK.renderProductList();
+      // cupidSDK.renderProductTag('PRODUCT_ID');
+      // cupidSDK.renderClassify(['PRODUCT_ID']);
     </script>
     <!--  Uncomment the following line for seeing API outputs in console.-->
     <!--  <script src="tests/api.js"></script>-->
