@@ -31,7 +31,10 @@ const SuggestionDiv = styled.div`
         background: #f63577;
         line-height: 31px;
         padding: 7px 10px;
-        cursor: default;
+        cursor: pointer;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
       }
     }
   }
@@ -52,7 +55,9 @@ const SuggestionList = styled.div`
     background-color: #fff;
     margin-left: 10px;
     padding: 3px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    border-radius: 20px;
+    padding: 0 20px;
   }
 
   span:hover {
@@ -66,6 +71,8 @@ const Suggestion = ({ suggestionTags, pageInfo }) => {
   }
   const tags = pageInfo.tags.split(",");
   const { limit } = pageInfo;
+  const baseUrl = `${location.protocol}//${location.host}${location.pathname}`;
+
   return (
     <SuggestionDiv>
       <ul>
@@ -73,7 +80,7 @@ const Suggestion = ({ suggestionTags, pageInfo }) => {
           pageInfo.tags &&
           pageInfo.tags.length > 0 &&
           tags.map(tag =>(          
-            <li key={tag}><a>{tag}</a></li>
+            <li className="page-tag" key={tag}><a href={`${baseUrl}?tags=${tag}&limit=${limit}`}>{tag}</a></li>
           ))
         }
       </ul>
