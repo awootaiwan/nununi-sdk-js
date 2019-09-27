@@ -3,6 +3,7 @@ import styled from 'styled-components'
 
 const PorductContenier = styled.li`
   width: 283px;
+  min-height: 375px;
   margin: 0 0 15px 11px;
   border: 1px solid transparent;
   text-align: center;
@@ -33,12 +34,14 @@ const PorductContenier = styled.li`
   .pro-img {
     display: block;
     position: relative;
-    padding: 5px;
-
-    img {
-      width: 100%;
-      display: block;
-    }
+    width: 100%;
+    padding-bottom: 100%;
+    cursor: pointer;
+    background-image: url('${props => props.imageUrl || require("../../assets/images/image-placeholder-1200x800.jpg")}');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    background-size: 100%;
   }
   .sale-price {
     font-size: 32px;
@@ -47,40 +50,32 @@ const PorductContenier = styled.li`
     color: #ee4d79;
     display: inline-block;
     margin-bottom: 10px;
-  }
-  .nt {
-    font-size: 22px;
-    color: #ee4d79;
-    font: inherit;
+    padding-bottom: 10px;
   }
 
   .product-name {
-    display: box;
-    height: 40px;
-    margin: 0 0 10px;
-    line-height: 145%;
+    word-break: break-all;
+    display: -webkit-box;
     overflow: hidden;
-    line-clamp: 2;
-    box-orient: vertical;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     text-align: left;
+    padding: 0 10px;
+    height: 40px;
     line-height: 20px;
-    padding: 9px;
   }
 `;
 
 const Product = ({ product }) => {
   return (
-    <PorductContenier>
-      <div>
+    <PorductContenier imageUrl={product.productImageUrl}>
         <a href={product.url}>
-          <span className="pro-img" >
-            <img className="pro-img" src={product.productImageUrl} title={product.productName} alt={product.productName} />
-          </span>
+          <div className="pro-img" alt={product.productName}>
+          </div>
           <div className="product-name">{product.productName}</div>
-          <span className="nt">$</span>
-          <span className="sale-price">{product.productPrice}</span>
+          <span className="sale-price">${product.productPrice}</span>
         </a>
-      </div>
     </PorductContenier>
   )
 }
