@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>開發頁面</title>
   </head>
   <body>
     <div id="cupid-suggestion-tag"></div>
@@ -15,12 +15,12 @@
     <script src="./app.js"></script>
     <script>
       const cupidSDK = new CupidSDK("id");
-      cupidSDK.setAPIVersion("v2.3");
+      cupidSDK.setAPIVersion("v1.3");
       cupidSDK.setLimit(10);
-      // cupidSDK.renderSuggestionTag();
-      // cupidSDK.renderProductList();
-      // cupidSDK.renderProductTag('PRODUCT_ID');
-      // cupidSDK.renderClassify(['PRODUCT_ID']);
+      cupidSDK.renderSuggestionTag();
+      cupidSDK.renderProductList();
+      // cupidSDK.renderProductTag('PRODUCT_ID');
+      // cupidSDK.renderClassify(['PRODUCT_ID']);
     </script>
     <!--  Uncomment the following line for seeing API outputs in console.-->
     <!--  <script src="tests/api.js"></script>-->
