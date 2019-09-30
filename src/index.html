@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <div id="cupid-suggestion-tag"></div>
-  <div id="cupid-product-list"></div>
-  <div id="cupid-product-tag"></div>
-  <div id="cupid-classify"></div>
-  <script src="./app.js"></script>
-  <script>
-    const cupidSDK = new CupidSDK(process.env.NUNUNI_ID, process.env.NUNUNI_TOKEN);
-    cupidSDK.setAPIVersion('v2.3');
-    cupidSDK.setLimit(10);
-    cupidSDK.renderSuggestionTag();
-    cupidSDK.renderProductList();
-    cupidSDK.renderProductTag();
-    cupidSDK.renderClassify();
-  </script>
-<!--  Uncomment the following line for seeing API outputs in console.-->
-<!--  <script src="tests/api.js"></script>-->
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>開發頁面</title>
+  </head>
+  <body>
+    <div id="cupid-suggestion-tag"></div>
+    <div id="cupid-product-list"></div>
+    <div id="cupid-product-tag"></div>
+    <div id="cupid-classify"></div>
+    <div data-cupid-product-id="PRODUCT_ID"></div>
+    <script src="./app.js"></script>
+    <script>
+      const cupidSDK = new CupidSDK("id");
+      cupidSDK.setAPIVersion("v1.3");
+      cupidSDK.setLimit(10);
+      cupidSDK.renderSuggestionTag();
+      cupidSDK.renderProductList();
+      // cupidSDK.renderProductTag('PRODUCT_ID');
+      // cupidSDK.renderClassify(['PRODUCT_ID']);
+    </script>
+    <!--  Uncomment the following line for seeing API outputs in console.-->
+    <!--  <script src="tests/api.js"></script>-->
+  </body>
 </html>

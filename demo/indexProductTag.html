@@ -163,7 +163,7 @@
   window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};  
 
   cupid.init(() => {
-    const cupidSDK = new CupidSDK('id', 'token');
+    const cupidSDK = new CupidSDK('id');
 
     cupidSDK.setAPIVersion('v2.3');
     /*頁面渲染範例*/
