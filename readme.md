@@ -81,7 +81,7 @@ $ open http://localhost:3000
 ### Build
 
 ```
-$ npm run build
+$ npm run build:app
 ```
 
 ### Build by your self.

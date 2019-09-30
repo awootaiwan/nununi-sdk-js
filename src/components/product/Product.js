@@ -37,7 +37,7 @@ const PorductContenier = styled.li`
     width: 100%;
     padding-bottom: 100%;
     cursor: pointer;
-    background-image: url('${props => props.imageUrl || require("../../assets/images/image-placeholder-1200x800.jpg")}');
+    background-image: url('${props => props.imageUrl}');
     background-repeat: no-repeat;
     background-position: center;
     background-color: #fff;

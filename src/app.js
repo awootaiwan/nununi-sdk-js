@@ -28,12 +28,17 @@ class CupidSDK {
       throw new Error("nununi id is not setting");
     }
     this.id = id;
-    this.apiVer = "latest";
+    this.contentApiVer = "latest";
+    this.productsApiVer = "latest";
     this.limit = 10;
   }
 
-  setAPIVersion(apiVer) {
-    this.apiVer = apiVer;
+  setContentAPIVersion(apiVer) {
+    this.contentApiVer = apiVer;
+  }
+
+  setProductsAPIVersion(apiVer) {
+    this.productsApiVer = apiVer;
   }
 
   setLimit(limit) {
@@ -72,7 +77,7 @@ class CupidSDK {
   }
 
   getContentAll(tags, page = 1, sort = 8, limit = 10) {
-    return getApiData(this.id, this.apiVer, {
+    return getApiData(this.id, this.contentApiVer, {
       tags: splitTags(tags),
       page,
       sort,
@@ -83,7 +88,7 @@ class CupidSDK {
   getContentPageInfo(tags) {
     return getApiData(
       this.id,
-      this.apiVer,
+      this.contentApiVer,
       {
         tags: splitTags(tags)
       },
@@ -94,7 +99,7 @@ class CupidSDK {
   getContentSuggestionTags(tags) {
     return getApiData(
       this.id,
-      this.apiVer,
+      this.contentApiVer,
       {
         tags: splitTags(tags)
       },
@@ -105,7 +110,7 @@ class CupidSDK {
   getContentProducts(tags, page = 1, sort = 8, limit = 10) {
     return getApiData(
       this.id,
-      this.apiVer,
+      this.contentApiVer,
       {
         tags: splitTags(tags),
         page,
@@ -167,7 +172,7 @@ class CupidSDK {
   }
 
   getProductTags(productId) {
-    return getProductTagApiData(this.id, this.apiVer, productId);
+    return getProductTagApiData(this.id, this.productsApiVer, productId);
   }
 
   async renderProductTag(productId) {
@@ -204,7 +209,7 @@ class CupidSDK {
     if (productIdArray.length < 1) {
       throw new Error("傳入商品id陣列為空陣列");
     }
-    return getClassifyApiData(this.id, this.apiVer, {
+    return getClassifyApiData(this.id, this.productsApiVer, {
       productIds: productIdArray
     });
   }
