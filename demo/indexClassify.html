@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/header.css">
+  <title>awoo Cupid SDK 範例</title>
+</head>
+
+<body onDRAGSTART="window.event.returnValue=false">
+  <header>
+    <div class="header-top">
+      <ul class="top-menu">
+        <li class="about-us">
+          <a href="">關於</a>
+        </li>
+        <li class="culture-value">
+          <a href="">客戶</a>
+        </li>
+        <li class="media-news">
+          <a href="">服務</a>
+        </li>
+        <li>
+          <a href="">肯定</a>
+        </li>
+        <li>
+          <a href="">招募</a>
+        </li>
+        <li>
+          <a href="">粉絲</a>
+        </li>
+        <li>
+          <a href="">智庫</a>
+        </li>
+        <li>
+          <a href="">活動</a>
+        </li>
+        <li>
+          <a href="">諮詢</a>
+        </li>
+      </ul>
+    </div>
+    <div class="head">
+      <img src="../demo/images/awoo.png" class="awoo-headlogo" alt="">
+      <sapn class="logo-font">awoo cupid</sapn>
+      <span class="icon">
+        <a href=""><i class="fas fa-shopping-cart"></i></a>
+        <a href=""><i class="fas fa-user"></i></a>
+      </span>
+    </div>
+    <div class="search">
+      <input class="search-input" type="search"></input>
+      <button class="sure-button">搜尋</button>
+    </div>
+  </header>
+
+  <main>
+    <div id="cupid-suggestion-tag"></div>
+    <div id="cupid-product-list"></div>
+    <div class="section-padding">
+      <p>您可能想看其他分類：</p>
+      <div id="cupid-classify"></div>
+    </div>
+  </main>
+
+  <div class="page-nav">
+    <a href="index.html">Product List and suggestion</a>
+    <a href="indexProductTag.html">Product Tag</a>
+  </div>
+
+  <footer>
+    <div class="footer">
+      <span class="awoo-foottext1">SEO 搜尋引擎最佳化服務專線</span>
+      <div class="footer-nav">
+        <a href="">最新</a>
+        <span>|</span>
+        <a href="">公益</a>
+        <span>|</span>
+        <a href="">影音</a>
+        <span>|</span>
+        <a href="">部落格</a>
+        <span>|</span>
+        <a href="">隱私權政策</a>
+        <span>|</span>
+        <a href="">網路地圖</a>
+        <span>|</span>
+        <a href="">聯絡我們</a>
+      </div>
+      <div class="footer-info">
+        <span>電話: (02)8712-1128</span>
+        <span>傳真: (02)2596-1288 </span>
+        <span>統一編號: 43401309</span>
+      </div>
+      <div class="footer-address">
+        <span>104 台北市中山區中山北路二段96號14樓1412室</span>
+      </div>
+      <div class="footer-company">
+        <span>Copyright ©阿物股份有限公司 All rights reserved</span>
+      </div>
+      <div class="footer-service">
+        <span>舊址:</span>
+        <a href="">網路行銷顧問</a>
+        <span>|</span>
+        <a href="">甚麼是搜尋行銷</a>
+        <span>|</span>
+        <a href="">關鍵字廣告</a>
+        <span>|</span>
+        <a href="">搜尋引擎最佳化</a>
+        <span>|</span>
+        <a href="">Google Analytics</a>
+        <span class="awoo-foottext2">(02)8712-1128</span>
+      </div>
+    </div>
+  </footer>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<script src="js/search.js"></script>
+<script>
+  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};  
+
+  cupid.init(() => {
+    const cupidSDK = new CupidSDK('id');
+    /*Products API版本設定 default: latest */
+    cupidSDK.setProductsAPIVersion('v2.3');
+    /*頁面商品顯示數量設定*/
+    cupidSDK.setLimit(12);
+
+    async function getContentProductId(item) {
+      const allContent = await cupidSDK.getContentAll(item);
+      const { result } = allContent;
+      const productIds = result.products;
+      const productIdArray = productIds.map(i => i.productId);
+      return productIdArray;
+    };
+
+    async function showClassify(item){
+      cupidSDK.renderClassify(await getContentProductId(item));
+    }
+
+    async function findProductId() {
+      const productItem = [...document.querySelectorAll('.product-container a')];
+      const idArray = productItem.map(item => {
+        const search = item.search.split('=');
+        return search[1];
+      });
+      return idArray;
+    }
+
+    async function setDataCupidId(productId){
+      let dataDom = document.querySelectorAll('span.pro-img');
+      dataDom.forEach((item, index) => item.dataset.cupidProductId = productId[index]);
+    };
+
+    /* Classify使用方式一：將商品id代入 cupidSDK.renderClassify。
+    此處以 cupid.getContentAll 產生的 productId 做範例 */
+    /* 頁面渲染範例 1 */
+    /* cupidSDK.renderSuggestionTag();
+    cupidSDK.renderProductList();
+    showClassify('日本,牙膏'); */
+
+    /* Classify使用方式二：若沒有置入參數，程式會搜尋頁面上的 data-cupid-product-id 的值，
+    再代入 cupidSDK.renderClassify 中，此處以 cupid.renderProductList 產生的畫面來擷取 product id做範例 */
+    /* 頁面渲染範例 2 */
+    (async() => {
+      cupidSDK.renderSuggestionTag();
+      await cupidSDK.renderProductList();
+      await setDataCupidId(await findProductId());
+      await cupidSDK.renderClassify();
+    })();
+
+    /*資料存取範例*/
+    (async() => {
+      console.log(await cupidSDK.getClassify(['PRODUCT-ID','PRODUCT-ID']));
+    })();
+  });
+</script>
+</html>

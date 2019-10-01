@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-  <div id="app"></div>
-  <script src="./app.js"></script>
-  <script>
-    window.CupidSDK.init({key:'key123456'});
-    window.CupidSDK.renderProductList();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>開發頁面</title>
+  </head>
+  <body>
+    <div id="cupid-suggestion-tag"></div>
+    <div id="cupid-product-list"></div>
+    <div id="cupid-product-tag"></div>
+    <div id="cupid-classify"></div>
+    <div data-cupid-product-id="PRODUCT_ID"></div>
+    <script src="./app.js"></script>
+    <script>
+      const cupidSDK = new CupidSDK(process.env.NUNUNI_ID);
+      /*Content API版本設定*/
+      cupidSDK.setContentAPIVersion('v1.3');
+      /*Products API版本設定*/
+      cupidSDK.setProductsAPIVersion('v2.3');
+      cupidSDK.setLimit(10);
+      cupidSDK.renderSuggestionTag();
+      cupidSDK.renderProductList();
+      // cupidSDK.renderProductTag('PRODUCT_ID');
+      // cupidSDK.renderClassify(['PRODUCT_ID']);
+    </script>
+    <!--  Uncomment the following line for seeing API outputs in console.-->
+    <!--  <script src="tests/api.js"></script>-->
+  </body>
 </html>
