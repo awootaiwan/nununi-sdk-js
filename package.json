@@ -1,18 +1,13 @@
 {
   "name": "@awootaiwan/cupid-sdk-js",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "javascript sdk for awoo nununi api",
   "main": "production/cupid-sdk-latest.min.js",
   "scripts": {
     "start": "parcel src/index.html --port 3000",
-    "demo": "parcel demo/index.html --port 3001",
-    "demo:productTag": "parcel demo/indexProductTag.html --port 3002",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "parcel build index.html --out-dir dist",
     "build:app": "parcel build src/app.js --out-dir production --out-file cupid-sdk-latest.min.js --no-source-maps",
-    "build:no-cache": "parcel build src/index.html --no-cache --out-dir dist",
-    "build:no-minify": "parcel build src/index.html --no-minify --out-dir dist",
-    "style": "parcel build demo/css/header.scss --no-source-maps --out-dir demo/css"
+    "demo:style": "parcel build demo/css/header.scss --no-source-maps --out-dir demo/css"
   },
   "homepage": "https://awoo.org",
   "repository": {

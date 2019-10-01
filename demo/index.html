@@ -118,8 +118,10 @@
  
   cupid.init(() => {
     const cupidSDK = new CupidSDK('id');
-    /*API版本設定*/
-    cupidSDK.setAPIVersion('v1.3');
+    /*Content API版本設定 default: latest */
+    cupidSDK.setContentAPIVersion('v1.3');
+    /*Products API版本設定 default: latest */
+    cupidSDK.setProductsAPIVersion('v2.3');
     /*頁面商品顯示數量設定*/
     cupidSDK.setLimit(12);
     /*頁面渲染範例*/
