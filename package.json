@@ -20,9 +20,12 @@
   "author": "awoo",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
     "axios": "^0.18.0",
+    "lodash": "^4.17.15",
     "querystring": "^0.2.0",
     "react": "^16.8.6",
+    "react-autosuggest": "^9.4.3",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
     "styled-components": "^4.3.2"
