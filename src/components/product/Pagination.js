@@ -62,6 +62,8 @@ const BodyPagination = styled.div`
   text-align: center;
 
   > ul {
+    padding: 0px;
+    max-width: 100%;
     list-style-type: disc;
     margin-block-start: 1em;
     margin-block-end: 1em;
@@ -70,17 +72,17 @@ const BodyPagination = styled.div`
     list-style: none;
     display: inline-flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
-    align-items: stretch;
+    justify-content: center;
+    align-items: center;
 
     > li {
-      margin: 0;
+      margin: 0.5px 0px;
       padding: 0;
       cursor: default;
       text-align: center;
-      width: 36px;
-      line-height: 38px;
-      height: 38px;
+      width: 35px;
+      line-height: 35px;
+      height: 35px;
       font-size: 13px;
       > a {
         text-decoration: none;
@@ -98,6 +100,8 @@ const BodyPagination = styled.div`
   
       > a:hover {
         color: #f63577;
+        background: #ffe0eb;
+        border-color: #ffe0eb;
       }
   
       .disabled {

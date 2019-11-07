@@ -11,8 +11,75 @@ const sort = {
 }
 
 const Orders = styled.div`
-  width: 100%;
-  margin-top: 10px;
+  max-width: 100%;
+  width: 250px;
+  height: 50px;
+
+  @media (min-width: 1050px) {
+    margin: 15px 5vw 15px auto;
+  }
+  @media (max-width: 1050px) {
+    margin: 15px auto;
+  }
+`;
+
+const DropdownBtn = styled.button`
+  max-width: 100%;
+  width: 250px;
+  font-size: 16px;
+  text-align: center;
+  background: #FFFFFF;
+  padding: 10px;
+  border: 1.5px solid #D4D4D4;
+  border-radius: 8px;
+  position: relative;
+`;
+
+let DropdownText = '預設排序';
+
+const ArrowDown = styled.div`
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #666666;
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 40%;
+  left: 80%;
+`;
+
+const DropdownList = styled.div`
+  display: none;
+  max-width: 100%;
+  width: 247px;
+  position: absolute;
+  z-index: 100;
+  border: 1.5px solid #DDDDDD;
+  border-radius: 8px;
+  background: #FFFFFF;
+`;
+
+const DropdownItem = styled.a`
+  text-decoration: none;
+`;
+
+const DropdownItemText = styled.span`
+  color: #383838;
+  z-index: 0;
+  position: relative;
+  font-size: 16px;
+  padding: 10px 20px;
+  display: block;
+  font-size: 14px;
+  border-radius: 7px;
+  text-align: center;
+  text-decoration:none;
+
+  &:hover {
+    background: #EEEEEE;
+  }
 `;
 
 const Menu = styled.ul`
@@ -78,15 +145,44 @@ const HeadMenu = ({ pageInfo }) => {
 
     <Orders>
 
-      <Menu>
+      <DropdownBtn id="DropdownBtn">
         {
           Object.keys(sort).map(function (key, index) {
-            const MenuClase = pageSort == sort[key] ? MenuItemClick : MenuItem;
-            return <MenuClase key={index} ><a href={`${baseUrl}&sort=${sort[key]}`}><ItemText>{key}</ItemText></a></MenuClase>
+          if (pageSort == sort[key]) {
+            DropdownText = key;
+          }
           })
         }
-      </Menu>
+        {DropdownText}
+        <ArrowDown></ArrowDown>
+      </DropdownBtn>
+
+      <DropdownList id="DropdownList">
+        {
+          Object.keys(sort).map(function (key, index) {
+            return (
+              <DropdownItem key={index} href={`${baseUrl}&sort=${sort[key]}`}>
+                <DropdownItemText>
+                {key}
+                </DropdownItemText>
+              </DropdownItem>
+            )
+          })
+        }
+      </DropdownList>
+
     </Orders>
   )
+
+}
+
+window.onclick = function(event) {
+  if (event.target.matches('#DropdownBtn')) {
+    document.getElementById("DropdownList").style.display = 'block';
+  }
+  else {
+    // Close the DropdownList if the user clicks outside of it
+    document.getElementById("DropdownList").style.display = 'none';
+  }
 }
 export default HeadMenu;

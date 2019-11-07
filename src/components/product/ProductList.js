@@ -5,8 +5,8 @@ import Product from "./Product";
 import Pagination from "./Pagination"
 
 const PageInfoH1 = styled.h1`
-  margin-top: 10px;
-  margin-bottom: 0;
+  margin-top: 0px;
+  margin-bottom: 10px;
   height: 22px;
   color: #ca3575;
   line-height: 22px;
@@ -27,12 +27,20 @@ const BodyProduct = styled.div`
     background: #eee;
 
     .wrap-page {
-      max-width: 90%;
+      max-width: 95%;
       margin: 0 auto;
     }
 
     .product-container {
       position: relative;
+      padding: 0px;
+      margin: 15px auto;
+      width: 90%;
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, calc(310px - 3%)));
+      justify-content: center;
+      align-items: center;
     }
 
   

@@ -2,9 +2,11 @@ import React from "react";
 import styled from 'styled-components'
 
 const PorductContenier = styled.li`
-  width: 283px;
+  text-align: center;
+  max-width: 90%;
+  width: 100%;
   min-height: 375px;
-  margin: 0 0 15px 11px;
+  margin: 7.5px auto;
   border: 1px solid transparent;
   text-align: center;
   background: #fff;
@@ -70,7 +72,7 @@ const PorductContenier = styled.li`
 const Product = ({ product }) => {
   return (
     <PorductContenier imageUrl={product.productImageUrl}>
-        <a href={product.url}>
+        <a data-cupid-product-id={product.productId} href={product.url}>
           <div className="pro-img" alt={product.productName}>
           </div>
           <div className="product-name">{product.productName}</div>
