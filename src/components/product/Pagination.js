@@ -14,14 +14,20 @@ const BodyPagination = styled.div`
     flex-flow: row wrap;
     justify-content: space-evenly;
     align-items: stretch;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+    
     li {
       margin: 0;
       padding: 0;
       cursor: default;
       text-align: center;
-      width: 36px;
-      line-height: 38px;
-      height: 38px;
+      width: 35px;
+      line-height: 35px;
+      height: 35px;
       font-size: 13px;
       background: #fff;
       cursor: pointer;
