@@ -16,12 +16,13 @@
     <script>
       const cupidSDK = new CupidSDK(process.env.NUNUNI_ID);
       /*Content API版本設定*/
-      cupidSDK.setContentAPIVersion('v1.3');
+      // cupidSDK.setContentAPIVersion('v1.3');
       /*Products API版本設定*/
-      cupidSDK.setProductsAPIVersion('v2.3');
+      // cupidSDK.setProductsAPIVersion('v2.3');
       cupidSDK.setLimit(10);
-      cupidSDK.renderSuggestionTag();
-      cupidSDK.renderProductList();
+      // cupidSDK.renderSuggestionTag();
+      // cupidSDK.renderProductList();
+      cupidSDK.getClassifyProductType('床包‧被套>經典素色>雙人');
       // cupidSDK.renderProductTag('PRODUCT_ID');
       // cupidSDK.renderClassify(['PRODUCT_ID']);
     </script>

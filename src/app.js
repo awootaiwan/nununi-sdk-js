@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import {
   getApiData,
   getProductTagApiData,
-  getClassifyApiData
+  getClassifyApiData,
+  getClassifyProductTypeApiData
 } from './api/base';
 import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
@@ -211,6 +212,15 @@ class CupidSDK {
     }
     return getClassifyApiData(this.id, this.productsApiVer, {
       productIds: productIdArray
+    });
+  }
+
+  getClassifyProductType(productType ='床包‧被套>經典素色>雙人') {
+    if (productType.length < 1) {
+      throw new Error('Need to pass product type name');
+    }
+    return getClassifyProductTypeApiData(this.id, this.productsApiVer, {
+      productType
     });
   }
 
