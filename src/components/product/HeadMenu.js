@@ -33,6 +33,7 @@ const DropdownBtn = styled.button`
   border: 1.5px solid #D4D4D4;
   border-radius: 8px;
   position: relative;
+  outline: none;
 `;
 
 let DropdownText = '預設排序';
@@ -80,55 +81,6 @@ const DropdownItemText = styled.span`
   &:hover {
     background: #EEEEEE;
   }
-`;
-
-const Menu = styled.ul`
-  display: block;
-  list-style-type: disc;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  list-style: none;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  align-items: stretch;
-  padding: 0.5px;
-`;
-
-const MenuItem = styled.li`
-  flex-grow: 1;
-  text-align: center;
-  padding: 0.5px;
-
-  a {
-    text-decoration: none;
-  }
-`;
-
-const MenuItemClick = styled.li`
-  flex-grow: 1;
-  text-align: center;
-  padding: 0.5px;
-  background: #f63577;
-  box-shadow: 0 0 0 1px #f63577;
-  color: #fff;
-
-  a {
-    text-decoration: none;
-  }
-`;
-
-const ItemText = styled.span`
-    background: #fff;
-    box-shadow: 0 0 0 1px #ccc;
-    color: #383838;
-    z-index: 0;
-    position: relative;
-    font-size: 13px;
-    padding: 10px 20px;
-    display: block;
 `;
 
 const HeadMenu = ({ pageInfo }) => {
