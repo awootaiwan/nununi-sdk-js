@@ -115,13 +115,13 @@
 <script src="js/search.js"></script>
 <script>
   window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
- 
+
   cupid.init(() => {
-    const cupidSDK = new CupidSDK('id');
+    const cupidSDK = new CupidSDK('7424244102');
     /*Content API版本設定 default: latest */
-    cupidSDK.setContentAPIVersion('v1.3');
+    // cupidSDK.setContentAPIVersion('v1.3');
     /*Products API版本設定 default: latest */
-    cupidSDK.setProductsAPIVersion('v2.3');
+    // cupidSDK.setProductsAPIVersion('v2.3');
     /*頁面商品顯示數量設定*/
     cupidSDK.setLimit(12);
     /*頁面渲染範例*/
@@ -129,7 +129,7 @@
     cupidSDK.renderProductList();
     /*資料存取範例*/
     (async() => {
-      console.log(await cupidSDK.getContentAll('日本,面膜'));
+      console.log(await cupidSDK.getContentAll('拖鞋'));
     })();
   });
 </script>
