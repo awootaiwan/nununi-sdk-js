@@ -1,4 +1,4 @@
-# cupid-sdk-js 使用者說明文件
+# nununi-sdk-js 使用者說明文件
 
 ## Installation
 
@@ -6,24 +6,24 @@
 
 ```javascript
 <script>
-  window.cupid={init:function(t){var e,n,o;document.getElementById("cupid-js")||((e=document.createElement("script")).type="text/javascript",e.id="cupid-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/cupid-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
+  window.nununi={init:function(t){var e,n,o;document.getElementById("nununi-js")||((e=document.createElement("script")).type="text/javascript",e.id="nununi-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/nununi-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
 
-  cupid.init(() => {
-    const cupidSDK = new CupidSDK('id');
+  nununi.init(() => {
+    const nununiSDK = new NununiSDK('id');
     /*頁面商品顯示數量設定*/
-    cupidSDK.setLimit(12);
+    nununiSDK.setLimit(12);
 
     /*頁面渲染範例*/
-    cupidSDK.renderSuggestionTag();
-    cupidSDK.renderProductList();
-    cupidSDK.renderProductTag();
-    cupidSDK.renderClassify();
+    nununiSDK.renderSuggestionTag();
+    nununiSDK.renderProductList();
+    nununiSDK.renderProductTag();
+    nununiSDK.renderClassify();
 
     /*資料存取範例*/
     (async() => {
-      console.log(await cupidSDK.getContentAll('日本,面膜'));
-      console.log(await cupidSDK.getProductTags('11111'));
-      console.log(await cupidSDK.getClassify(['11111','22222']));
+      console.log(await nununiSDK.getContentAll('日本,面膜'));
+      console.log(await nununiSDK.getProductTags('11111'));
+      console.log(await nununiSDK.getClassify(['11111','22222']));
     })();
   });
 </script>
@@ -32,19 +32,19 @@
 #### Node Usage
 
 ```shell＝
-$ npm i @awootaiwan/cupid-sdk-js
+$ npm i @awootaiwan/nununi-sdk-js
 or
-$ yarn add @awootaiwan/cupid-sdk-js
+$ yarn add @awootaiwan/nununi-sdk-js
 ```
 
 #### Node Example
 
 ```javascript
-import CupidSDK from "@awootaiwan/cupid-sdk-js";
+import NununiSDK from "@awootaiwan/nununi-sdk-js";
 
-const cupidSDK = new CupidSDK("id");
+const nununiSDK = new NununiSDK("id");
 (async () => {
-  console.log(await cupidSDK.getContentAll("日本,面膜"));
+  console.log(await nununiSDK.getContentAll("日本,面膜"));
 })();
 ```
 
@@ -52,21 +52,21 @@ const cupidSDK = new CupidSDK("id");
 
 ### Prodruct List and Suggestion
 
-##### html 需要 cupid-suggestion-tag 區塊 跟 cupid-product-list 區塊才會渲染畫面
+##### html 需要 nununi-suggestion-tag 區塊 跟 nununi-product-list 區塊才會渲染畫面
 
 ```htmlmixed=
-  <div id="cupid-suggestion-tag"></div>
+  <div id="nununi-suggestion-tag"></div>
 ```
 
-執行`cupidSDK.renderSuggestionTag()`會自動渲染以下畫面
+執行`nununiSDK.renderSuggestionTag()`會自動渲染以下畫面
 
 ![](https://i.imgur.com/UeMKscb.png)
 
 ```htmlmixed=
-  <div id="cupid-product-list"></div>
+  <div id="nununi-product-list"></div>
 ```
 
-執行`cupidSDK.renderProductList()`會自動渲染以下畫面
+執行`nununiSDK.renderProductList()`會自動渲染以下畫面
 
 ![](https://i.imgur.com/g7NN7Gr.png)
 ![](https://i.imgur.com/apGYf0k.png)
@@ -85,63 +85,63 @@ const cupidSDK = new CupidSDK("id");
 
 ### Product Tags
 
-##### html 需要 cupid-product-tag 區塊才會渲染畫面
+##### html 需要 nununi-product-tag 區塊才會渲染畫面
 
 ```htmlmixed=
-  <div id="cupid-product-tag"></div>
+  <div id="nununi-product-tag"></div>
 ```
 
 ##### 參數設定的兩種方法：
 
 - 直接代入商品 id 參數。
-  cupidSDK.getProductTags 取得資料，cupidSDK.renderProductTag 取得資料並渲染畫面。
+  nununiSDK.getProductTags 取得資料，nununiSDK.renderProductTag 取得資料並渲染畫面。
 
 ```javascript
-cupidSDK.renderProductTag("PRODUCT-ID");
-cupidSDK.getProductTags("PRODUCT-ID");
+nununiSDK.renderProductTag("PRODUCT-ID");
+nununiSDK.getProductTags("PRODUCT-ID");
 ```
 
-- 請在商品頁上的任一 div、a、span 標籤內增加 data 屬性 `data-cupid-product-id`，且代入商品 id。  
-  執行 `cupidSDK.renderProductTag()` 會搜尋第一個有`data-cupid-product-id`的標籤。
+- 請在商品頁上的任一 div、a、span 標籤內增加 data 屬性 `data-nununi-product-id`，且代入商品 id。
+  執行 `nununiSDK.renderProductTag()` 會搜尋第一個有`data-nununi-product-id`的標籤。
 
 ```htmlmixed=
-  <span data-cupid-product-id="1234567">
+  <span data-nununi-product-id="1234567">
   </span>
 ```
 
-執行`cupidSDK.renderProductTag()`會將 cupid 標籤渲染至標籤 `id="cupid-product-tag"` 內，以下畫面為範例：
+執行`nununiSDK.renderProductTag()`會將 nununi 標籤渲染至標籤 `id="nununi-product-tag"` 內，以下畫面為範例：
 
 ![](https://imgur.com/y6J2z83.png)
 
 ### Product Classify
 
-##### html 需要 cupid-classify 區塊才會渲染畫面
+##### html 需要 nununi-classify 區塊才會渲染畫面
 
 ```htmlmixed=
-  <div id="cupid-classify"></div>
+  <div id="nununi-classify"></div>
 ```
 
 ##### 參數設定的兩種方法：
 
 - 直接代入商品 id 陣列。
-  cupidSDK.getClassify 取得資料，cupidSDK.renderClassify 取得資料並渲染畫面。
+  nununiSDK.getClassify 取得資料，nununiSDK.renderClassify 取得資料並渲染畫面。
 
 ```javascript
-cupidSDK.renderClassify(["PRODUCT-ID", "PRODUCT-ID"]);
-cupidSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
+nununiSDK.renderClassify(["PRODUCT-ID", "PRODUCT-ID"]);
+nununiSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 ```
 
-- 請在商品頁上的任一 div、a、span 標籤內增加 data 屬性 `data-cupid-product-id`，且代入商品 id。  
-  `cupidSDK.renderClassify()` 會搜尋頁面上所有`data-cupid-product-id`的標籤。
+- 請在商品頁上的任一 div、a、span 標籤內增加 data 屬性 `data-nununi-product-id`，且代入商品 id。
+  `nununiSDK.renderClassify()` 會搜尋頁面上所有`data-nununi-product-id`的標籤。
 
 ```htmlmixed=
-  <span data-cupid-product-id="1234567"></span>
-  <span data-cupid-product-id="2230982"></span>
-  <span data-cupid-product-id="5409124"></span>
-  <span data-cupid-product-id="9120988"></span>
+  <span data-nununi-product-id="1234567"></span>
+  <span data-nununi-product-id="2230982"></span>
+  <span data-nununi-product-id="5409124"></span>
+  <span data-nununi-product-id="9120988"></span>
 ```
 
-執行`cupidSDK.renderClassify()`會將 cupid 標籤渲染至標籤 `id="cupid-classify"` 內，以下畫面為範例：
+執行`nununiSDK.renderClassify()`會將 nununi 標籤渲染至標籤 `id="nununi-classify"` 內，以下畫面為範例：
 
 ![](https://imgur.com/lDxXMo5.png)
 
@@ -156,15 +156,15 @@ cupidSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 1. ID 未填入時，console 會出現以下 Message：
    ![](https://i.imgur.com/TD3EpzZ.png)
 
-2. 未在 html 內放置 cupid-product-list、cupid-suggestion-tag、cupid-product-tag、cupid-classify 區塊，console 會出現以下 Message：
+2. 未在 html 內放置 nununi-product-list、nununi-suggestion-tag、nununi-product-tag、nununi-classify 區塊，console 會出現以下 Message：
    ![](https://i.imgur.com/CBXTZ0f.png)
 
-3. 執行 Prodruct tags 時，若頁面上的第一個 data-cupid-product-id 的數值為空，console 會出現會出現 `404 not found訊息`。
+3. 執行 Prodruct tags 時，若頁面上的第一個 data-nununi-product-id 的數值為空，console 會出現會出現 `404 not found訊息`。
 
-4. 執行 Prodruct tags、Product classify 時如果沒有將商品 id 代入程式，頁面元素也沒有 data-cupid-product-id，console 會出現以下 Message：
+4. 執行 Prodruct tags、Product classify 時如果沒有將商品 id 代入程式，頁面元素也沒有 data-nununi-product-id，console 會出現以下 Message：
    ![](https://imgur.com/3PyWjuF.png)
 
-5. Product classify 時，若代入的值是空值，，console 會出現以下 Message：  
+5. Product classify 時，若代入的值是空值，，console 會出現以下 Message：
    `執行Error: 傳入商品id陣列為空陣列`
 
 ### API Error
@@ -172,12 +172,12 @@ cupidSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 當 API 出現 Error 時，畫面呈現：
 ![](https://i.imgur.com/5hLc4yv.png)
 
-當請求 cupid API 失敗時
+當請求 nununi API 失敗時
 
 ```jsonld=
 {
   "errcode": 10000
-  "errmsg": "Request to cupid API failed."
+  "errmsg": "Request to nununi API failed."
   "result": ""
 }
 ```
@@ -200,23 +200,23 @@ cupidSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 #### product tag 修改範例
 
 ```
-#cupid-product-tag .cupid-tag {
+#nununi-product-tag .nununi-tag {
 // 修改樣式
   display: inline-block
   font-size: 18px;
   background: #d4aaa;
 }
 ```
-    
+
 #### classify 修改範例
 
 ```
-#cupid-classify {
+#nununi-classify {
 // 請加入欲修改的樣式
   background-color:#e2e2e2;
   padding:20px;
 }
-#cupid-classify .cupid-tag{
+#nununi-classify .nununi-tag{
 // 請加入欲修改的樣式
   display: inline-block
   font-size: 14px;
@@ -227,11 +227,11 @@ cupidSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 #### product list 修改範例
 
 ```
-#cupid-product-list .master-container {
+#nununi-product-list .master-container {
 // 請加入欲修改的樣式
   padding-top: 30px;
 }
-#cupid-product-list .product-name {
+#nununi-product-list .product-name {
 // 請加入欲修改的樣式
   min-height: 40px;
   height: auto;
@@ -240,14 +240,14 @@ cupidSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 
 #### suggestion tag 修改範例
 
-``` 
-#cupid-suggestion-tag > div {
+```
+#nununi-suggestion-tag > div {
 // 請加入欲修改的樣式
  background: transparent;
  border: none;
 }
 
-#cupid-suggestion-tag span {
+#nununi-suggestion-tag span {
 // 請加入欲修改的樣式
   border: 1px solid #d4a6db;
   border-radius: 20px;
@@ -261,15 +261,15 @@ cupidSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 - [Nununi Content API Document](https://awootaiwan.github.io/awoo_wiki/nununi/nununi_Content_API_v1_2.html)
 - [Nununi Product Tags API Document](https://wiki.awoo.org/nununi/products/v2.2#GET-Products-get-Tags)
 
-## Cupid API
+## Nununi API
 
 使用方式
 
 ```javascript
 async () => {
-  console.log(await cupidSDK.getContentAll("日本,面膜"));
-  console.log(await cupidSDK.getProductTags("11111"));
-  console.log(await cupidSDK.getClassify(["11111", "22222"]));
+  console.log(await nununiSDK.getContentAll("日本,面膜"));
+  console.log(await nununiSDK.getProductTags("11111"));
+  console.log(await nununiSDK.getClassify(["11111", "22222"]));
 };
 ```
 
@@ -422,7 +422,7 @@ async () => {
 
 1. productId(**不可為空**) : string
 
-`Output`  
+`Output`
 fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的連結。
 
 ```jsonld=
@@ -446,7 +446,7 @@ fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的
 
 1. productIds(**不可為空**) : array
 
-`Output`  
+`Output`
 fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的連結。
 
 ```jsonld=

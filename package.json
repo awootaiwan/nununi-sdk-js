@@ -1,21 +1,21 @@
 {
-  "name": "@awootaiwan/cupid-sdk-js",
-  "version": "1.1.4",
+  "name": "@awootaiwan/nununi-sdk-js",
+  "version": "1.1.8",
   "description": "javascript sdk for awoo nununi api",
-  "main": "production/cupid-sdk-latest.min.js",
+  "main": "production/nununi-sdk-latest.min.js",
   "scripts": {
     "start": "parcel src/index.html --port 3000",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:app": "parcel build src/app.js --out-dir production --out-file cupid-sdk-latest.min.js --no-source-maps",
+    "build:app": "parcel build src/app.js --out-dir production --out-file nununi-sdk-latest.min.js --no-source-maps",
     "demo:style": "parcel build demo/css/header.scss --no-source-maps --out-dir demo/css"
   },
   "homepage": "https://awoo.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/awootaiwan/cupid-sdk-js.git"
+    "url": "https://github.com/awootaiwan/nununi-sdk-js.git"
   },
   "bugs": {
-    "url": "https://github.com/awootaiwan/cupid-sdk-js/issues"
+    "url": "https://github.com/awootaiwan/nununi-sdk-js/issues"
   },
   "author": "awoo",
   "license": "MIT",
@@ -24,6 +24,7 @@
     "querystring": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-paginate": "^6.3.2",
     "react-router-dom": "^5.0.0",
     "styled-components": "^4.3.2"
   },
