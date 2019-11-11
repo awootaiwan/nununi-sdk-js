@@ -4,9 +4,9 @@ const ERROR_NONE = 0;
 const ERROR_REQUEST_FAILED = 10000;
 const ERROR_NO_TAGS_PROVIDED = 10001;
 const errMap = new Map([
-  [ERROR_NONE, 'Success'],
-  [ERROR_REQUEST_FAILED, 'Request to cupid API failed.'],
-  [ERROR_NO_TAGS_PROVIDED, 'No tags provided.']
+  [ERROR_NONE, "Success"],
+  [ERROR_REQUEST_FAILED, "Request to Nununi API failed."],
+  [ERROR_NO_TAGS_PROVIDED, "No tags provided."]
 ]);
 
 function getPayload(errCode = ERROR_NONE, errMsg = '', result = '') {
@@ -78,4 +78,28 @@ const getClassifyApiData = async (
   }
 };
 
-export { getApiData, getProductTagApiData, getClassifyApiData };
+const getClassifyProductTypeApiData = async (
+  id = process.env.NUNUNI_ID,
+  version,
+  productType
+) => {
+  try {
+    const { status, data: response } = await API.post(
+      `/${version}/${id}/products/classify_product_type`,
+      productType
+    );
+    if (status !== 200) {
+      return getPayload(status, response.error_description, response);
+    }
+    return response;
+  } catch (e) {
+    return getPayload(ERROR_REQUEST_FAILED);
+  }
+};
+
+export {
+  getApiData,
+  getProductTagApiData,
+  getClassifyApiData,
+  getClassifyProductTypeApiData
+};
