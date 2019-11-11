@@ -5,7 +5,7 @@ const ERROR_REQUEST_FAILED = 10000;
 const ERROR_NO_TAGS_PROVIDED = 10001;
 const errMap = new Map([
   [ERROR_NONE, "Success"],
-  [ERROR_REQUEST_FAILED, "Request to cupid API failed."],
+  [ERROR_REQUEST_FAILED, "Request to Nununi API failed."],
   [ERROR_NO_TAGS_PROVIDED, "No tags provided."]
 ]);
 

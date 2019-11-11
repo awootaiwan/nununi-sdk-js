@@ -7,23 +7,23 @@
     <title>開發頁面</title>
   </head>
   <body>
-    <div id="cupid-suggestion-tag"></div>
-    <div id="cupid-product-list"></div>
-    <div id="cupid-product-tag"></div>
-    <div id="cupid-classify"></div>
-    <div data-cupid-product-id="PRODUCT_ID"></div>
+    <div id="nununi-suggestion-tag"></div>
+    <div id="nununi-product-list"></div>
+    <div id="nununi-product-tag"></div>
+    <div id="nununi-classify"></div>
+    <div data-nununi-product-id="PRODUCT_ID"></div>
     <script src="./app.js"></script>
     <script>
-      const cupidSDK = new CupidSDK(process.env.NUNUNI_ID);
+      const nununiSDK = new NununiSDK(process.env.NUNUNI_ID);
       /*Content API版本設定*/
-      cupidSDK.setContentAPIVersion('v1.3');
+      // nununiSDK.setContentAPIVersion('v1.3');
       /*Products API版本設定*/
-      cupidSDK.setProductsAPIVersion('v2.3');
-      cupidSDK.setLimit(10);
-      cupidSDK.renderSuggestionTag();
-      cupidSDK.renderProductList();
-      // cupidSDK.renderProductTag('PRODUCT_ID');
-      // cupidSDK.renderClassify(['PRODUCT_ID']);
+      // nununiSDK.setProductsAPIVersion('v2.3');
+      nununiSDK.setLimit(12);
+      nununiSDK.renderSuggestionTag();
+      nununiSDK.renderProductList();
+      // nununiSDK.renderProductTag('PRODUCT_ID');
+      // nununiSDK.renderClassify(['PRODUCT_ID']);
     </script>
     <!--  Uncomment the following line for seeing API outputs in console.-->
     <!--  <script src="tests/api.js"></script>-->
