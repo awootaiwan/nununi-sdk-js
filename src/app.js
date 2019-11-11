@@ -1,16 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   getApiData,
   getProductTagApiData,
-  getClassifyApiData
-} from "./api/base";
-import ErrorAlert from "./components/erroralert/ErrorAlert";
-import Suggestion from "./components/suggestion/suggestion";
-import ProductList from "./components/product/ProductList";
-import ProductTag from "./components/productTag/productTag";
+  getClassifyApiData,
+  getClassifyProductTypeApiData
+} from './api/base';
+import ErrorAlert from './components/erroralert/ErrorAlert';
+import Suggestion from './components/suggestion/suggestion';
+import ProductList from './components/product/ProductList';
+import ProductTag from './components/productTag/productTag';
 
-const splitTags = tags => (typeof tags === "string" ? tags.split(",") : tags);
+const splitTags = tags => (typeof tags === 'string' ? tags.split(',') : tags);
 
 const App = props => (
   <React.Fragment>
@@ -25,11 +26,11 @@ const App = props => (
 class NununiSDK {
   constructor(id = process.env.NUNUNI_ID) {
     if (!id || id.length < 1) {
-      throw new Error("nununi id is not setting");
+      throw new Error('nununi id is not setting');
     }
     this.id = id;
-    this.contentApiVer = "latest";
-    this.productsApiVer = "latest";
+    this.contentApiVer = 'latest';
+    this.productsApiVer = 'latest';
     this.limit = 10;
   }
 
@@ -42,27 +43,27 @@ class NununiSDK {
   }
 
   setLimit(limit) {
-    if (typeof limit != "number") {
-      throw Error("setLimit is not number.");
+    if (typeof limit != 'number') {
+      throw Error('setLimit is not number.');
     }
 
     if (limit < 1) {
-      throw Error("limit need to be greater than 0.");
+      throw Error('limit need to be greater than 0.');
     }
     this.limit = limit;
   }
 
   _getUrlParms() {
     const url = new URL(window.location.href);
-    const tags = url.searchParams.get("tags");
-    let page = url.searchParams.get("page");
-    let sort = url.searchParams.get("sort");
-    let limit = url.searchParams.get("limit");
+    const tags = url.searchParams.get('tags');
+    let page = url.searchParams.get('page');
+    let sort = url.searchParams.get('sort');
+    let limit = url.searchParams.get('limit');
 
     if (page === null) {
       page = 1;
     }
-    if (sort === null || sort === "") {
+    if (sort === null || sort === '') {
       sort = 8;
     }
     if (limit === null) {
@@ -92,7 +93,7 @@ class NununiSDK {
       {
         tags: splitTags(tags)
       },
-      "pageInfo"
+      'pageInfo'
     );
   }
 
@@ -103,7 +104,7 @@ class NununiSDK {
       {
         tags: splitTags(tags)
       },
-      "suggestionTags"
+      'suggestionTags'
     );
   }
 
@@ -117,7 +118,7 @@ class NununiSDK {
         sort,
         limit
       },
-      "products"
+      'products'
     );
   }
 
@@ -207,10 +208,19 @@ class NununiSDK {
 
   getClassify(productIdArray) {
     if (productIdArray.length < 1) {
-      throw new Error("傳入商品id陣列為空陣列");
+      throw new Error('傳入商品id陣列為空陣列');
     }
     return getClassifyApiData(this.id, this.productsApiVer, {
       productIds: productIdArray
+    });
+  }
+
+  getClassifyProductType(productType ='床包‧被套>經典素色>雙人') {
+    if (productType.length < 1) {
+      throw new Error('Need to pass product type name');
+    }
+    return getClassifyProductTypeApiData(this.id, this.productsApiVer, {
+      productType
     });
   }
 
@@ -250,13 +260,13 @@ class NununiSDK {
 }
 /** Detect free variable `global` from Node.js. */
 const freeGlobal =
-  typeof global == "object" && global && global.Object === Object && global;
+  typeof global == 'object' && global && global.Object === Object && global;
 
 /** Detect free variable `self`. */
 const freeSelf =
-  typeof self == "object" && self && self.Object === Object && self;
+  typeof self == 'object' && self && self.Object === Object && self;
 
 /** Used as a reference to the global object. */
-const root = freeGlobal || freeSelf || Function("return this")();
+const root = freeGlobal || freeSelf || Function('return this')();
 
 module.exports = root.NununiSDK = NununiSDK;

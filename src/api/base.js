@@ -1,4 +1,4 @@
-import axios from "axios";
+import API from './config';
 
 const ERROR_NONE = 0;
 const ERROR_REQUEST_FAILED = 10000;
@@ -9,10 +9,10 @@ const errMap = new Map([
   [ERROR_NO_TAGS_PROVIDED, "No tags provided."]
 ]);
 
-function getPayload(errCode = ERROR_NONE, errMsg = "", result = "") {
+function getPayload(errCode = ERROR_NONE, errMsg = '', result = '') {
   return {
     errcode: errCode,
-    errmsg: errMsg || errMap.get(errCode) || "Undefined error.",
+    errmsg: errMsg || errMap.get(errCode) || 'Undefined error.',
     result
   };
 }
@@ -21,16 +21,17 @@ const getApiData = async (
   id = process.env.NUNUNI_ID,
   version,
   data,
-  method = ""
+  method = ''
 ) => {
   if (!data.tags) {
     return getPayload(ERROR_NO_TAGS_PROVIDED);
   }
 
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/content/${method}`;
-
   try {
-    const { status, data: response } = await axios.post(url, data);
+    const { status, data: response } = await API.post(
+      `/${version}/${id}/content/${method}`,
+      data
+    );
     if (status !== 200) {
       return getPayload(status, response.error_description, response);
     }
@@ -45,13 +46,10 @@ const getProductTagApiData = async (
   version,
   productId
 ) => {
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/products/${productId}/tags`;
-  const headers = {
-    "Content-Type": "application/json"
-  };
-
   try {
-    const { status, data: response } = await axios.get(url, { headers });
+    const { status, data: response } = await API.get(
+      `/${version}/${id}/products/${productId}/tags`
+    );
     if (status !== 200) {
       return getPayload(status, response.error_description, response);
     }
@@ -66,15 +64,11 @@ const getClassifyApiData = async (
   version,
   productIds
 ) => {
-  const url = `${process.env.NUNUNI_DOMAIN}/nununi/${version}/${id}/products/classify`;
-  const headers = {
-    "Content-Type": "application/json"
-  };
-
   try {
-    const { status, data: response } = await axios.post(url, productIds, {
-      headers
-    });
+    const { status, data: response } = await API.post(
+      `/${version}/${id}/products/classify`,
+      productIds
+    );
     if (status !== 200) {
       return getPayload(status, response.error_description, response);
     }
@@ -84,4 +78,28 @@ const getClassifyApiData = async (
   }
 };
 
-export { getApiData, getProductTagApiData, getClassifyApiData };
+const getClassifyProductTypeApiData = async (
+  id = process.env.NUNUNI_ID,
+  version,
+  productType
+) => {
+  try {
+    const { status, data: response } = await API.post(
+      `/${version}/${id}/products/classify_product_type`,
+      productType
+    );
+    if (status !== 200) {
+      return getPayload(status, response.error_description, response);
+    }
+    return response;
+  } catch (e) {
+    return getPayload(ERROR_REQUEST_FAILED);
+  }
+};
+
+export {
+  getApiData,
+  getProductTagApiData,
+  getClassifyApiData,
+  getClassifyProductTypeApiData
+};
