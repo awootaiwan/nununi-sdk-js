@@ -86,7 +86,7 @@ header {
         &:hover {
           color: $iconhover-color;
         }
-      }   
+      }
     }
   }
 }
@@ -99,7 +99,7 @@ header {
     margin-top: 50px;
     .search-input {
       padding-left: 5px;
-      border:1.3px solid $smallThreeColor; 
+      border:1.3px solid $smallThreeColor;
       cursor:pointer;
       width: 300px;
       border-radius: 5px 0 0 5px;
@@ -119,7 +119,7 @@ header {
       border-radius: 0 5px 5px 0;
       outline: none;
       opacity: 0.8;
-      cursor: pointer; 
+      cursor: pointer;
       &:hover {
         opacity: 1;
       }
@@ -132,7 +132,7 @@ main {
  }
 
 .footer {
-  background-color:rgb(53, 52, 52); 
+  background-color:rgb(53, 52, 52);
   width: 100%;
   position: relative ;
   bottom:0;
@@ -170,7 +170,7 @@ main {
         color:$hover-color;
         text-decoration: underline;
       }
-    }  
+    }
   }
   .footer-company {
     margin-left: $footer-content-length;
@@ -192,14 +192,14 @@ main {
       font-size: 15px;
       line-height: 24px;
       color: $hover-color;
-      float:right; 
+      float:right;
       margin-right: 15vw;
-       
-    } 
+
+    }
     .awoo-foottext2 {
       color: $hover-color;
       font-weight: bold;
-      font-size: 26px;  
+      font-size: 26px;
       line-height: 24px;
       position: relative;
       float:right;
@@ -242,7 +242,7 @@ main {
   padding: 20px 25px;
 }
 
-#cupid-product-tag {
+#nununi-product-tag {
   display: flex;
   flex-wrap: wrap;
 
@@ -251,7 +251,7 @@ main {
     text-decoration: none;
   }
 
-  .cupid-tag {
+  .nununi-tag {
     background: #f47f9d;
     border: 1px solid #ee5d84;
     border-radius: 8px;
@@ -265,4 +265,3 @@ main {
     }
   }
 }
-  

@@ -122,57 +122,19 @@
 
   nununi.init(() => {
     const nununiSDK = new NununiSDK('id');
-    /*Products API版本設定 default: latest */
-    nununiSDK.setProductsAPIVersion('v2.3');
     /*頁面商品顯示數量設定*/
     nununiSDK.setLimit(12);
 
-    async function getContentProductId(item) {
-      const allContent = await nununiSDK.getContentAll(item);
-      const { result } = allContent;
-      const productIds = result.products;
-      const productIdArray = productIds.map(i => i.productId);
-      return productIdArray;
-    };
-
-    async function showClassify(item){
-      nununiSDK.renderClassify(await getContentProductId(item));
-    }
-
-    async function findProductId() {
-      const productItem = [...document.querySelectorAll('.product-container a')];
-      const idArray = productItem.map(item => {
-        const search = item.search.split('=');
-        return search[1];
-      });
-      return idArray;
-    }
-
-    async function setDataNununiId(productId){
-      let dataDom = document.querySelectorAll('span.pro-img');
-      dataDom.forEach((item, index) => item.dataset.nununiProductId = productId[index]);
-    };
-
-    /* Classify使用方式一：將商品id代入 nununiSDK.renderClassify。
-    此處以 nununi.getContentAll 產生的 productId 做範例 */
-    /* 頁面渲染範例 1 */
-    /* nununiSDK.renderSuggestionTag();
-    nununiSDK.renderProductList();
-    showClassify('日本,牙膏'); */
-
-    /* Classify使用方式二：若沒有置入參數，程式會搜尋頁面上的 data-nununi-product-id 的值，
-    再代入 nununiSDK.renderClassify 中，此處以 nununi.renderProductList 產生的畫面來擷取 product id做範例 */
-    /* 頁面渲染範例 2 */
+    /* Classify使用方式一：將商品分類帶入 nununiSDK.renderClassifyProductType */
+    /* 頁面渲染範例 */
     (async() => {
-      nununiSDK.renderSuggestionTag();
-      await nununiSDK.renderProductList();
-      await setDataNununiId(await findProductId());
-      await nununiSDK.renderClassify();
+      /*分類 Tag 建議*/
+      nununiSDK.renderClassifyProductType('四季被/冬被>品牌冬被>');
     })();
 
     /*資料存取範例*/
     (async() => {
-      console.log(await nununiSDK.getClassify(['PRODUCT-ID','PRODUCT-ID']));
+      console.log(await nununiSDK.getClassifyProductType('四季被/冬被>品牌冬被>'));
     })();
   });
 </script>

@@ -72,7 +72,7 @@ const PorductContenier = styled.li`
 const Product = ({ product }) => {
   return (
     <PorductContenier imageUrl={product.productImageUrl}>
-        <a data-cupid-product-id={product.productId} href={product.url}>
+        <a data-nununi-product-id={product.productId} href={product.url}>
           <div className="pro-img" alt={product.productName}>
           </div>
           <div className="product-name">{product.productName}</div>
