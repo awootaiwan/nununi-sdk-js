@@ -113,14 +113,14 @@ nununiSDK.getProductTags("PRODUCT-ID");
 
 ![](https://imgur.com/y6J2z83.png)
 
-### Product Classify
+### Classify Product Type
 
 ```htmlmixed=
   <div id="nununi-classify"></div>
 ```
 
 
-### Product Classify
+### Classify Product Type
 
 ##### html 需要 nununi-classify 區塊才會渲染畫面
 
