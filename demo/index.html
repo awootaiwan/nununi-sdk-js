@@ -59,6 +59,10 @@
   <main>
     <div id="nununi-suggestion-tag"></div>
     <div id="nununi-product-list"></div>
+    <div class="section-padding">
+        <p>您可能想看其他分類：</p>
+        <div id="nununi-classify"></div>
+      </div>
   </main>
 
   <div class="page-nav">
@@ -123,7 +127,7 @@
     /*頁面渲染範例*/
     nununiSDK.renderSuggestionTag();
     nununiSDK.renderProductList();
-    nununiSDK.renderClassifyProductType('四季被/冬被>品牌冬被>');
+    nununiSDK.renderClassifyProductType('category>category>');
     /*資料存取範例*/
     (async() => {
       console.log(await nununiSDK.getContentAll('日本,面膜'));
