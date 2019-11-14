@@ -136,17 +136,13 @@ nununiSDK.getProductTags("PRODUCT-ID");
 nununiSDK.renderClassifyProductType("熱銷推薦>201909新品上市>");
 ```
 
-
 ![](https://imgur.com/lDxXMo5.png)
 
 ---
 
 ### API Error
 
-當 API 出現 Error 時，畫面呈現：
-![](https://i.imgur.com/5hLc4yv.png)
-
-當請求 nununi API 失敗時
+當 API 出現 Error 時，將會得到錯誤資訊
 
 ```jsonld=
 {
@@ -169,6 +165,7 @@ nununiSDK.renderClassifyProductType("熱銷推薦>201909新品上市>");
 ---
 
 ## CSS 樣式修改
+
 只要加上 id 選擇器的權重，就可輕鬆覆蓋原生樣式。
 
 #### product tag 修改範例
@@ -243,7 +240,7 @@ nununiSDK.renderClassifyProductType("熱銷推薦>201909新品上市>");
 async () => {
   console.log(await nununiSDK.getContentAll("日本,面膜"));
   console.log(await nununiSDK.getProductTags("11111"));
-  console.log(await nununiSDK.getClassify(["11111", "22222"]));
+  console.log(await nununiSDK.getClassifyProductType('四季被/冬被>品牌冬被>'));
 };
 ```
 
@@ -414,11 +411,11 @@ fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的
 }
 ```
 
-### getClassify()
+### getClassifyProductType()
 
 `Input`
 
-1. productIds(**不可為空**) : array
+1. productType(**不可為空**) : string
 
 `Output`
 fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的連結。
