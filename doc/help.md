@@ -141,26 +141,6 @@ nununiSDK.renderClassifyProductType("熱銷推薦>201909新品上市>");
 
 ---
 
-## Error Message
-
-### Using Error
-
-沒有畫面，空白一片，請查看 console 的錯誤顯示，有以下的情況：
-
-1. ID 未填入時，console 會出現以下 Message：
-   ![](https://i.imgur.com/TD3EpzZ.png)
-
-2. 未在 html 內放置 nununi-product-list、nununi-suggestion-tag、nununi-product-tag、nununi-classify 區塊，console 會出現以下 Message：
-   ![](https://i.imgur.com/CBXTZ0f.png)
-
-3. 執行 Prodruct tags 時，若頁面上的第一個 data-nununi-product-id 的數值為空，console 會出現會出現 `404 not found訊息`。
-
-4. 執行 Prodruct tags、Product classify 時如果沒有將商品 id 代入程式，頁面元素也沒有 data-nununi-product-id，console 會出現以下 Message：
-   ![](https://imgur.com/3PyWjuF.png)
-
-5. Product classify 時，若代入的值是空值，，console 會出現以下 Message：
-   `執行Error: 傳入商品id陣列為空陣列`
-
 ### API Error
 
 當 API 出現 Error 時，畫面呈現：
