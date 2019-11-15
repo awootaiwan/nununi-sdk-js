@@ -61,25 +61,25 @@ header {
 }
 
 @media screen and (max-width: 700px) {
-	.awoo-headlogo {
-		width: calc(130px + 1vw);
-		max-width: 50vw;
-	}
+  .awoo-headlogo {
+    width: calc(130px + 1vw);
+    max-width: 50vw;
+  }
 
-	.logo-font {
-		font-family: cursive;
-		font-size: calc(12px + 4vw);
-		font-style: oblique;
-		margin-left: calc(-40px - 3vw);
-		color: $smallThreeColor;
-		user-select: none;
-		word-wrap: break-word;
-		display: inline-block;
-	}
+  .logo-font {
+    font-family: cursive;
+    font-size: calc(12px + 4vw);
+    font-style: oblique;
+    margin-left: calc(-40px - 3vw);
+    color: $smallThreeColor;
+    user-select: none;
+    word-wrap: break-word;
+    display: inline-block;
+  }
 
 
-	.search {
-		margin: 15px;
+  .search {
+    margin: 15px;
     width: calc(130px + 14vw);
 
     .search-input {
@@ -110,95 +110,95 @@ header {
         opacity: 1;
       }
     }
-	}
+  }
 
-	.icon {
-		@media (min-width: 370px) {
-			position: absolute;
-			top: 126px;
-			right: 0%;
-		}
+  .icon {
+    @media (min-width: 370px) {
+      position: absolute;
+      top: 126px;
+      right: 0%;
+    }
 
-		@media (max-width: 369px) {
-			position: absolute;
-			top: 150px;
-			right: 0%;
-		}
+    @media (max-width: 369px) {
+      position: absolute;
+      top: 150px;
+      right: 0%;
+    }
 
-		a:nth-of-type(1) {
-			display: block;
-			width: fit-content;
-		}
+    a:nth-of-type(1) {
+      display: block;
+      width: fit-content;
+    }
 
 
-		a {
-			float: right;
-			display: block;
-			max-width: 90vw;
-			margin: 13px calc(4px + 2vw);
-			color: #999;
-			font-size: calc(14px + 3vw);
+    a {
+      float: right;
+      display: block;
+      max-width: 90vw;
+      margin: 13px calc(4px + 2vw);
+      color: #999;
+      font-size: calc(14px + 3vw);
 
-			i {
-				color: #ee5d84;
-				&:hover {
-					color: $iconhover-color;
-				}
-			}   
-		}
-	}
+      i {
+        color: #ee5d84;
+        &:hover {
+          color: $iconhover-color;
+        }
+      }
+    }
+  }
 } 
 
 // Large screen
 @media screen and (min-width: 701px) {
-	.head {
-		margin-top: 10px;
+  .head {
+    margin-top: 10px;
 
-		.awoo-headlogo {
-			width: calc(130px + 1vw);
-			max-width: 150px;
-			height: auto;
-			padding-left: 10px;
-		}
+    .awoo-headlogo {
+      width: calc(130px + 1vw);
+      max-width: 150px;
+      height: auto;
+      padding-left: 10px;
+    }
 
-		.logo-font {
-			font-family: cursive;
-			font-size: calc(24px + 0.7vw);
-			font-style: oblique;
-			margin-left: -70px;
-			color: $smallThreeColor;
-			user-select: none;
-		}
+    .logo-font {
+      font-family: cursive;
+      font-size: calc(24px + 0.7vw);
+      font-style: oblique;
+      margin-left: -70px;
+      color: $smallThreeColor;
+      user-select: none;
+    }
 
-		.icon {
-			float: right;
+    .icon {
+      float: right;
 
-			a:nth-of-type(1) {
-				display: block;
-				width: calc(40px + 0.8vw);
-				max-width: 50px;
-				margin-right: calc(5.5vw - 22px);
-				margin-top: 15px;
-				margin-bottom: 15px;
-			}
+      a:nth-of-type(1) {
+        display: block;
+        width: calc(40px + 0.8vw);
+        max-width: 50px;
+        margin-right: calc(5.5vw - 22px);
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
 
-			a {
-				float: right;
-				margin: 15px 15px;
-				color: #999;
-				font-size: 35px;
+      a {
+        float: right;
+        margin: 15px 15px;
+        color: #999;
+        font-size: 35px;
 
-				i {
-					color: #ee5d84;
-					&:hover {
-						color: $iconhover-color;
-					}
-				}   
-			}
-		}
-	}
+        i {
+          color: #ee5d84;
+          &:hover {
+            color: $iconhover-color;
+          }
+        }
+      }
+    }
+  }
 
-	.search {
+  .search {
     position: absolute;
     left: 50%;
     top: 80px;
@@ -232,7 +232,7 @@ header {
         opacity: 1;
       }
     }
-	}
+  }
 }
 
 main {
@@ -251,7 +251,7 @@ main {
     .footer-nav {
       padding: $footer-content-length;
       line-height: 24px;
-			margin-left: 5px;
+      margin-left: 5px;
       font-size: 18px;
       a {
         text-decoration: none;
@@ -259,8 +259,8 @@ main {
         font-size: 18px;
         &+a:before {
           content: "|";
-					margin: 0 7px 0 3px;
-				}
+          margin: 0 7px 0 3px;
+        }
         &:hover {
           color:$hover-color;
           text-decoration: underline;
@@ -268,15 +268,15 @@ main {
       }
       span {
         color: $footerNav;
-				&:after {
-				  content:"：";
-				}
+        &:after {
+          content:"：";
+        }
       }
     }
 
     .footer-service {
       padding: $footer-content-length;
-			margin-left: 5px;
+      margin-left: 5px;
       font-size: 18px;
       line-height: 24px;
       color: $footerNav;
@@ -286,8 +286,8 @@ main {
         color: $footerNav;
         &+a:before {
           content: "|";
-					margin: 0 7px 0 3px;
-				}
+          margin: 0 7px 0 3px;
+        }
         &:hover {
           color: $hover-color;
           text-decoration: underline;
@@ -295,14 +295,14 @@ main {
       }
       span {
         color: $footerNav;
-				&:after {
-				  content:"：";
-				}
+        &:after {
+          content:"：";
+        }
       }
     }
 
     .footer-info {
-			padding: 5px;
+      padding: 5px;
       margin-left: $footer-content-length;
       font-size: 16px;
       line-height: 24px;
@@ -310,7 +310,7 @@ main {
     }
 
     .footer-company {
-			padding: 5px;
+      padding: 5px;
       margin-left: $footer-content-length;
 
       span {
@@ -321,7 +321,7 @@ main {
     }
 
     .footer-address {
-			padding: 5px;
+      padding: 5px;
       margin-left: $footer-content-length;
 
       span {
@@ -332,52 +332,52 @@ main {
     }
 
     .footer-seo-tel {
-			margin-left: 10px;
-			padding: 5px;
+      margin-left: 10px;
+      padding: 5px;
       color: $hover-color;
 
       .awoo-foottext1 {
         font-size: 20px;
         line-height: 24px;
-				vertical-align: middle;
+        vertical-align: middle;
       }
 
       .awoo-foottext2 {
         font-weight: bold;
         font-size: 26px;
         line-height: 24px;
-				vertical-align: middle;
+        vertical-align: middle;
       }
-		}
+    }
   }
 }
 
 // Small screen
 @media (max-width: 760px) {
-	.footer {
+  .footer {
     background-color: rgb(53, 52, 52);
     width: 100%;
     position: relative;
     bottom: 0;
-		display: inline-block;
+    display: inline-block;
 
     .footer-nav {
       @media (min-width: 356px) {
         width: calc(50% - 20px);
-			}
+      }
       @media (max-width: 355px) {
         width: calc(100% - 20px);
-			}
+      }
 
       float: left;
       padding: $footer-content-length;
       font-size: 18px;
-			text-align: center;
+      text-align: center;
       a {
-				padding: 3px;
-				margin: 0 auto;
-				display: block;
-				width: fit-content;
+        padding: 3px;
+        margin: 0 auto;
+        display: block;
+        width: fit-content;
         text-decoration: none;
         color: $footerNav;
         font-size: 18px;
@@ -388,36 +388,36 @@ main {
       }
       span {
         color: $footerNav;
-				font-size: 22px;
-				&:after {
-				  content: "";
-				  margin: 3px auto;
-				  display: block;
-					height: 2px;
-					width: calc(100px + 25%);
-				  border-bottom: 2px solid $footerNav;
-				}
+        font-size: 22px;
+        &:after {
+          content: "";
+          margin: 3px auto;
+          display: block;
+          height: 2px;
+          width: calc(100px + 25%);
+          border-bottom: 2px solid $footerNav;
+        }
       }
     }
 
     .footer-service {
       @media (min-width: 356px) {
         width: calc(50% - 20px);
-			}
+      }
       @media (max-width: 355px) {
         width: calc(100% - 20px);
-			}
+      }
       float: left;
       padding: $footer-content-length;
       font-size: 18px;
       color: $footerNav;
-			text-align: center;
+      text-align: center;
 
       a {
-				padding: 3px;
-				margin: 0 auto;
-				display: block;
-				width: fit-content;
+        padding: 3px;
+        margin: 0 auto;
+        display: block;
+        width: fit-content;
         text-decoration: none;
         color: $footerNav;
         &:hover {
@@ -427,36 +427,36 @@ main {
       }
       span {
         color: $footerNav;
-				font-size: 22px;
-				&:after {
-				  content: "";
-				  margin: 3px auto;
-				  display: block;
-					height: 2px;
-					width: calc(100px + 25%);
-				  border-bottom: 2px solid $footerNav;
-				}
+        font-size: 22px;
+        &:after {
+          content: "";
+          margin: 3px auto;
+          display: block;
+          height: 2px;
+          width: calc(100px + 25%);
+          border-bottom: 2px solid $footerNav;
+        }
       }
     }
 
     .footer-info {
-			padding: 10px;
-			width: calc(100% - 20px);
+      padding: 10px;
+      width: calc(100% - 20px);
       float: left;
       font-size: 16px;
       line-height: 24px;
       color: $footerNav;
-			text-align: center;
-			span {
-			  display: block;
-				padding: 3px;
-			}
+      text-align: center;
+      span {
+        display: block;
+        padding: 3px;
+      }
     }
 
     .footer-company {
-			padding: 10px;
-			width: calc(100% - 20px);
-			text-align: center;
+      padding: 10px;
+      width: calc(100% - 20px);
+      text-align: center;
       float: left;
       span {
         font-size: 16px;
@@ -466,9 +466,9 @@ main {
     }
 
     .footer-address {
-			padding: 10px;
-			width: calc(100% - 20px);
-			text-align: center;
+      padding: 10px;
+      width: calc(100% - 20px);
+      text-align: center;
       float: left;
       span {
         font-size: 16px;
@@ -479,24 +479,24 @@ main {
 
     .footer-seo-tel {
       padding: 10px;
-			text-align: center;
+      text-align: center;
       color: $hover-color;
 
       .awoo-foottext1 {
         font-size: 20px;
         line-height: 24px;
-				vertical-align: middle;
+        vertical-align: middle;
       }
       
       .awoo-foottext2 {
         font-weight: bold;
         font-size: 26px;
         line-height: 24px;
-				vertical-align: middle;
-				display: inline-block;
+        vertical-align: middle;
+        display: inline-block;
       }
     }
-	}
+  }
 }
 
 .spec-info {
