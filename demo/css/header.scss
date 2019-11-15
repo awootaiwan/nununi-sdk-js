@@ -127,9 +127,7 @@ header {
 
 		a:nth-of-type(1) {
 			display: block;
-			width: calc(40px + 0.8vw);
-			max-width: 50px;
-			margin: 15px calc(5.5vw - 22px);
+			width: fit-content;
 		}
 
 
@@ -137,7 +135,7 @@ header {
 			float: right;
 			display: block;
 			max-width: 90vw;
-			margin: 15px;
+			margin: 13px calc(4px + 2vw);
 			color: #999;
 			font-size: calc(14px + 3vw);
 
