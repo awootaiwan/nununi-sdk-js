@@ -113,7 +113,14 @@ nununiSDK.getProductTags("PRODUCT-ID");
 
 ![](https://imgur.com/y6J2z83.png)
 
-### Product Classify
+### Classify Product Type
+
+```htmlmixed=
+  <div id="nununi-classify"></div>
+```
+
+
+### Classify Product Type
 
 ##### html 需要 nununi-classify 區塊才會渲染畫面
 
@@ -121,58 +128,21 @@ nununiSDK.getProductTags("PRODUCT-ID");
   <div id="nununi-classify"></div>
 ```
 
-##### 參數設定的兩種方法：
+##### 參數設定及使用方式：
 
-- 直接代入商品 id 陣列。
-  nununiSDK.getClassify 取得資料，nununiSDK.renderClassify 取得資料並渲染畫面。
 
 ```javascript
-nununiSDK.renderClassify(["PRODUCT-ID", "PRODUCT-ID"]);
-nununiSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
+// nununiSDK.renderClassifyProductType("PRODUCT_TYPE_A>PRODUCT_TYPE_B>PRODUCT_TYPE_C");
+nununiSDK.renderClassifyProductType("熱銷推薦>201909新品上市>");
 ```
-
-- 請在商品頁上的任一 div、a、span 標籤內增加 data 屬性 `data-nununi-product-id`，且代入商品 id。
-  `nununiSDK.renderClassify()` 會搜尋頁面上所有`data-nununi-product-id`的標籤。
-
-```htmlmixed=
-  <span data-nununi-product-id="1234567"></span>
-  <span data-nununi-product-id="2230982"></span>
-  <span data-nununi-product-id="5409124"></span>
-  <span data-nununi-product-id="9120988"></span>
-```
-
-執行`nununiSDK.renderClassify()`會將 nununi 標籤渲染至標籤 `id="nununi-classify"` 內，以下畫面為範例：
 
 ![](https://imgur.com/lDxXMo5.png)
 
 ---
 
-## Error Message
-
-### Using Error
-
-沒有畫面，空白一片，請查看 console 的錯誤顯示，有以下的情況：
-
-1. ID 未填入時，console 會出現以下 Message：
-   ![](https://i.imgur.com/TD3EpzZ.png)
-
-2. 未在 html 內放置 nununi-product-list、nununi-suggestion-tag、nununi-product-tag、nununi-classify 區塊，console 會出現以下 Message：
-   ![](https://i.imgur.com/CBXTZ0f.png)
-
-3. 執行 Prodruct tags 時，若頁面上的第一個 data-nununi-product-id 的數值為空，console 會出現會出現 `404 not found訊息`。
-
-4. 執行 Prodruct tags、Product classify 時如果沒有將商品 id 代入程式，頁面元素也沒有 data-nununi-product-id，console 會出現以下 Message：
-   ![](https://imgur.com/3PyWjuF.png)
-
-5. Product classify 時，若代入的值是空值，，console 會出現以下 Message：
-   `執行Error: 傳入商品id陣列為空陣列`
-
 ### API Error
 
-當 API 出現 Error 時，畫面呈現：
-![](https://i.imgur.com/5hLc4yv.png)
-
-當請求 nununi API 失敗時
+當 API 出現 Error 時，將會得到錯誤資訊
 
 ```jsonld=
 {
@@ -195,6 +165,7 @@ nununiSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 ---
 
 ## CSS 樣式修改
+
 只要加上 id 選擇器的權重，就可輕鬆覆蓋原生樣式。
 
 #### product tag 修改範例
@@ -269,7 +240,7 @@ nununiSDK.getClassify(["PRODUCT-ID", "PRODUCT-ID"]);
 async () => {
   console.log(await nununiSDK.getContentAll("日本,面膜"));
   console.log(await nununiSDK.getProductTags("11111"));
-  console.log(await nununiSDK.getClassify(["11111", "22222"]));
+  console.log(await nununiSDK.getClassifyProductType('四季被/冬被>品牌冬被>'));
 };
 ```
 
@@ -440,11 +411,11 @@ fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的
 }
 ```
 
-### getClassify()
+### getClassifyProductType()
 
 `Input`
 
-1. productIds(**不可為空**) : array
+1. productType(**不可為空**) : string
 
 `Output`
 fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的連結。

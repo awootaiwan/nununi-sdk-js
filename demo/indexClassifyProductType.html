@@ -60,14 +60,14 @@
     <div id="nununi-suggestion-tag"></div>
     <div id="nununi-product-list"></div>
     <div class="section-padding">
-        <p>您可能想看其他分類：</p>
-        <div id="nununi-classify"></div>
-      </div>
+      <p>您可能想看其他分類：</p>
+      <div id="nununi-classify"></div>
+    </div>
   </main>
 
   <div class="page-nav">
+    <a href="index.html">Product List and suggestion</a>
     <a href="indexProductTag.html">Product Tag</a>
-    <a href="indexClassify.html">Product Category</a>
   </div>
 
   <footer>
@@ -124,13 +124,17 @@
     const nununiSDK = new NununiSDK('id');
     /*頁面商品顯示數量設定*/
     nununiSDK.setLimit(12);
-    /*頁面渲染範例*/
-    nununiSDK.renderSuggestionTag();
-    nununiSDK.renderProductList();
-    nununiSDK.renderClassifyProductType('category>category>');
+
+    /* Classify使用方式一：將商品分類帶入 nununiSDK.renderClassifyProductType */
+    /* 頁面渲染範例 */
+    (async() => {
+      /*分類 Tag 建議*/
+      nununiSDK.renderClassifyProductType('四季被/冬被>品牌冬被>');
+    })();
+
     /*資料存取範例*/
     (async() => {
-      console.log(await nununiSDK.getContentAll('日本,面膜'));
+      console.log(await nununiSDK.getClassifyProductType('四季被/冬被>品牌冬被>'));
     })();
   });
 </script>
