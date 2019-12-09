@@ -257,6 +257,29 @@ class NununiSDK {
       NununiClassify
     );
   }
+
+  async renderClassifyProductType(productType) {
+    const CupidClassify = document.getElementById('nununi-classify');
+    if (!CupidClassify || CupidClassify.length < 1) {
+      throw new Error('Please add `<div id="nununi-classify"></div>` in HTML Tag');
+    }
+
+    if (productType === undefined) {
+        throw new Error(
+          'Please give `productType` string attribute to call `renderClassifyProductType`'
+        );
+    }
+
+    const data = await this.getClassifyProductType(productType);
+
+    const { result, errcode, errmsg } = data;
+    ReactDOM.render(
+      <App errcode={errcode} errmsg={errmsg}>
+        <ProductTag ProductTag={result.tags} />
+      </App>,
+      CupidClassify
+    );
+  }
 }
 /** Detect free variable `global` from Node.js. */
 const freeGlobal =

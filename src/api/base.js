@@ -85,7 +85,7 @@ const getClassifyProductTypeApiData = async (
 ) => {
   try {
     const { status, data: response } = await API.post(
-      `/${version}/${id}/products/classify_product_type`,
+      `/${version}/${id}/products/classifyProductType`,
       productType
     );
     if (status !== 200) {

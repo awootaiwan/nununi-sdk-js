@@ -7,9 +7,20 @@
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/header.css">
   <title>awoo Nununi SDK 範例</title>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5SBH4QV');</script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body onDRAGSTART="window.event.returnValue=false">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5SBH4QV"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <header>
     <div class="header-top">
       <ul class="top-menu">
@@ -60,14 +71,14 @@
     <div id="nununi-suggestion-tag"></div>
     <div id="nununi-product-list"></div>
     <div class="section-padding">
-        <p>您可能想看其他分類：</p>
-        <div id="nununi-classify"></div>
-      </div>
+      <p>您可能想看其他分類：</p>
+      <div id="nununi-classify"></div>
+    </div>
   </main>
 
   <div class="page-nav">
+    <a href="index.html">Product List and suggestion</a>
     <a href="indexProductTag.html">Product Tag</a>
-    <a href="indexClassify.html">Product Category</a>
   </div>
 
   <footer>
@@ -117,21 +128,4 @@
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
-<script>
-  window.nununi={init:function(t){var e,n,o;document.getElementById("nununi-js")||((e=document.createElement("script")).type="text/javascript",e.id="nununi-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/nununi-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
-
-  nununi.init(() => {
-    const nununiSDK = new NununiSDK('id');
-    /*頁面商品顯示數量設定*/
-    nununiSDK.setLimit(12);
-    /*頁面渲染範例*/
-    nununiSDK.renderSuggestionTag();
-    nununiSDK.renderProductList();
-    nununiSDK.renderClassifyProductType('category>category>');
-    /*資料存取範例*/
-    (async() => {
-      console.log(await nununiSDK.getContentAll('日本,面膜'));
-    })();
-  });
-</script>
 </html>
