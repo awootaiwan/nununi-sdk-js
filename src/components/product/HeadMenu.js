@@ -129,6 +129,9 @@ const HeadMenu = ({ pageInfo }) => {
 }
 
 window.onclick = function(event) {
+  if (!document.getElementById("DropdownList")) {
+    return;
+  }
   if (event.target.matches('#DropdownBtn')) {
     document.getElementById("DropdownList").style.display = 'block';
   }
