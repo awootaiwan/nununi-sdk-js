@@ -4,7 +4,7 @@ import SuggestionTag from "./suggestionTag.js";
 import styled from 'styled-components'
 
 const SuggestionDiv = styled.div`
-  background-color: #fff6f7;
+  background-color: #eee;
   border: 1px solid #ada9a8;
   display: flex;
   flex-flow: row wrap;
@@ -29,7 +29,7 @@ const SuggestionDiv = styled.div`
       white-space: nowrap;
 
       a {
-        background: #f63577;
+        background: #333;
         line-height: 31px;
         padding: 7px 10px;
         cursor: pointer;
@@ -48,11 +48,11 @@ const SuggestionList = styled.div`
   }
 
   span {
-    border: 1px solid #f63577;
+    border: 1px solid #333;
     float: left;
     display: inline;
     list-style: none;
-    color: #f63577;
+    color: #333;
     background-color: #fff;
     margin-left: 10px;
     padding: 3px;
@@ -62,7 +62,7 @@ const SuggestionList = styled.div`
   }
 
   span:hover {
-    background-color: #fff0f5;
+    background-color: #eee;
     transition: .3s;
   }
 `;

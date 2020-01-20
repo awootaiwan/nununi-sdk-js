@@ -52,7 +52,7 @@ const PorductContenier = styled.li`
     font-size: 32px;
     position: relative;
     height: 28px;
-    color: #ee4d79;
+    color: #ca3575;
     display: inline-block;
     margin-bottom: 10px;
     padding-bottom: 10px;
