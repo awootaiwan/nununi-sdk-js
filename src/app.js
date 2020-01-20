@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import i18nLocale from './locale';
 import {
   getApiData,
   getProductTagApiData,
@@ -24,7 +25,7 @@ const App = props => (
 );
 
 class NununiSDK {
-  constructor(id = process.env.NUNUNI_ID) {
+  constructor(id = process.env.NUNUNI_ID, lang = 'ja') {
     if (!id || id.length < 1) {
       throw new Error('nununi id is not setting');
     }
@@ -32,6 +33,8 @@ class NununiSDK {
     this.contentApiVer = 'latest';
     this.productsApiVer = 'latest';
     this.limit = 10;
+    this.lang = lang;
+    i18nLocale.init(this.lang);
   }
 
   setContentAPIVersion(apiVer) {
@@ -40,6 +43,11 @@ class NununiSDK {
 
   setProductsAPIVersion(apiVer) {
     this.productsApiVer = apiVer;
+  }
+
+  setLanguage(lang) {
+    this.lang = lang;
+    i18nLocale.changeLanguage(this.lang);
   }
 
   setLimit(limit) {
