@@ -13,6 +13,9 @@
     /*頁面商品顯示數量設定*/
     nununiSDK.setLimit(12);
 
+    /*設定頁面語系*/
+    nununiSDK.setLanguage('ja');
+
     /*頁面渲染範例*/
     nununiSDK.renderSuggestionTag();
     nununiSDK.renderProductList();
