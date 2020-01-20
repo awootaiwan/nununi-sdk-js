@@ -133,7 +133,12 @@ window.onclick = function(event) {
     return;
   }
   if (event.target.matches('#DropdownBtn')) {
-    document.getElementById("DropdownList").style.display = 'block';
+    if (document.getElementById("DropdownList").style.display != 'block') {
+      document.getElementById("DropdownList").style.display = 'block';
+    }
+    else {
+      document.getElementById("DropdownList").style.display = 'none';
+    }
   }
   else {
     // Close the DropdownList if the user clicks outside of it

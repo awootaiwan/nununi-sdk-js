@@ -58,6 +58,11 @@ const BodyPagination = styled.div`
         }
       }
     }
+    .break-me {
+      a {
+       pointer-events: none;
+      }
+    }
   }
   .disableBtn {
     display: none;

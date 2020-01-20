@@ -3,6 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/header.css">
@@ -45,14 +46,14 @@
     <div class="head">
       <img src="../demo/images/awoo.png" class="awoo-headlogo" alt="">
       <sapn class="logo-font">awoo nununi</sapn>
+      <div class="search">
+        <input class="search-input" type="search"></input>
+        <button class="sure-button">搜尋</button>
+      </div>
       <span class="icon">
         <a href=""><i class="fas fa-shopping-cart"></i></a>
         <a href=""><i class="fas fa-user"></i></a>
       </span>
-    </div>
-    <div class="search">
-      <input class="search-input" type="search"></input>
-      <button class="sure-button">搜尋</button>
     </div>
   </header>
 
@@ -72,45 +73,38 @@
 
   <footer>
     <div class="footer">
-      <span class="awoo-foottext1">SEO 搜尋引擎最佳化服務專線</span>
+      <div class="footer-seo-tel">
+        <span class="awoo-foottext1">SEO 搜尋引擎最佳化服務專線</span>
+        <span class="awoo-foottext2">(02)8712-1128</span>
+      </div>
       <div class="footer-nav">
+        <span>連結</span>
         <a href="">最新</a>
-        <span>|</span>
         <a href="">公益</a>
-        <span>|</span>
         <a href="">影音</a>
-        <span>|</span>
         <a href="">部落格</a>
-        <span>|</span>
         <a href="">隱私權政策</a>
-        <span>|</span>
         <a href="">網路地圖</a>
-        <span>|</span>
         <a href="">聯絡我們</a>
       </div>
+      <div class="footer-service">
+        <span>舊址</span>
+        <a href="">網路行銷顧問</a>
+        <a href="">甚麼是搜尋行銷</a>
+        <a href="">關鍵字廣告</a>
+        <a href="">搜尋引擎最佳化</a>
+        <a href="">Google Analytics</a>
+      </div>
       <div class="footer-info">
-        <span>電話: (02)8712-1128</span>
-        <span>傳真: (02)2596-1288 </span>
-        <span>統一編號: 43401309</span>
+        <span>電話：(02)8712-1128</span>
+        <span>傳真：(02)2596-1288 </span>
+        <span>統一編號：43401309</span>
       </div>
       <div class="footer-address">
         <span>104 台北市中山區中山北路二段96號14樓1412室</span>
       </div>
       <div class="footer-company">
         <span>Copyright ©阿物股份有限公司 All rights reserved</span>
-      </div>
-      <div class="footer-service">
-        <span>舊址:</span>
-        <a href="">網路行銷顧問</a>
-        <span>|</span>
-        <a href="">甚麼是搜尋行銷</a>
-        <span>|</span>
-        <a href="">關鍵字廣告</a>
-        <span>|</span>
-        <a href="">搜尋引擎最佳化</a>
-        <span>|</span>
-        <a href="">Google Analytics</a>
-        <span class="awoo-foottext2">(02)8712-1128</span>
       </div>
     </div>
   </footer>
@@ -119,7 +113,7 @@
 <script src="js/search.js"></script>
 <script>
   window.nununi={init:function(t){var e,n,o;document.getElementById("nununi-js")||((e=document.createElement("script")).type="text/javascript",e.id="nununi-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/nununi-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
-
+ 
   nununi.init(() => {
     const nununiSDK = new NununiSDK('id');
     /*頁面商品顯示數量設定*/
