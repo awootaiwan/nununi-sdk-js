@@ -1,4 +1,5 @@
 import React from "react";
+import numeral from 'numeral';
 import styled from 'styled-components'
 
 const PorductContenier = styled.li`
@@ -76,7 +77,7 @@ const Product = ({ product }) => {
           <div className="pro-img" alt={product.productName}>
           </div>
           <div className="product-name">{product.productName}</div>
-          <span className="sale-price">${product.productPrice}</span>
+            <span className="sale-price">{numeral(product.productPrice).format('$0,0')}</span>
         </a>
     </PorductContenier>
   )

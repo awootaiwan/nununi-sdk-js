@@ -1,13 +1,13 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components'
-
 const querystring = require('querystring');
 const sort = {
-  "預設排序": "8",
-  "銷量排序": "4",
-  "新品上市": "12",
-  "價格由低到高": "1",
-  "價格由高到低": "2",
+  "defaultRank": "8",
+  "saleTop": "4",
+  "newArrive": "12",
+  "priceLowToTop": "1",
+  "priceTopToLow": "2",
 }
 
 const Orders = styled.div`
@@ -36,7 +36,7 @@ const DropdownBtn = styled.button`
   outline: none;
 `;
 
-let DropdownText = '預設排序';
+let DropdownText = 'defaultRank';
 
 const ArrowDown = styled.div`
   width: 0;
@@ -84,6 +84,7 @@ const DropdownItemText = styled.span`
 `;
 
 const HeadMenu = ({ pageInfo }) => {
+  const { t } = useTranslation();
   const pageSort = pageInfo['sort'];
   const pageInfoData = { ...pageInfo };
   if (pageInfoData['sort']) {
@@ -105,17 +106,17 @@ const HeadMenu = ({ pageInfo }) => {
           }
           })
         }
-        {DropdownText}
+        {t(DropdownText)}
         <ArrowDown></ArrowDown>
       </DropdownBtn>
 
       <DropdownList id="DropdownList">
         {
-          Object.keys(sort).map(function (key, index) {
+          Object.keys(sort).map(function (key) {
             return (
-              <DropdownItem key={index} href={`${baseUrl}&sort=${sort[key]}`}>
+              <DropdownItem key={key} href={`${baseUrl}&sort=${sort[key]}`}>
                 <DropdownItemText>
-                {key}
+                {t(key)}
                 </DropdownItemText>
               </DropdownItem>
             )

@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import SuggestionTag from "./suggestionTag.js";
 import styled from 'styled-components'
 
@@ -66,6 +67,7 @@ const SuggestionList = styled.div`
   }
 `;
 const Suggestion = ({ suggestionTags, pageInfo }) => {
+  const { t } = useTranslation();
   if (pageInfo.tags === null) {
     pageInfo.tags = "";
   }
@@ -79,13 +81,13 @@ const Suggestion = ({ suggestionTags, pageInfo }) => {
         {
           pageInfo.tags &&
           pageInfo.tags.length > 0 &&
-          tags.map(tag =>(          
+          tags.map(tag =>(
             <li className="page-tag" key={tag}><a href={`${baseUrl}?tags=${tag}&limit=${limit}`}>{tag}</a></li>
           ))
         }
       </ul>
       <SuggestionList>
-        <p>您可能還會想找:</p>{" "}
+        <p>{t('youWillWantTo')}:</p>{" "}
         {suggestionTags &&
           suggestionTags.length > 0 &&
           suggestionTags.map((list, index) => {
