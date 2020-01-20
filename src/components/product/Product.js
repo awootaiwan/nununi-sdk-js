@@ -39,12 +39,14 @@ const PorductContenier = styled.li`
     position: relative;
     width: 100%;
     padding-bottom: 100%;
+    padding-left: 0;
+    padding-right: 0;
     cursor: pointer;
     background-image: url('${props => props.imageUrl}');
     background-repeat: no-repeat;
     background-position: center;
     background-color: #fff;
-    background-size: 100%;
+    background-size: contain;
   }
   .sale-price {
     font-size: 32px;

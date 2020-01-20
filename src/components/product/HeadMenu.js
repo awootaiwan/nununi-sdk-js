@@ -49,6 +49,7 @@ const ArrowDown = styled.div`
   position: absolute;
   top: 40%;
   left: 80%;
+  padding: 0 !important;
 `;
 
 const DropdownList = styled.div`
