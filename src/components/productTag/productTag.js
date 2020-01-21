@@ -9,8 +9,8 @@ const ProductTagDiv = styled.div`
   a {
     display: block;
     text-decoration: none;
-    background: #f47f9d;
-    border: 1px solid #ee5d84;
+    background: #ccc;
+    border: 1px solid #eee;
     border-radius: 8px;
     color: #fff;
     margin-bottom: 10px;
@@ -19,6 +19,9 @@ const ProductTagDiv = styled.div`
 
     :hover {
       cursor: pointer;
+      border: 1px solid #333;
+      background: #fff;
+      color: #333;
     }
   }
 `;
