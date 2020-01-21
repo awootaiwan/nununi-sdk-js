@@ -99,7 +99,7 @@ export default {
       .init({
         fallbackLng: 'ja',
         lng: this.lang,
-        debug: true,
+        debug: false,
         resources,
         keySeparator: false,
         interpolation: {
