@@ -108,7 +108,6 @@ const HeadMenu = ({ pageInfo }) => {
           })
         }
         {t(DropdownText)}
-        <ArrowDown></ArrowDown>
       </DropdownBtn>
 
       <DropdownList id="DropdownList">
