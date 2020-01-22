@@ -89,7 +89,7 @@ const Pagination = ({ productlist, pageInfo }) => {
 
   const handlePageClick = (data) => {
     const selected = data.selected + 1;
-    location.replace(`${baseUrl}&page=${selected}`)
+    location.href = `${baseUrl}&page=${selected}`;
   }
 
   return (
