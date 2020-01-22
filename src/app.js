@@ -7,7 +7,6 @@ import {
   getClassifyApiData,
   getClassifyProductTypeApiData
 } from './api/base';
-import ErrorAlert from './components/erroralert/ErrorAlert';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
 import ProductTag from './components/productTag/productTag';
@@ -136,7 +135,9 @@ class NununiSDK {
       );
     }
     const pageInfo = this._getUrlParms();
-
+    if (!pageInfo.tags) {
+      throw new Error('renderSuggestionTag: Please add tags is required');
+    }
     const data = await this.getContentAll(
       splitTags(pageInfo.tags),
       pageInfo.page,
@@ -158,10 +159,13 @@ class NununiSDK {
   async renderProductList() {
     const NununiProductList = document.getElementById("nununi-product-list");
     if (!NununiProductList || NununiProductList.length < 1) {
-      throw new Error('請先加入 <div id="nununi-product-list"></div> HTML標籤');
+      throw new Error('Please add <div id="nununi-product-list"></div> HTML tag');
     }
 
     const pageInfo = this._getUrlParms();
+    if (!pageInfo.tags) {
+      throw new Error('renderProductList: Please add tags is required');
+    }
     const data = await this.getContentAll(
       splitTags(pageInfo.tags),
       pageInfo.page,
@@ -185,7 +189,7 @@ class NununiSDK {
   async renderProductTag(productId) {
     const NununiProductTag = document.getElementById("nununi-product-tag");
     if (!NununiProductTag || NununiProductTag.length < 1) {
-      throw new Error('請先加入 <div id="nununi-product-tag"></div> HTML標籤');
+      throw new Error('Please add <div id="nununi-product-tag"></div> HTML tag');
     }
     if (productId === undefined) {
       const idDom = document.querySelector(
@@ -193,10 +197,10 @@ class NununiSDK {
       );
       if (!idDom) {
         throw new Error(
-          "請在div或a或span標籤內增加data-nununi-product-id屬性，並指定商品id"
+          "please div / a / span tags add a data-nununi-product-id"
         );
       } else if (idDom.dataset.nununiProductId === "") {
-        throw new Error("data-nununi-product-id屬性為空值");
+        throw new Error("data-nununi-product-id is null");
       }
       productId = idDom.dataset.nununiProductId;
     }
@@ -214,7 +218,7 @@ class NununiSDK {
 
   getClassify(productIdArray) {
     if (productIdArray.length < 1) {
-      throw new Error('傳入商品id陣列為空陣列');
+      throw new Error('Input product ids array is empty');
     }
     return getClassifyApiData(this.id, this.productsApiVer, {
       productIds: productIdArray
@@ -233,7 +237,7 @@ class NununiSDK {
   async renderClassify(productId) {
     const NununiClassify = document.getElementById("nununi-classify");
     if (!NununiClassify || NununiClassify.length < 1) {
-      throw new Error('請先加入 <div id="nununi-classify"></div> HTML標籤');
+      throw new Error('Please add <div id="nununi-classify"></div> HTML tag');
     }
 
     if (productId === undefined) {
@@ -244,7 +248,7 @@ class NununiSDK {
       ];
       if (!idDom) {
         throw new Error(
-          "請在div或a或span標籤內增加data-nununi-product-id屬性，並指定商品id"
+          "please div / a /span tag add data-nununi-product-id"
         );
       }
       let productIdArray = idDom.map(item => {
