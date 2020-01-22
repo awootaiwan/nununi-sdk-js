@@ -16,10 +16,8 @@ const splitTags = tags => (typeof tags === 'string' ? tags.split(',') : tags);
 
 const App = props => (
   <React.Fragment>
-    {props.errcode === 0 ? (
+    {props.errcode === 0 && (
       props.children
-    ) : (
-      <ErrorAlert errmsg={props.errmsg} />
     )}
   </React.Fragment>
 );
