@@ -112,9 +112,20 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 <script src="js/search.js"></script>
 <script>
-  window.nununi={init:function(t){var e,n,o;document.getElementById("nununi-js")||((e=document.createElement("script")).type="text/javascript",e.id="nununi-js",e.async=!0,e.src=("https:"===document.location.protocol?"https://":"http://")+"api.awoo.org/libs/nununi-sdk-latest.min.js",(o=document.getElementsByTagName("script")[0]).parentNode.insertBefore(e,o)),n=window.onload,window.onload=function(){return n&&n(),t()}}};
- 
-  nununi.init(() => {
+
+  (function(d, s, id){
+    var self = this, js, njs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)){ return; }
+    js = d.createElement(s); js.id = id;
+    js.async = true;
+    js.onload = function(){
+      nununi.init();
+    };
+    js.src = "//api.awoo.org/libs/nununi-sdk-latest.min.js";
+    njs.parentNode.insertBefore(js, njs);
+  }(document, 'script', 'nununi-js'));
+
+  window.nununi = { init: function() {
     const nununiSDK = new NununiSDK('id');
     /*頁面商品顯示數量設定*/
     nununiSDK.setLimit(12);
@@ -126,6 +137,6 @@
     (async() => {
       console.log(await nununiSDK.getContentAll('日本,面膜'));
     })();
-  });
+  }};
 </script>
 </html>

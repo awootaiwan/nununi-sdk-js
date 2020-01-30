@@ -19,7 +19,7 @@ const BodyPagination = styled.div`
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 0px;
-    
+
     li {
       margin: 0;
       padding: 0;
@@ -31,7 +31,7 @@ const BodyPagination = styled.div`
       font-size: 13px;
       background: #fff;
       cursor: pointer;
-      
+
       a {
         text-decoration: none;
         transition: 0.3s;
@@ -43,13 +43,13 @@ const BodyPagination = styled.div`
         border-style: solid;
         outline: none;
         &:hover {
-          color: #f63577;
+          color: #333;
         }
       }
     }
     .active {
-      background: #f63577;
-      border-color: #f63577;
+      background: #333;
+      border-color: #333;
       color: #fff;
 
       a {
@@ -86,10 +86,10 @@ const Pagination = ({ productlist, pageInfo }) => {
 
   const urlParams = querystring.stringify(pageInfoData);
   const baseUrl = `${location.protocol}//${location.host}${location.pathname}?${urlParams}`;
-  
+
   const handlePageClick = (data) => {
     const selected = data.selected + 1;
-    location.replace(`${baseUrl}&page=${selected}`)
+    location.href = `${baseUrl}&page=${selected}`;
   }
 
   return (

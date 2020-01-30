@@ -4,7 +4,7 @@
   "description": "javascript sdk for awoo nununi api",
   "main": "production/nununi-sdk-latest.min.js",
   "scripts": {
-    "start": "parcel src/index.html --port 3000",
+    "start": "parcel src/index.html --port 80",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:app": "parcel build src/app.js --out-dir production --out-file nununi-sdk-latest.min.js --no-source-maps",
     "demo:style": "parcel build demo/css/header.scss --no-source-maps --out-dir demo/css"
@@ -21,9 +21,13 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
+    "i18next": "^19.0.3",
+    "i18next-browser-languagedetector": "^4.0.1",
+    "numeral": "^2.0.6",
     "querystring": "^0.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-i18next": "^11.3.1",
     "react-paginate": "^6.3.2",
     "react-router-dom": "^5.0.0",
     "styled-components": "^4.3.2"
