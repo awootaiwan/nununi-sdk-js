@@ -29,7 +29,7 @@ const getApiData = async (
 
   try {
     const { status, data: response } = await API.post(
-      `/${version}/${id}/content/${method}`,
+      `/${version}/${id}/content/${method}?t=${new Date().getTime()}&c=${Math.random()}`,
       data
     );
     if (status !== 200) {
@@ -48,7 +48,7 @@ const getProductTagApiData = async (
 ) => {
   try {
     const { status, data: response } = await API.get(
-      `/${version}/${id}/products/${productId}/tags`
+      `/${version}/${id}/products/${productId}/tags?t=${new Date().getTime()}`
     );
     if (status !== 200) {
       return getPayload(status, response.error_description, response);
@@ -66,7 +66,7 @@ const getClassifyApiData = async (
 ) => {
   try {
     const { status, data: response } = await API.post(
-      `/${version}/${id}/products/classify`,
+      `/${version}/${id}/products/classify?t=${new Date().getTime()}`,
       productIds
     );
     if (status !== 200) {
@@ -85,7 +85,7 @@ const getClassifyProductTypeApiData = async (
 ) => {
   try {
     const { status, data: response } = await API.post(
-      `/${version}/${id}/products/classifyProductType`,
+      `/${version}/${id}/products/classifyProductType?t=${new Date().getTime()}`,
       productType
     );
     if (status !== 200) {
