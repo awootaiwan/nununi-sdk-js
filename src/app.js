@@ -69,7 +69,7 @@ class NununiSDK {
       page = 1;
     }
     if (sort === null || sort === '') {
-      sort = 8;
+      sort = 12;
     }
     if (limit === null) {
       limit = this.limit;
