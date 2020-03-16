@@ -1,9 +1,8 @@
 import React from "react";
+import numeral from 'numeral';
 import styled from 'styled-components'
 
 const PorductContenier = styled.li`
-  text-align: center;
-  max-width: 90%;
   width: 100%;
   min-height: 375px;
   margin: 7.5px auto;
@@ -38,18 +37,20 @@ const PorductContenier = styled.li`
     position: relative;
     width: 100%;
     padding-bottom: 100%;
+    padding-left: 0;
+    padding-right: 0;
     cursor: pointer;
     background-image: url('${props => props.imageUrl}');
     background-repeat: no-repeat;
     background-position: center;
     background-color: #fff;
-    background-size: 100%;
+    background-size: contain;
   }
   .sale-price {
     font-size: 32px;
     position: relative;
     height: 28px;
-    color: #ee4d79;
+    color: #ca3575;
     display: inline-block;
     margin-bottom: 10px;
     padding-bottom: 10px;
@@ -76,7 +77,7 @@ const Product = ({ product }) => {
           <div className="pro-img" alt={product.productName}>
           </div>
           <div className="product-name">{product.productName}</div>
-          <span className="sale-price">${product.productPrice}</span>
+            <span className="sale-price">{numeral(product.productPrice).format('$0,0')}</span>
         </a>
     </PorductContenier>
   )

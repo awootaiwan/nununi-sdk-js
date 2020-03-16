@@ -1,13 +1,13 @@
 import React from "react";
+import { useTranslation } from 'react-i18next';
 import styled from 'styled-components'
-
 const querystring = require('querystring');
 const sort = {
-  "預設排序": "8",
-  "銷量排序": "4",
-  "新品上市": "12",
-  "價格由低到高": "1",
-  "價格由高到低": "2",
+  "defaultRank": "8",
+  "saleTop": "4",
+  "newArrive": "12",
+  "priceLowToTop": "1",
+  "priceTopToLow": "2",
 }
 
 const Orders = styled.div`
@@ -36,20 +36,7 @@ const DropdownBtn = styled.button`
   outline: none;
 `;
 
-let DropdownText = '預設排序';
-
-const ArrowDown = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #666666;
-  font-size: 0;
-  line-height: 0;
-  position: absolute;
-  top: 40%;
-  left: 80%;
-`;
+let DropdownText = 'defaultRank';
 
 const DropdownList = styled.div`
   display: none;
@@ -84,6 +71,7 @@ const DropdownItemText = styled.span`
 `;
 
 const HeadMenu = ({ pageInfo }) => {
+  const { t } = useTranslation();
   const pageSort = pageInfo['sort'];
   const pageInfoData = { ...pageInfo };
   if (pageInfoData['sort']) {
@@ -105,17 +93,16 @@ const HeadMenu = ({ pageInfo }) => {
           }
           })
         }
-        {DropdownText}
-        <ArrowDown></ArrowDown>
+        {t(DropdownText)}
       </DropdownBtn>
 
       <DropdownList id="DropdownList">
         {
-          Object.keys(sort).map(function (key, index) {
+          Object.keys(sort).map(function (key) {
             return (
-              <DropdownItem key={index} href={`${baseUrl}&sort=${sort[key]}`}>
+              <DropdownItem key={key} href={`${baseUrl}&sort=${sort[key]}`}>
                 <DropdownItemText>
-                {key}
+                {t(key)}
                 </DropdownItemText>
               </DropdownItem>
             )
@@ -133,7 +120,12 @@ window.onclick = function(event) {
     return;
   }
   if (event.target.matches('#DropdownBtn')) {
-    document.getElementById("DropdownList").style.display = 'block';
+    if (document.getElementById("DropdownList").style.display != 'block') {
+      document.getElementById("DropdownList").style.display = 'block';
+    }
+    else {
+      document.getElementById("DropdownList").style.display = 'none';
+    }
   }
   else {
     // Close the DropdownList if the user clicks outside of it
