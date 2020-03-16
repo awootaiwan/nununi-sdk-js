@@ -7,12 +7,7 @@ import Pagination from "./Pagination"
 const PageInfoH1 = styled.h1`
   margin-top: 0px;
   margin-bottom: 10px;
-  height: 22px;
-  color: #ca3575;
-  line-height: 22px;
   font-size: 21px;
-  padding-left: 6px;
-  border-left: solid 6px #ca3577;
 `;
 
 const BodyProduct = styled.div`
@@ -21,7 +16,7 @@ const BodyProduct = styled.div`
   flex-flow: row wrap;
   justify-content: flex-start;
   align-items: stretch;
- 
+
   .master-container {
     min-width: 100%;
     background: #eee;
@@ -43,15 +38,15 @@ const BodyProduct = styled.div`
       align-items: center;
     }
 
-  
+
   }
 `;
 
 const ProductList = ({ productlist, pageInfo }) => {
-  const { products } = productlist; 
+  const { products } = productlist;
   return (
     <div>
-      {pageInfo.tags && pageInfo.tags.length > 0 && 
+      {pageInfo.tags && pageInfo.tags.length > 0 &&
       <React.Fragment>
         <HeadMenu pageInfo={pageInfo} />
         <PageInfoH1>{productlist.pageInfo.h1}</PageInfoH1>

@@ -38,20 +38,6 @@ const DropdownBtn = styled.button`
 
 let DropdownText = 'defaultRank';
 
-const ArrowDown = styled.div`
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #666666;
-  font-size: 0;
-  line-height: 0;
-  position: absolute;
-  top: 40%;
-  left: 80%;
-  padding: 0 !important;
-`;
-
 const DropdownList = styled.div`
   display: none;
   max-width: 100%;

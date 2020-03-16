@@ -42,10 +42,6 @@ const SuggestionDiv = styled.div`
 `;
 
 const SuggestionList = styled.div`
-  p {
-    font-size: 15px;
-    text-align: left;
-  }
 
   span {
     border: 1px solid #333;
@@ -66,6 +62,13 @@ const SuggestionList = styled.div`
     transition: .3s;
   }
 `;
+
+const SuggestionTitle = styled.p`
+  p {
+    font-size: 15px;
+    text-align: left;
+  }
+`
 const Suggestion = ({ suggestionTags, pageInfo }) => {
   const { t } = useTranslation();
   if (pageInfo.tags === null) {
@@ -86,8 +89,8 @@ const Suggestion = ({ suggestionTags, pageInfo }) => {
           ))
         }
       </ul>
+      <SuggestionTitle>{t('youWillWantTo')}:</SuggestionTitle>{" "}
       <SuggestionList>
-        <p>{t('youWillWantTo')}:</p>{" "}
         {suggestionTags &&
           suggestionTags.length > 0 &&
           suggestionTags.map((list, index) => {

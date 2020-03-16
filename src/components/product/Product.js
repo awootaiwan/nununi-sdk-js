@@ -3,8 +3,6 @@ import numeral from 'numeral';
 import styled from 'styled-components'
 
 const PorductContenier = styled.li`
-  text-align: center;
-  max-width: 90%;
   width: 100%;
   min-height: 375px;
   margin: 7.5px auto;
