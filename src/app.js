@@ -5,20 +5,17 @@ import {
   getApiData,
   getProductTagApiData,
   getClassifyApiData,
-  getClassifyProductTypeApiData
+  getClassifyProductTypeApiData,
 } from './api/base';
 import Suggestion from './components/suggestion/suggestion';
 import ProductList from './components/product/ProductList';
 import ProductTag from './components/productTag/productTag';
+import DocumentMeta from 'react-document-meta';
 
-const splitTags = tags => (typeof tags === 'string' ? tags.split(',') : tags);
+const splitTags = (tags) => (typeof tags === 'string' ? tags.split(',') : tags);
 
-const App = props => (
-  <React.Fragment>
-    {props.errcode === 0 && (
-      props.children
-    )}
-  </React.Fragment>
+const App = (props) => (
+  <React.Fragment>{props.errcode === 0 && props.children}</React.Fragment>
 );
 
 class NununiSDK {
@@ -78,7 +75,7 @@ class NununiSDK {
       tags,
       page,
       limit,
-      sort
+      sort,
     };
   }
 
@@ -87,7 +84,7 @@ class NununiSDK {
       tags: splitTags(tags),
       page,
       sort,
-      limit
+      limit,
     });
   }
 
@@ -96,9 +93,9 @@ class NununiSDK {
       this.id,
       this.contentApiVer,
       {
-        tags: splitTags(tags)
+        tags: splitTags(tags),
       },
-      'pageInfo'
+      'pageInfo',
     );
   }
 
@@ -107,9 +104,9 @@ class NununiSDK {
       this.id,
       this.contentApiVer,
       {
-        tags: splitTags(tags)
+        tags: splitTags(tags),
       },
-      'suggestionTags'
+      'suggestionTags',
     );
   }
 
@@ -121,17 +118,19 @@ class NununiSDK {
         tags: splitTags(tags),
         page,
         sort,
-        limit
+        limit,
       },
-      'products'
+      'products',
     );
   }
 
   async renderSuggestionTag() {
-    const NununiSuggestionTag = document.getElementById("nununi-suggestion-tag");
+    const NununiSuggestionTag = document.getElementById(
+      'nununi-suggestion-tag',
+    );
     if (!NununiSuggestionTag || NununiSuggestionTag.length < 1) {
       throw new Error(
-        'Please add `<div id="nununi-suggestion-tag"></div>` HTML Tags'
+        'Please add `<div id="nununi-suggestion-tag"></div>` HTML Tags',
       );
     }
     const pageInfo = this._getUrlParms();
@@ -142,24 +141,34 @@ class NununiSDK {
       splitTags(pageInfo.tags),
       pageInfo.page,
       pageInfo.sort,
-      pageInfo.limit
+      pageInfo.limit,
     );
     const { result, errcode, errmsg } = data;
+    const { title, description, canonical } = result.pageInfo;
+    const meta = {
+      title,
+      description,
+      canonical,
+    };
+
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
+        <DocumentMeta {...meta} />
         <Suggestion
           suggestionTags={result.suggestionTags}
           pageInfo={pageInfo}
         />
       </App>,
-      NununiSuggestionTag
+      NununiSuggestionTag,
     );
   }
 
   async renderProductList() {
-    const NununiProductList = document.getElementById("nununi-product-list");
+    const NununiProductList = document.getElementById('nununi-product-list');
     if (!NununiProductList || NununiProductList.length < 1) {
-      throw new Error('Please add <div id="nununi-product-list"></div> HTML tag');
+      throw new Error(
+        'Please add <div id="nununi-product-list"></div> HTML tag',
+      );
     }
 
     const pageInfo = this._getUrlParms();
@@ -170,15 +179,22 @@ class NununiSDK {
       splitTags(pageInfo.tags),
       pageInfo.page,
       pageInfo.sort,
-      pageInfo.limit
+      pageInfo.limit,
     );
 
     const { errcode, errmsg, result } = data;
+    const { title, description, canonical } = result.pageInfo;
+    const meta = {
+      title,
+      description,
+      canonical,
+    };
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
+        <DocumentMeta {...meta} />
         <ProductList productlist={result} pageInfo={pageInfo} />
       </App>,
-      NununiProductList
+      NununiProductList,
     );
   }
 
@@ -187,20 +203,22 @@ class NununiSDK {
   }
 
   async renderProductTag(productId) {
-    const NununiProductTag = document.getElementById("nununi-product-tag");
+    const NununiProductTag = document.getElementById('nununi-product-tag');
     if (!NununiProductTag || NununiProductTag.length < 1) {
-      throw new Error('Please add <div id="nununi-product-tag"></div> HTML tag');
+      throw new Error(
+        'Please add <div id="nununi-product-tag"></div> HTML tag',
+      );
     }
     if (productId === undefined) {
       const idDom = document.querySelector(
-        "div[data-nununi-product-id], a[data-nununi-product-id], span[data-nununi-product-id]"
+        'div[data-nununi-product-id], a[data-nununi-product-id], span[data-nununi-product-id]',
       );
       if (!idDom) {
         throw new Error(
-          "please div / a / span tags add a data-nununi-product-id"
+          'please div / a / span tags add a data-nununi-product-id',
         );
-      } else if (idDom.dataset.nununiProductId === "") {
-        throw new Error("data-nununi-product-id is null");
+      } else if (idDom.dataset.nununiProductId === '') {
+        throw new Error('data-nununi-product-id is null');
       }
       productId = idDom.dataset.nununiProductId;
     }
@@ -212,7 +230,7 @@ class NununiSDK {
       <App errcode={errcode} errmsg={errmsg}>
         <ProductTag ProductTag={result.tags} />
       </App>,
-      NununiProductTag
+      NununiProductTag,
     );
   }
 
@@ -221,21 +239,21 @@ class NununiSDK {
       throw new Error('Input product ids array is empty');
     }
     return getClassifyApiData(this.id, this.productsApiVer, {
-      productIds: productIdArray
+      productIds: productIdArray,
     });
   }
 
-  getClassifyProductType(productType ='床包‧被套>經典素色>雙人') {
+  getClassifyProductType(productType = '床包‧被套>經典素色>雙人') {
     if (productType.length < 1) {
       throw new Error('Need to pass product type name');
     }
     return getClassifyProductTypeApiData(this.id, this.productsApiVer, {
-      productType
+      productType,
     });
   }
 
   async renderClassify(productId) {
-    const NununiClassify = document.getElementById("nununi-classify");
+    const NununiClassify = document.getElementById('nununi-classify');
     if (!NununiClassify || NununiClassify.length < 1) {
       throw new Error('Please add <div id="nununi-classify"></div> HTML tag');
     }
@@ -243,15 +261,13 @@ class NununiSDK {
     if (productId === undefined) {
       const idDom = [
         ...document.querySelectorAll(
-          "div[data-nununi-product-id], a[data-nununi-product-id], span[data-nununi-product-id]"
-        )
+          'div[data-nununi-product-id], a[data-nununi-product-id], span[data-nununi-product-id]',
+        ),
       ];
       if (!idDom) {
-        throw new Error(
-          "please div / a /span tag add data-nununi-product-id"
-        );
+        throw new Error('please div / a /span tag add data-nununi-product-id');
       }
-      let productIdArray = idDom.map(item => {
+      let productIdArray = idDom.map((item) => {
         return item.dataset.nununiProductId;
       });
       productId = productIdArray;
@@ -264,20 +280,22 @@ class NununiSDK {
       <App errcode={errcode} errmsg={errmsg}>
         <ProductTag ProductTag={result.tags} />
       </App>,
-      NununiClassify
+      NununiClassify,
     );
   }
 
   async renderClassifyProductType(productType) {
     const CupidClassify = document.getElementById('nununi-classify');
     if (!CupidClassify || CupidClassify.length < 1) {
-      throw new Error('Please add `<div id="nununi-classify"></div>` in HTML Tag');
+      throw new Error(
+        'Please add `<div id="nununi-classify"></div>` in HTML Tag',
+      );
     }
 
     if (productType === undefined) {
-        throw new Error(
-          'Please give `productType` string attribute to call `renderClassifyProductType`'
-        );
+      throw new Error(
+        'Please give `productType` string attribute to call `renderClassifyProductType`',
+      );
     }
 
     const data = await this.getClassifyProductType(productType);
@@ -287,7 +305,7 @@ class NununiSDK {
       <App errcode={errcode} errmsg={errmsg}>
         <ProductTag ProductTag={result.tags} />
       </App>,
-      CupidClassify
+      CupidClassify,
     );
   }
 }
