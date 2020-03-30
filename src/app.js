@@ -144,13 +144,12 @@ class NununiSDK {
       pageInfo.limit,
     );
     const { result, errcode, errmsg } = data;
-    const { title, description, canonical } = result.pageInfo;
+    let { title, description, canonical } = result.pageInfo;
     const meta = {
-      title,
-      description,
-      canonical,
+      title: title == "" ? null : title,
+      description: description == "" ? null : description,
+      canonical: canonical == "" ? null : canonical,
     };
-
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
         <DocumentMeta {...meta} />
@@ -183,11 +182,12 @@ class NununiSDK {
     );
 
     const { errcode, errmsg, result } = data;
-    const { title, description, canonical } = result.pageInfo;
+    let { title, description, canonical } = result.pageInfo;
+
     const meta = {
-      title,
-      description,
-      canonical,
+      title: title == "" ? null : title,
+      description: description == "" ? null : description,
+      canonical: canonical == "" ? null : canonical,
     };
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
