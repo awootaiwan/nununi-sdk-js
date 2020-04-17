@@ -146,9 +146,9 @@ class NununiSDK {
     const { result, errcode, errmsg } = data;
     let { title, description, canonical } = result.pageInfo;
     const meta = {
-      title: title == "" ? null : title,
-      description: description == "" ? null : description,
-      canonical: canonical == "" ? null : canonical,
+      title: title == '' ? null : title,
+      description: description == '' ? null : description,
+      canonical: canonical == '' ? null : canonical,
     };
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
@@ -185,9 +185,9 @@ class NununiSDK {
     let { title, description, canonical } = result.pageInfo;
 
     const meta = {
-      title: title == "" ? null : title,
-      description: description == "" ? null : description,
-      canonical: canonical == "" ? null : canonical,
+      title: title == '' ? null : title,
+      description: description == '' ? null : description,
+      canonical: canonical == '' ? null : canonical,
     };
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
@@ -303,7 +303,7 @@ class NununiSDK {
     const { result, errcode, errmsg } = data;
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
-        <ProductTag ProductTag={result.tags} />
+        {result.tags.length > 0 && <ProductTag ProductTag={result.tags} />}
       </App>,
       CupidClassify,
     );
