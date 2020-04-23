@@ -14,6 +14,8 @@ const resources = {
       "priceLowToTop": "Price to top",
       "priceTopToLow": "Price to low",
       "contactAdmin": "Please contact content provider",
+      "youMay": "You may interested to ",
+      "interested": "."
     }
   },
   ja: {
@@ -26,6 +28,8 @@ const resources = {
       "priceLowToTop": "価格が低い順",
       "priceTopToLow": "価格が高い順",
       "contactAdmin": "無効なパラメーターです",
+      "youMay": "你可能也對",
+      "interested": "感興趣的商品"
     }
   },
   tw: {
@@ -37,6 +41,8 @@ const resources = {
       "priceLowToTop": "價格由低到高",
       "priceTopToLow": "價格由高到低",
       "contactAdmin": "請與管理者聯絡",
+      "youMay": "你可能也對",
+      "interested": "感興趣的商品"
     }
   }
 };
