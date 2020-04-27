@@ -97,7 +97,7 @@ const nununiSDK = new NununiSDK("id");
 <p>
 nununi-product-tag 是沒有圖片的標籤，nununi-product-tag-image則有圖片。</br>
 可以選擇其中一者，或是兩個都取用。
-左右箭頭以及下方的長型 paginition, 商品的左右 padding, 字體大小等等...都可以用css自訂樣式。</br>
+左右箭頭 `carousel-arrow PREV` `carousel-arrow NEXT` 以及下方的長型 `nununi-related-carousel-paginition`, 商品的左右padding,字體大小等等...都可以用css自訂樣式。</br>
 若不希望顯示過多的推薦標籤名稱，可用 classname .nununi-related-span:nth-child, first-child 等等的css選取器來隱藏。
 </p>
 
