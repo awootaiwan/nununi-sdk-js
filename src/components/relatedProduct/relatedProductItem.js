@@ -1,15 +1,20 @@
 import React from "react";
 
 const RelatedProductItem = ({ url, imageUrl, productName }) => {
+  const backgroundProductImg = {
+    backgroundImage: `url('${imageUrl}')`
+  }
   return (
-    <li className='nununi-related-product' >
-      <a href={url}>
-        <img className='nununi-related-product-img' src={imageUrl}></img>
+    <div className='nununi-related-product'>
+      <a href={url} className='nununi-related-product-img'>
+        <div style={backgroundProductImg}></div>
       </a>
-      <a href={url}>
-        <span className='nununi-related-product-name'>{productName}</span>
-      </a>
-    </li>
+      <div className='nununi-related-product-name'>
+        <a href={url}>
+          {productName}
+        </a>
+      </div>
+    </div>
   );
 };
 

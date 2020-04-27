@@ -28,8 +28,8 @@ const resources = {
       "priceLowToTop": "価格が低い順",
       "priceTopToLow": "価格が高い順",
       "contactAdmin": "無効なパラメーターです",
-      "youMay": "你可能也對",
-      "interested": "感興趣的商品"
+      "youMay": "あなたに",
+      "interested": "のおすすめ商品"
     }
   },
   tw: {

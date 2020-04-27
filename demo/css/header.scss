@@ -557,3 +557,30 @@ main {
     }
   }
 }
+
+#nununi-product-tag-image {
+  .nununi-related-span {
+    margin-left: 5px;
+    font-weight: bold;
+    &:last-child {
+      margin-right: 5px;
+      &::after {
+        content: '';
+      }
+    }
+    &::after {
+      content: ',';
+    }
+  }
+  .nununi-related-product {
+    padding: 10px 20px;
+
+  }
+  .nununi-related-product-name {
+    font-size: 14px;
+    color: #636363;
+  }
+  a {
+    text-decoration: none;
+  }
+}

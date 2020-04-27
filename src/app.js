@@ -223,7 +223,6 @@ class NununiSDK {
       }
       productId = idDom.dataset.nununiProductId;
     }
-    debugger
     if (NununiProductTag) {
       const data = await this.getProductTags(productId);
 
@@ -257,7 +256,7 @@ class NununiSDK {
     });
   }
 
-  getClassifyProductType(productType = '床包‧被套>經典素色>雙人') {
+  getClassifyProductType(productType) {
     if (productType.length < 1) {
       throw new Error('Need to pass product type name');
     }
