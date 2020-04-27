@@ -88,11 +88,21 @@ const nununiSDK = new NununiSDK("id");
 
 ### Product Tags
 
-##### html 需要 nununi-product-tag 區塊才會渲染畫面
+##### html 需要 nununi-product-tag 區塊或是 nununi-product-tag-image 區塊才會渲染畫面
 
 ```htmlmixed=
   <div id="nununi-product-tag"></div>
+  <div id="nununi-product-tag-image"></div>
 ```
+<p>
+nununi-product-tag 是沒有圖片的標籤，nununi-product-tag-image則有圖片。</br>
+可以選擇其中一者，或是兩個都取用。
+左右箭頭以及下方的長型 paginition, 商品的左右 padding, 字體大小等等...都可以用css自訂樣式。</br>
+若不希望顯示過多的推薦標籤名稱，可用 classname .nununi-related-span:nth-child, first-child 等等的css選取器來隱藏。
+</p>
+
+下圖為使用兩者nununi-product-tag、nununi-product-tag-image的範例圖：
+![](https://i.imgur.com/27AqSSg.png)
 
 ##### 參數設定的兩種方法：
 
@@ -395,6 +405,8 @@ async () => {
 `Input`
 
 1. productId(**不可為空**) : string
+##### 使用nununi-product-tag 會回傳 result.tags
+##### 使用nununi-product-tag-image 會回傳 result.relatedProducts
 
 `Output`
 fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的連結。
@@ -410,6 +422,13 @@ fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的
        "link": "linkA",
        "fullLink": "awoo.com.tw/product-list/?label=linkA"
      }
+    ],
+    relatedProducts: [
+      0: {
+        products: [{productId: "123", url: "https://123...,...}]
+        tag: "1223"
+      }
+    ]
   }
 }
 ```
