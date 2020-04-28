@@ -66,8 +66,7 @@ const getRelatedProductsApiData = async (
 ) => {
   try {
     const { status, data: response } = await API.get(
-      // `/${version}/${id}/products/${productId}/tags?select=relatedProducts?t=${new Date().getTime()}`
-      `/${version}/${id}/products/${productId}/tags?select=relatedProducts`
+      `/${version}/${id}/products/${productId}/tags?select=relatedProducts&t=${new Date().getTime()}`
     );
     if (status !== 200) {
       return getPayload(status, response.error_description, response);

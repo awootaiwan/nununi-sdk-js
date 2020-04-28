@@ -84,6 +84,7 @@ p {
     cursor: pointer;
   }
   &.PREV {
+    display: none;
     left: 0;
   }
   &.NEXT {
@@ -93,20 +94,23 @@ p {
 .rec-slider-container {
   margin: 0 20px;
 }
+.rec-pagination {
+  display:none;
+}
 `;
 function slideArrow({ type, onClick }) {
   const pointer = type === consts.PREV ? '<' : '>';
   return <div className={`carousel-arrow ${type}`} onClick={onClick}>{pointer}</div>
 };
+
 const RelatedProduct = ({ RelatedProduct }) => {
   const { t } = useTranslation();
   let tagList = [];
   let productList = [];
   const breakPoints = [
-    { width: 350, itemsToShow: 2 },
-    { width: 400, itemsToShow: 3 },
-    { width: 500, itemsToShow: 5 },
-    { width: 1200, itemsToShow: 6 },
+    { width: 350, itemsToShow: 2, itemsToScroll: 2 },
+    { width: 400, itemsToShow: 3, itemsToScroll: 3 },
+    { width: 500, itemsToShow: 5, itemsToScroll: 5 }
   ];
   if (RelatedProduct.length > 0) {
     RelatedProduct.forEach((tag, index) => {
@@ -121,55 +125,70 @@ const RelatedProduct = ({ RelatedProduct }) => {
       { productList && 
         productList.length > 0 &&
         <>
-        <p>{t('youMay')}:
-        {
-          tagList.map((item, index) => {
-            return (
-              <span className="nununi-related-span" key={index}>{item}</span>
-            )
-          })
-        }{t('interested')}
-      </p>
-      <Carousel 
-        breakPoints={breakPoints} 
-        itemsToScroll={2}
-        className={'nununi-related-carousel'}
-        renderArrow={slideArrow}
-        onResize={currentBreakPoint => {
-          const idealHeight = document.querySelector('.nununi-related-product').clientHeight;
-          const adjustDom = document.querySelector('.rec-carousel');
-          adjustDom.style.height = idealHeight + 'px';
-          }
-        }
-        renderPagination={({ pages, activePage, onClick }) => {
-          return (
-            <div className={'nununi-related-carousel-paginition'}>
-              {pages.map(page => {
-                const isActivePage = activePage === page
+          <p>{t('youMay')}:
+            {
+              tagList.map((item, index) => {
                 return (
-                  <div
-                    key={page}
-                    onClick={() => onClick(page)}
-                    active={isActivePage.toString()}
-                  />
+                  <span className="nununi-related-span" key={index}>{item}</span>
                 )
-              })}
-            </div>
-          )
-        }}
-      >
-        {productList.map((product, index) => {
-          return (
-            <RelatedProductItem 
-              url={product.url} 
-              imageUrl={product.productImageUrl} 
-              productName={product.productName} 
-              key={index} />
-          );
-        })}
-      </Carousel>
-      </>
-      } 
+              })
+            }{t('interested')}
+          </p>
+          <Carousel
+            breakPoints={breakPoints} 
+            className={'nununi-related-carousel'}
+            renderArrow={slideArrow}
+            ref={ref => {
+              const childrenLength = ref.props.children.length;
+              const carousel = document.querySelector('.nununi-related-carousel');
+              carousel.dataset.childNum = childrenLength;
+            }}
+            onResize={(currentBreakPoint) => {
+              const idealHeight = document.querySelector('.nununi-related-product').clientHeight;
+              const adjustDom = document.querySelector('.rec-carousel');
+              adjustDom.style.height = idealHeight + 'px';
+              const carousel = document.querySelector('.nununi-related-carousel');
+              carousel.dataset.scrollItem = currentBreakPoint.itemsToScroll;
+              const showItem = carousel.dataset.showItem = currentBreakPoint.itemsToShow;
+              const childNum = carousel.dataset.childNum;
+              if (parseInt(showItem) > parseInt(childNum)) {
+                document.querySelector('.carousel-arrow.NEXT').style.display = 'none';
+                document.querySelector('.carousel-arrow.PREV').style.display = 'none';
+              }
+            }}
+            onPrevStart={(currentItem, nextItem) =>
+              {
+                document.querySelector('.carousel-arrow.NEXT').style.display = 'block';
+                if (nextItem.index == 0) {
+                  document.querySelector('.carousel-arrow.PREV').style.display = 'none';
+                }
+              }
+            }
+            onNextStart={(currentItem, nextItem) =>
+              {
+                const carousel = document.querySelector('.nununi-related-carousel');
+                const scrollItem = parseInt(carousel.dataset.scrollItem);
+                const totalItem = parseInt(carousel.dataset.childNum);
+                document.querySelector('.carousel-arrow.PREV').style.display = 'block';
+                if (nextItem.index == (totalItem -1) || nextItem.index + scrollItem >= (totalItem)) {
+                  document.querySelector('.carousel-arrow.NEXT').style.display = 'none';
+                }
+              }
+            }
+          >
+            {productList.map((product, index) => {
+              return (
+                <RelatedProductItem 
+                  url={product.url} 
+                  imageUrl={product.productImageUrl} 
+                  productName={product.productName} 
+                  key={index}
+                />
+              );
+            })}
+          </Carousel>
+        </>
+      }
     </ RelatedProductWrapper >
   );
 };
