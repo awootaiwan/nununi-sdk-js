@@ -4,12 +4,14 @@ import i18nLocale from './locale';
 import {
   getApiData,
   getProductTagApiData,
+  getRelatedProductsApiData,
   getClassifyApiData,
   getClassifyProductTypeApiData,
 } from './api/base';
-import Suggestion from './components/suggestion/suggestion';
+import Suggestion from './components/suggestion/Suggestion';
 import ProductList from './components/product/ProductList';
-import ProductTag from './components/productTag/productTag';
+import ProductTag from './components/productTag/ProductTag';
+import RelatedProduct from './components/relatedProduct/RelatedProduct';
 import DocumentMeta from 'react-document-meta';
 
 const splitTags = (tags) => (typeof tags === 'string' ? tags.split(',') : tags);
@@ -201,14 +203,13 @@ class NununiSDK {
   getProductTags(productId) {
     return getProductTagApiData(this.id, this.productsApiVer, productId);
   }
+  getRelatedProducts(productId) {
+    return getRelatedProductsApiData(this.id, this.productsApiVer, productId);
+  }
 
   async renderProductTag(productId) {
     const NununiProductTag = document.getElementById('nununi-product-tag');
-    if (!NununiProductTag || NununiProductTag.length < 1) {
-      throw new Error(
-        'Please add <div id="nununi-product-tag"></div> HTML tag',
-      );
-    }
+    const NununiRelatedProduct = document.getElementById('nununi-product-tag-image');
     if (productId === undefined) {
       const idDom = document.querySelector(
         'div[data-nununi-product-id], a[data-nununi-product-id], span[data-nununi-product-id]',
@@ -222,16 +223,28 @@ class NununiSDK {
       }
       productId = idDom.dataset.nununiProductId;
     }
+    if (NununiProductTag) {
+      const data = await this.getProductTags(productId);
 
-    const data = await this.getProductTags(productId);
+      const { result, errcode, errmsg } = data;
+      ReactDOM.render(
+        <App errcode={errcode} errmsg={errmsg}>
+          <ProductTag ProductTag={result.tags} />
+        </App>,
+        NununiProductTag,
+      );
+    }
+    if (NununiRelatedProduct) {
+      const data = await this.getRelatedProducts(productId);
 
-    const { result, errcode, errmsg } = data;
-    ReactDOM.render(
-      <App errcode={errcode} errmsg={errmsg}>
-        <ProductTag ProductTag={result.tags} />
-      </App>,
-      NununiProductTag,
-    );
+      const { result, errcode, errmsg } = data;
+      ReactDOM.render(
+        <App errcode={errcode} errmsg={errmsg}>
+          <RelatedProduct RelatedProduct={result.relatedProducts} />
+        </App>,
+        NununiRelatedProduct,
+      );
+    } 
   }
 
   getClassify(productIdArray) {
@@ -243,7 +256,7 @@ class NununiSDK {
     });
   }
 
-  getClassifyProductType(productType = '床包‧被套>經典素色>雙人') {
+  getClassifyProductType(productType) {
     if (productType.length < 1) {
       throw new Error('Need to pass product type name');
     }
