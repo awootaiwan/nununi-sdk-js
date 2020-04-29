@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useTranslation } from 'react-i18next';
-import RelatedProductItem from "./relatedProductItem.js";
+import RelatedProductItem from "./RelatedProductItem.js";
 import styled from 'styled-components';
 import Carousel, { consts } from 'react-elastic-carousel';
 
@@ -89,13 +89,24 @@ const RelatedProductWrapper = styled.div`
 
 const RelatedProduct = ({ RelatedProduct }) => {
   const { t } = useTranslation();
-  let tagList = [];
-  let productList = [];
+  const arrowNEXT = useRef(null);
+  const arrowPREV = useRef(null);
+  const carouselRef = useRef(null)
+  const [childNum, setChildNum] = useState(0);
+  const [showItem, setShowItem] = useState(0);
+  const [scrollItem, setScrollItem] = useState(0);
   const breakPoints = [
     { width: 350, itemsToShow: 2, itemsToScroll: 2 },
     { width: 400, itemsToShow: 3, itemsToScroll: 3 },
     { width: 500, itemsToShow: 5, itemsToScroll: 5 }
   ];
+  let tagList = [];
+  let productList = [];
+
+  useEffect(() => {
+    setChildNum(carouselRef.current.props.children.length);
+  }, [carouselRef])
+
   if (RelatedProduct.length > 0) {
     RelatedProduct.forEach((tag, index) => {
       tagList.push(tag.tag);
@@ -104,6 +115,7 @@ const RelatedProduct = ({ RelatedProduct }) => {
       })
     })
   }
+
   function slideArrow({ type, onClick }) {
     const pointer = type === consts.PREV ? '<' : '>';
     return <div 
@@ -113,11 +125,7 @@ const RelatedProduct = ({ RelatedProduct }) => {
                 {pointer}
             </div>
   };
-  const arrowNEXT = useRef(null);
-  const arrowPREV = useRef(null);
-  const [childNum, setChildNum] = useState(0);
-  const [showItem, setShowItem] = useState(0);
-  const [scrollItem, setScrollItem] = useState(0);
+
   return (
     <RelatedProductWrapper className="nununi-related-wrapper">
       { productList && 
@@ -136,21 +144,22 @@ const RelatedProduct = ({ RelatedProduct }) => {
             breakPoints={breakPoints} 
             className={'nununi-related-carousel'}
             renderArrow={slideArrow}
-            ref={ref => {
-              if (ref !== null){ setChildNum(ref.props.children.length)}
-            }}
+            ref={carouselRef}
             onResize={(currentBreakPoint) => {
+              carouselRef.current.goTo(0);
+              arrowPREV.current.style.display = 'none';
+              arrowNEXT.current.style.display = 'block';
               const idealHeight = document.querySelector('.nununi-related-product').clientHeight;
               const adjustDom = document.querySelector('.nununi-related-wrapper .rec-carousel');
               adjustDom.style.height = idealHeight + 'px';
               setScrollItem(currentBreakPoint.itemsToScroll);
-              setShowItem(currentBreakPoint.itemsToShow)
+              setShowItem(currentBreakPoint.itemsToShow);
               if (parseInt(showItem) > parseInt(childNum)) {
                 arrowNEXT.current.style.display = 'none';
                 arrowPREV.current.style.display = 'none';
               }
             }}
-            onPrevStart={(currentItem, nextItem) =>
+            onPrevStart={(nextItem) =>
               {
                 arrowNEXT.current.style.display = 'block';
                 if (nextItem.index == 0) {
@@ -158,7 +167,7 @@ const RelatedProduct = ({ RelatedProduct }) => {
                 }
               }
             }
-            onNextStart={(currentItem, nextItem) =>
+            onNextStart={(nextItem) =>
               {
                 arrowPREV.current.style.display = 'block';
                 if (nextItem.index == (childNum -1) || nextItem.index + scrollItem >= (childNum)) {

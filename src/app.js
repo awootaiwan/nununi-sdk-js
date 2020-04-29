@@ -8,9 +8,9 @@ import {
   getClassifyApiData,
   getClassifyProductTypeApiData,
 } from './api/base';
-import Suggestion from './components/suggestion/suggestion';
+import Suggestion from './components/suggestion/Suggestion';
 import ProductList from './components/product/ProductList';
-import ProductTag from './components/productTag/productTag';
+import ProductTag from './components/productTag/ProductTag';
 import RelatedProduct from './components/relatedProduct/RelatedProduct';
 import DocumentMeta from 'react-document-meta';
 
