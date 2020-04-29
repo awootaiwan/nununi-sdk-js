@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useTranslation } from 'react-i18next';
 import RelatedProductItem from "./relatedProductItem.js";
 import styled from 'styled-components';
@@ -49,12 +49,10 @@ const RelatedProductWrapper = styled.div`
     }
     &-name {
       margin-top: 12px;
-      overflow: hidden;
       max-height: 48px;
       min-height: 32px
       line-height: 16px;
       letter-spacing: .05em;
-      text-overflow: ellipsis;
     }
   }
   &-carousel {

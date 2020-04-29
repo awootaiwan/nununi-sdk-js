@@ -9,8 +9,8 @@ const RelatedProductItem = ({ url, imageUrl, productName }) => {
       <a href={url} className='nununi-related-product-img'>
         <div style={backgroundProductImg}></div>
       </a>
-      <div className='nununi-related-product-name'>
-        <a href={url}>
+      <div>
+        <a href={url} className='nununi-related-product-name'>
           {productName}
         </a>
       </div>
