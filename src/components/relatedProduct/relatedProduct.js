@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import RelatedProductItem from "./RelatedProductItem.js";
+import RelatedProductItem from './RelatedProductItem.js';
 import styled from 'styled-components';
 import Carousel, { consts } from 'react-elastic-carousel';
 
@@ -85,63 +85,67 @@ const RelatedProductWrapper = styled.div`
     right: 0;
   }
 }
-`
+`;
 
 const RelatedProduct = ({ RelatedProduct }) => {
   const { t } = useTranslation();
   const arrowNEXT = useRef(null);
   const arrowPREV = useRef(null);
-  const carouselRef = useRef(null)
+  const carouselRef = useRef(null);
   const [childNum, setChildNum] = useState(0);
   const [showItem, setShowItem] = useState(0);
   const [scrollItem, setScrollItem] = useState(0);
   const breakPoints = [
     { width: 350, itemsToShow: 2, itemsToScroll: 2 },
     { width: 400, itemsToShow: 3, itemsToScroll: 3 },
-    { width: 500, itemsToShow: 5, itemsToScroll: 5 }
+    { width: 500, itemsToShow: 5, itemsToScroll: 5 },
   ];
   let tagList = [];
   let productList = [];
 
   useEffect(() => {
     setChildNum(carouselRef.current.props.children.length);
-  }, [carouselRef])
+  }, [carouselRef]);
 
   if (RelatedProduct.length > 0) {
     RelatedProduct.forEach((tag, index) => {
       tagList.push(tag.tag);
       tag.products.forEach((item, index) => {
-        productList.push(item)
-      })
-    })
+        productList.push(item);
+      });
+    });
   }
 
   function slideArrow({ type, onClick }) {
     const pointer = type === consts.PREV ? '<' : '>';
-    return <div 
-              className={`nununi-carousel-arrow ${type}`} 
-              onClick={onClick}
-              ref={type === "NEXT" ? arrowNEXT : arrowPREV}>
-                {pointer}
-            </div>
-  };
+    return (
+      <div
+        className={`nununi-carousel-arrow ${type}`}
+        onClick={onClick}
+        ref={type === 'NEXT' ? arrowNEXT : arrowPREV}
+      >
+        {pointer}
+      </div>
+    );
+  }
 
   return (
-    <RelatedProductWrapper className="nununi-related-wrapper">
-      { productList && 
-        productList.length > 0 &&
+    <RelatedProductWrapper className='nununi-related-wrapper'>
+      {productList && productList.length > 0 && (
         <>
-          <p>{t('youMay')}:
-            {
-              tagList.map((item, index) => {
-                return (
-                  <span className="nununi-related-span" key={index}>{item}</span>
-                )
-              })
-            }{t('interested')}
+          <p>
+            {t('youMay')}:
+            {tagList.map((item, index) => {
+              return (
+                <span className='nununi-related-span' key={index}>
+                  {item}
+                </span>
+              );
+            })}
+            {t('interested')}
           </p>
           <Carousel
-            breakPoints={breakPoints} 
+            breakPoints={breakPoints}
             className={'nununi-related-carousel'}
             renderArrow={slideArrow}
             ref={carouselRef}
@@ -149,8 +153,12 @@ const RelatedProduct = ({ RelatedProduct }) => {
               carouselRef.current.goTo(0);
               arrowPREV.current.style.display = 'none';
               arrowNEXT.current.style.display = 'block';
-              const idealHeight = document.querySelector('.nununi-related-product').clientHeight;
-              const adjustDom = document.querySelector('.nununi-related-wrapper .rec-carousel');
+              const idealHeight = document.querySelector(
+                '.nununi-related-product',
+              ).clientHeight;
+              const adjustDom = document.querySelector(
+                '.nununi-related-wrapper .rec-carousel',
+              );
               adjustDom.style.height = idealHeight + 'px';
               setScrollItem(currentBreakPoint.itemsToScroll);
               setShowItem(currentBreakPoint.itemsToShow);
@@ -159,37 +167,36 @@ const RelatedProduct = ({ RelatedProduct }) => {
                 arrowPREV.current.style.display = 'none';
               }
             }}
-            onPrevStart={(nextItem) =>
-              {
-                arrowNEXT.current.style.display = 'block';
-                if (nextItem.index == 0) {
-                  arrowPREV.current.style.display = 'none';
-                }
+            onPrevStart={(prevItemObj, nextItem) => {
+              arrowNEXT.current.style.display = 'block';
+              if (nextItem.index == 0) {
+                arrowPREV.current.style.display = 'none';
               }
-            }
-            onNextStart={(nextItem) =>
-              {
-                arrowPREV.current.style.display = 'block';
-                if (nextItem.index == (childNum -1) || nextItem.index + scrollItem >= (childNum)) {
-                  arrowNEXT.current.style.display = 'none';
-                }
+            }}
+            onNextStart={(prevItemObj, nextItem) => {
+              arrowPREV.current.style.display = 'block';
+              if (
+                nextItem.index == childNum - 1 ||
+                nextItem.index + scrollItem >= childNum
+              ) {
+                arrowNEXT.current.style.display = 'none';
               }
-            }
+            }}
           >
             {productList.map((product, index) => {
               return (
-                <RelatedProductItem 
-                  url={product.url} 
-                  imageUrl={product.productImageUrl} 
-                  productName={product.productName} 
+                <RelatedProductItem
+                  url={product.url}
+                  imageUrl={product.productImageUrl}
+                  productName={product.productName}
                   key={index}
                 />
               );
             })}
           </Carousel>
         </>
-      }
-    </ RelatedProductWrapper >
+      )}
+    </RelatedProductWrapper>
   );
 };
 
