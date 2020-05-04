@@ -88,11 +88,16 @@ const nununiSDK = new NununiSDK("id");
 
 ### Product Tags
 
-##### html 需要 nununi-product-tag 區塊才會渲染畫面
+##### html 需要 nununi-product-tag 區塊或是 nununi-product-tag-image 區塊才會渲染畫面
 
 ```htmlmixed=
   <div id="nununi-product-tag"></div>
+  <div id="nununi-product-tag-image"></div>
 ```
+<p>
+nununi-product-tag 是沒有圖片的標籤，nununi-product-tag-image則有圖片。</br>
+可以選擇其中一者，或是兩個都取用。
+</p>
 
 ##### 參數設定的兩種方法：
 
@@ -112,9 +117,11 @@ nununiSDK.getProductTags("PRODUCT-ID");
   </span>
 ```
 
-執行`nununiSDK.renderProductTag()`會將 nununi 標籤渲染至標籤 `id="nununi-product-tag"` 內，以下畫面為範例：
+執行`nununiSDK.renderProductTag()`會將 nununi 標籤渲染至標籤 `id="nununi-product-tag"` 以及 `nununi-product-tag-image`內。
+左右箭頭, 商品區塊皆可自訂css樣式，請見 CSS 樣式修改
+以下畫面為範例：
 
-![](https://imgur.com/y6J2z83.png)
+![](https://imgur.com/XL1mTT2.png)
 
 ### Classify Product Type
 
@@ -179,6 +186,22 @@ nununiSDK.renderClassifyProductType("熱銷推薦>201909新品上市>");
   display: inline-block
   font-size: 18px;
   background: #d4aaa;
+}
+```
+
+```
+// 只留下第一個相關標籤
+#nununi-product-tag-image .nununi-related-span {
+  display: none;
+}
+#nununi-product-tag-image .nununi-related-span:first-child {
+  display: block;
+}
+
+#nununi-product-tag-image .nununi-carousel-arrow.NEXT,
+#nununi-product-tag-image .nununi-carousel-arrow.PREV {
+// 左右箭頭改成黑色背景
+  background-color: #000000;
 }
 ```
 
@@ -395,6 +418,8 @@ async () => {
 `Input`
 
 1. productId(**不可為空**) : string
+##### 使用nununi-product-tag 會回傳 result.tags
+##### 使用nununi-product-tag-image 會回傳 result.relatedProducts
 
 `Output`
 fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的連結。
@@ -410,6 +435,13 @@ fullLink 是客戶的 api base + link 欄位，此處使用 fullLink 做 tag 的
        "link": "linkA",
        "fullLink": "awoo.com.tw/product-list/?label=linkA"
      }
+    ],
+    relatedProducts: [
+      0: {
+        products: [{productId: "123", url: "https://123...,...}]
+        tag: "1223"
+      }
+    ]
   }
 }
 ```

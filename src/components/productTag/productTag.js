@@ -1,5 +1,5 @@
 import React from "react";
-import ProductTagItem from "./productTagItem.js";
+import ProductTagItem from "./ProductTagItem.js";
 import styled from 'styled-components'
 
 const ProductTagDiv = styled.div`

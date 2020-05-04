@@ -59,6 +59,24 @@ const getProductTagApiData = async (
   }
 };
 
+const getRelatedProductsApiData = async (
+  id = process.env.NUNUNI_ID,
+  version,
+  productId
+) => {
+  try {
+    const { status, data: response } = await API.get(
+      `/${version}/${id}/products/${productId}/tags?select=relatedProducts&t=${new Date().getTime()}`
+    );
+    if (status !== 200) {
+      return getPayload(status, response.error_description, response);
+    }
+    return response;
+  } catch (e) {
+    return getPayload(ERROR_REQUEST_FAILED);
+  }
+};
+
 const getClassifyApiData = async (
   id = process.env.NUNUNI_ID,
   version,
@@ -100,6 +118,7 @@ const getClassifyProductTypeApiData = async (
 export {
   getApiData,
   getProductTagApiData,
+  getRelatedProductsApiData,
   getClassifyApiData,
   getClassifyProductTypeApiData
 };

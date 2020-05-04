@@ -1,6 +1,6 @@
 import React from "react";
 import { useTranslation } from 'react-i18next';
-import SuggestionTag from "./suggestionTag.js";
+import SuggestionTag from "./SuggestionTag.js";
 import styled from 'styled-components'
 
 const SuggestionDiv = styled.div`
