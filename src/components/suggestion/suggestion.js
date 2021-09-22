@@ -85,9 +85,7 @@ const Suggestion = ({ suggestionTags, pageInfo }) => {
           tags.map((tag) => (
             <li className='page-tag' key={tag}>
               <a
-                href={`${baseUrl}?tags=${encodeURIComponent(
-                  tag,
-                )}&limit=${limit}`}
+                href={`${baseUrl}?tags=${tag}&limit=${limit}`}
               >
                 {tag}
               </a>
