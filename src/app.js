@@ -12,7 +12,7 @@ import Suggestion from './components/suggestion/Suggestion';
 import ProductList from './components/product/ProductList';
 import ProductTag from './components/productTag/ProductTag';
 import RelatedProduct from './components/relatedProduct/RelatedProduct';
-import DocumentMeta from 'react-document-meta';
+import { Helmet } from 'react-helmet';
 
 const splitTags = (tags) => (typeof tags === 'string' ? tags.split(',') : tags);
 
@@ -152,9 +152,26 @@ class NununiSDK {
       description: description == '' ? null : description,
       canonical: canonical == '' ? null : canonical,
     };
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    const descriptionEl = document.querySelector('meta[name="description"]');
+    setTimeout(() => {
+      if (canonicalEl !== null) {
+        canonicalEl.href = meta.canonical;
+      }
+      if (descriptionEl !== null) {
+        descriptionEl.content = meta.description;
+      }
+    }, 0);
+
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
-        <DocumentMeta {...meta} />
+        <Helmet>
+          <title>{meta.title}</title>
+          {!canonicalEl && <link rel='canonical' href={meta.canonical} />}
+          {!descriptionEl && (
+            <meta name='description' content={meta.description} />
+          )}
+        </Helmet>
         <Suggestion
           suggestionTags={result.suggestionTags}
           pageInfo={pageInfo}
@@ -191,9 +208,26 @@ class NununiSDK {
       description: description == '' ? null : description,
       canonical: canonical == '' ? null : canonical,
     };
+    const canonicalEl = document.querySelector('link[rel="canonical"]');
+    const descriptionEl = document.querySelector('meta[name="description"]');
+    setTimeout(() => {
+      if (canonicalEl !== null) {
+        canonicalEl.href = meta.canonical;
+      }
+      if (descriptionEl !== null) {
+        descriptionEl.content = meta.description;
+      }
+    }, 0);
+
     ReactDOM.render(
       <App errcode={errcode} errmsg={errmsg}>
-        <DocumentMeta {...meta} />
+        <Helmet>
+          <title>{meta.title}</title>
+          {!descriptionEl && (
+            <meta name='description' content={meta.description} />
+          )}
+          {!canonicalEl && <link rel='canonical' href={meta.canonical} />}
+        </Helmet>
         <ProductList productlist={result} pageInfo={pageInfo} />
       </App>,
       NununiProductList,
@@ -209,7 +243,9 @@ class NununiSDK {
 
   async renderProductTag(productId) {
     const NununiProductTag = document.getElementById('nununi-product-tag');
-    const NununiRelatedProduct = document.getElementById('nununi-product-tag-image');
+    const NununiRelatedProduct = document.getElementById(
+      'nununi-product-tag-image',
+    );
     if (productId === undefined) {
       const idDom = document.querySelector(
         'div[data-nununi-product-id], a[data-nununi-product-id], span[data-nununi-product-id]',
@@ -244,7 +280,7 @@ class NununiSDK {
         </App>,
         NununiRelatedProduct,
       );
-    } 
+    }
   }
 
   getClassify(productIdArray) {
